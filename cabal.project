@@ -1,0 +1,7 @@
+source-repository-package
+  type: git
+  location: https://github.com/lukyanovartem/web.git
+  subdir: hakyll-gallery
+  tag: f0a2a369d265f26c1b38c139c8cb54e6653e98ec
+
+packages: .

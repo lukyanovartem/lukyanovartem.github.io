@@ -1,0 +1,17 @@
+<p>
+<a href="$url$">$title$</a>
+<br />
+$date$
+$if(author)$
+    написал $author$
+$endif$
+</p>
+$body$
+<p>
+    $if(iftags)$
+      категории $tags$
+    $else$
+      без категорий
+    $endif$
+    <span class="disqus-comment-count" data-disqus-identifier="$path$"></span>
+</p>
