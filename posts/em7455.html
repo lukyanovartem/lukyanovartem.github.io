@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Хранилище заметок - Настройки WWAN модема Sierra EM7455</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="Ничего важного" href="./rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Ничего важного" href="./atom.xml">
+<meta name="description" content="artem lukyanov homepage">
+<meta name="Keywords" content="artem, lukyanov">
+</head>
+<body>
+<div class="buttons">
+<a href="../" class="posts/em7455.md">Главная</a><a href="../gallery" class="posts/em7455.md">Галерея</a><a href="../archive.html" class="posts/em7455.md">Архив</a>
+</div>
+<div class="header">
+<h1>Хранилище заметок</h1>
+Ничего важного
+</div>
+<div class="content">
+<p>
+<a href="../posts/em7455.html">Настройки WWAN модема Sierra EM7455</a>
+<br />
+ 9 апреля 2024
+
+</p>
+<p>Прошивание модема</p>
+<pre><code>AT!ENTERCND=&quot;A710&quot;
+# Clear all changes and restore to (Lenovo/Sierra) factory settings
+AT!RMARESET=1
+AT!IMAGE=0
+AT!RESET</code></pre>
+<pre><code>qmi-firmware-update --reset -d &quot;1199:9079&quot;
+qmi-firmware-update --update-download -d &quot;1199:9079&quot; SWI9X30C_02.33.03.00.cwe SWI9X30C_02.33.03.00_GENERIC_002.072_001.nvu
+qmicli -d /dev/cdc-wdm0 --dms-set-firmware-preference=02.33.03.00,002.072_001,GENERIC</code></pre>
+<pre><code>AT!ENTERCND=&quot;A710&quot;
+AT!USBVID=1199
+AT!USBPID=9071,9070
+AT!USBPRODUCT=&quot;EM7455&quot;
+AT!PRIID?
+# Carrier PRI: 9999999_9904609_SWI9X30C_02.24.05.06_00_GENERIC_002.026_000
+AT!PRIID=&quot;9904609&quot;,&quot;002.026&quot;,&quot;Generic-Laptop&quot;
+# Force USB2 mode to enable compatibility with newer M.2 interfaces
+AT!USBSPEED=0
+AT!RESET</code></pre>
+<p>Отключение необходимости запуска скрипта по разблокировке модема</p>
+<pre><code>AT!OPENLOCK?
+sierrakeygen.py -l &lt;code&gt; -d MDM9x30
+AT!OPENLOCK=&quot;&lt;newcode&gt;&quot;
+AT!PCFCCAUTH=0
+AT!RESET</code></pre>
+<p>
+    
+      категории <a title="All pages tagged 'wwan'." href="../tags/wwan.html" rel="tag">wwan</a>
+    
+    <span class="disqus-comment-count" data-disqus-identifier="posts/em7455.md"></span>
+</p>
+
+<!--<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+var disqus_config = function () {
+this.page.url = 'https://lukyanovartem.github.io/posts/em7455.html';  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = 'posts/em7455.md'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+-->
+
+</div>
+<!--<script id="dsq-count-scr" src="//.disqus.com/count.js" async></script>-->
+</body>

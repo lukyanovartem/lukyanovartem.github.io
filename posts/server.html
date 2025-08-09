@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Хранилище заметок - Домашний сервер</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="Ничего важного" href="./rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Ничего важного" href="./atom.xml">
+<meta name="description" content="artem lukyanov homepage">
+<meta name="Keywords" content="artem, lukyanov">
+</head>
+<body>
+<div class="buttons">
+<a href="../" class="posts/server.md">Главная</a><a href="../gallery" class="posts/server.md">Галерея</a><a href="../archive.html" class="posts/server.md">Архив</a>
+</div>
+<div class="header">
+<h1>Хранилище заметок</h1>
+Ничего важного
+</div>
+<div class="content">
+<p>
+<a href="../posts/server.html">Домашний сервер</a>
+<br />
+17 сентября 2021
+
+</p>
+<p>Понадобилось собрать домашний сервер для различных гедонистических целей. Как можно заметить на фото ниже, данный сервер и сопутствующие причиндалы уютно разместились на шкафу:</p>
+<p><span class="math inline">
+
+<a href="../gallery/server/photo1681667759.jpeg.html"><img src="../gallery/server/photo1681667759.thumb.jpeg" /></a>
+<link rel="prefetch" href="../gallery/server/photo1681667759.jpeg">
+
+
+</span></p>
+<p>В качестве компонентов были выбраны следующие железки:</p>
+<ul>
+<li>Платформа ASRock DeskMini X300</li>
+<li>Процессор AMD Ryzen 5 3400G</li>
+<li>16 Гб ОЗУ DDR4</li>
+<li>256 Гб SSD под систему</li>
+<li>2 Тб винт под данные</li>
+</ul>
+<p>Из сопутствующего:</p>
+<ul>
+<li>ИБП Ippon Back Power Pro LCD 600</li>
+<li>Старый принтер Xerox Phaser 3116</li>
+</ul>
+<p>Далее, поскольку сервер служит и роутером, понадобилось установить Wi-Fi адаптеры. Для сети стандарта 802.11n выбор пал на дешёвый USB-свисток с Ali на чипе AR9271. Для более современной сети, выбрал QCA6174 формата M.2.
+Но просто установить адаптер оказалось недостаточным, пришлось ещё обойти некие региональные ограничения для работы адаптера в режиме токи в диапазоне пятигигагерцовых сетей. К счастью, для драйвера ath10k у проекта OpenWRT оказался патч снимающий данные региональные ограничения.</p>
+<p>Небольшой вишенкой на торте стала HDMI-затычка с Ali, эмулирующая присутствие монитора. Что позволяет передавать картинку от графического сервера без использования программных костылей. Пусть лучше будет костыль аппаратный 🙂</p>
+<p>Далее перечислены задачи, которые в данный момент решает сервер:</p>
+<ul>
+<li>Роутер и Wi-Fi точка доступа</li>
+<li>Файлопомойка</li>
+<li>Торрент-клиент</li>
+<li>Медиа-сервер</li>
+<li>Стриминг игр на другие устройства</li>
+<li>Мониторинг</li>
+<li>VPN</li>
+<li>Git</li>
+<li>Синхронизация файлов</li>
+<li>Принт-сервер</li>
+</ul>
+<p>
+    
+      категории <a title="All pages tagged 'сервер'." href="../tags/%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80.html" rel="tag">сервер</a>, <a title="All pages tagged 'linux'." href="../tags/linux.html" rel="tag">linux</a>
+    
+    <span class="disqus-comment-count" data-disqus-identifier="posts/server.md"></span>
+</p>
+
+<!--<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+var disqus_config = function () {
+this.page.url = 'https://lukyanovartem.github.io/posts/server.html';  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = 'posts/server.md'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+-->
+
+</div>
+<!--<script id="dsq-count-scr" src="//.disqus.com/count.js" async></script>-->
+</body>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Хранилище заметок - Запуск Stable Diffusion на слабом железе</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="Ничего важного" href="./rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Ничего важного" href="./atom.xml">
+<meta name="description" content="artem lukyanov homepage">
+<meta name="Keywords" content="artem, lukyanov">
+</head>
+<body>
+<div class="buttons">
+<a href="../" class="posts/sd.md">Главная</a><a href="../gallery" class="posts/sd.md">Галерея</a><a href="../archive.html" class="posts/sd.md">Архив</a>
+</div>
+<div class="header">
+<h1>Хранилище заметок</h1>
+Ничего важного
+</div>
+<div class="content">
+<p>
+<a href="../posts/sd.html">Запуск Stable Diffusion на слабом железе</a>
+<br />
+25 апреля 2025
+
+</p>
+<p>Удалось запустить Stable Diffusion на слабой машине с интегрированной карточкой Intel UHD Graphics 620.<br />
+Для запуска использовал софт <a href="https://github.com/leejet/stable-diffusion.cpp" class="uri">https://github.com/leejet/stable-diffusion.cpp</a> (нужно собирать с поддержкой Vulkan).<br />
+И модель <a href="https://huggingface.co/stabilityai/sdxl-turbo/blob/main/sd_xl_turbo_1.0_fp16.safetensors" class="uri">https://huggingface.co/stabilityai/sdxl-turbo/blob/main/sd_xl_turbo_1.0_fp16.safetensors</a><br />
+Параметры для запуска описаны в <a href="https://huggingface.co/stabilityai/sdxl-turbo">README</a> модели. Единственное отличие в том, что вместо <code>guidance_scale=0.0</code> нужно использовать <code>cfg-scale 1</code>.<br />
+Другая моделька <a href="https://huggingface.co/RunDiffusion/Juggernaut-X-Hyper/blob/main/JuggernautXRundiffusion_Hyper.safetensors" class="uri">https://huggingface.co/RunDiffusion/Juggernaut-X-Hyper/blob/main/JuggernautXRundiffusion_Hyper.safetensors</a><br />
+Для борбы с нехваткой памяти следует использовать TAESD <a href="https://huggingface.co/madebyollin/taesdxl/blob/main/diffusion_pytorch_model.safetensors" class="uri">https://huggingface.co/madebyollin/taesdxl/blob/main/diffusion_pytorch_model.safetensors</a> и параметр <code>clip-on-cpu</code>.<br />
+Поскольку изображение получается размера 512x512, можно использовать апскейлер <a href="https://civitai.com/models/147821/realesrganx4plus-anime-6b" class="uri">https://civitai.com/models/147821/realesrganx4plus-anime-6b</a> или <a href="https://civitai.com/models/147817/realesrganx4plus" class="uri">https://civitai.com/models/147817/realesrganx4plus</a> для увеличения разрешения в 4 раза.</p>
+<p>
+    
+      категории <a title="All pages tagged 'stable diffusion'." href="../tags/stable%20diffusion.html" rel="tag">stable diffusion</a>
+    
+    <span class="disqus-comment-count" data-disqus-identifier="posts/sd.md"></span>
+</p>
+
+<!--<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+var disqus_config = function () {
+this.page.url = 'https://lukyanovartem.github.io/posts/sd.html';  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = 'posts/sd.md'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+-->
+
+</div>
+<!--<script id="dsq-count-scr" src="//.disqus.com/count.js" async></script>-->
+</body>
