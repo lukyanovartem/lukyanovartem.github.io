@@ -169,9 +169,7 @@ sudo nix-store --optimise</code></pre>
 <pre><code># правила для yaos
 ||quasar.yandex.net^$client=yaos
 ||rpc.alice.yandex.net^$client=yaos
-||coslogdydy.in^$client=yaos
-# отключение QUIC
-||*^$dnstype=HTTPS</code></pre>
+||coslogdydy.in^$client=yaos</code></pre>
 <p>
     
       категории <a title="All pages tagged &#39;dns&#39;." href="/tags/dns.html" rel="tag">dns</a>, <a title="All pages tagged &#39;dhcp&#39;." href="/tags/dhcp.html" rel="tag">dhcp</a>, <a title="All pages tagged &#39;adblock&#39;." href="/tags/adblock.html" rel="tag">adblock</a>
