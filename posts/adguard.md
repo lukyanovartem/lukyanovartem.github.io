@@ -23,7 +23,6 @@ tags: dns, dhcp, adblock
 ```
 # правила для yaos
 ||quasar.yandex.net^$$$$client=yaos
-||appmetrica.yandex.net^$$$$client=yaos
 ||rpc.alice.yandex.net^$$$$client=yaos
 ||coslogdydy.in^$$$$client=yaos
 # отключение QUIC
