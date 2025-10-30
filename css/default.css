@@ -1,14 +1,22 @@
+:root {
+  --base: #eff1f5;
+  --text: #4c4f69;
+  --teal: #179299;
+  --overlay2: #7c7f93;
+  --mantle: #e6e9ef;
+}
+
 html {
   -webkit-text-size-adjust: 100%; /* костыль для мобильного хрома */
 }
 
 body {
   margin: 0; /* выкидываем отступы по умолчанию */
-  background-color: #222222;
-  color: white;
+  background-color: var(--base);
+  color: var(--text);
 }
 a {
-  color: white;
+  color: var(--text);
 }
 .header, .content {
   /* добавить отступы слева и справа от содержимого */
@@ -16,7 +24,8 @@ a {
   padding-right: 5%;
 }
 .header {
-  background-color: #005577;
+  background-color: var(--teal);
+  color: var(--base);
   padding-top: 0.5em; /* добавить отступ над надписью логотипа */
   padding-bottom: 0.4em; /* добавить отступ под слоганом логотипа */
 }
@@ -28,7 +37,8 @@ a {
   font-weight: normal;
 }
 .content a:hover {
-  background-color: #005577;
+  background-color: var(--teal);
+  color: var(--base);
 }
 .buttons a {
   text-decoration: none;
@@ -37,19 +47,20 @@ a {
   padding: 0.3em 1em; /* добавил отступы к кнопкам */
 }
 .active {
-  background-color: #005577;
+  background-color: var(--teal);
+  color: var(--base);
 }
 
 .separator {
   border-bottom: 1px dashed;
   line-height: 0.1em;
-  color: gray;
+  color: var(--overlay2);
   font-family: 'Segoe UI Symbol'; /* в ms edge делаем шрифт серым */
   margin-left: -5%; /* отменяем паддинги контента */
   margin-right: -5%;
 }
 .background {
-  background-color: #222222;
+  background-color: var(--base);
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -84,14 +95,14 @@ a {
 }
 
 blockquote {
-  background: #f9f9f9;
-  border-left: 10px solid #ccc;
+  background: var(--mantle);
+  border-left: 10px solid var(--overlay2);
   margin: 1.5em 10px;
   padding: 0.5em 10px;
   quotes: "\201C""\201D""\2018""\2019";
 }
 blockquote:before {
-  color: #ccc;
+  color: var(--overlay2);
   content: open-quote;
   font-size: 4em;
   line-height: 0.1em;
@@ -100,7 +111,6 @@ blockquote:before {
 }
 blockquote p {
   display: inline;
-  color: black;
 }
 
 ul li{
