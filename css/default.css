@@ -4,6 +4,7 @@
   --teal: #179299;
   --overlay2: #7c7f93;
   --mantle: #e6e9ef;
+  --crust: #dce0e8;
 }
 
 html {
@@ -49,6 +50,12 @@ a {
 .active {
   background-color: var(--teal);
   color: var(--base);
+}
+.meta {
+  color: var(--overlay2);
+}
+.meta a {
+  color: var(--overlay2);
 }
 
 .separator {

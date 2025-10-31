@@ -1,16 +1,18 @@
 <p>
 <h1><a href="$url$">$title$</a></h1>
-$date$
+<div class="meta">$date$</div>
 $if(author)$
     написал $author$
 $endif$
 </p>
 $body$
 <p>
+    <div class="meta">
     $if(iftags)$
       категории $tags$
     $else$
       без категорий
     $endif$
+    </div>
     <span class="disqus-comment-count" data-disqus-identifier="$path$"></span>
 </p>
