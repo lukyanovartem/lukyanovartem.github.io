@@ -16,8 +16,7 @@
     <published>07.05.2025</published>
     <updated>2025-05-07T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/nixos.html">Шпаргалка по NixOS</a>
-<br />
+<h1><a href="/posts/nixos.html">Шпаргалка по NixOS</a></h1>
  7 мая 2025
 
 </p>
@@ -64,8 +63,7 @@ sudo nix-store --optimise</code></pre>
     <published>25.04.2025</published>
     <updated>2025-04-25T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/sd.html">Запуск Stable Diffusion на слабом железе</a>
-<br />
+<h1><a href="/posts/sd.html">Запуск Stable Diffusion на слабом железе</a></h1>
 25 апреля 2025
 
 </p>
@@ -91,8 +89,7 @@ sudo nix-store --optimise</code></pre>
     <published>11.04.2025</published>
     <updated>2025-04-11T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/revanced.html">Настройки YouTube ReVanced</a>
-<br />
+<h1><a href="/posts/revanced.html">Настройки YouTube ReVanced</a></h1>
 11 апреля 2025
 
 </p>
@@ -147,8 +144,7 @@ sudo nix-store --optimise</code></pre>
     <published>28.02.2025</published>
     <updated>2025-02-28T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/adguard.html">Настройки AdGuard Home</a>
-<br />
+<h1><a href="/posts/adguard.html">Настройки AdGuard Home</a></h1>
 28 февраля 2025
 
 </p>
@@ -185,8 +181,7 @@ sudo nix-store --optimise</code></pre>
     <published>09.04.2024</published>
     <updated>2024-04-09T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/wwan.html">Убираем белый список на WWAN модемы для ThinkPad T480s</a>
-<br />
+<h1><a href="/posts/wwan.html">Убираем белый список на WWAN модемы для ThinkPad T480s</a></h1>
  9 апреля 2024
 
 </p>
@@ -229,8 +224,7 @@ sudo nix-store --optimise</code></pre>
     <published>09.04.2024</published>
     <updated>2024-04-09T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/em7455.html">Настройки WWAN модема Sierra EM7455</a>
-<br />
+<h1><a href="/posts/em7455.html">Настройки WWAN модема Sierra EM7455</a></h1>
  9 апреля 2024
 
 </p>
@@ -274,8 +268,7 @@ AT!RESET</code></pre>
     <published>11.05.2023</published>
     <updated>2023-05-11T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/tomato.html">Глупые IT названия</a>
-<br />
+<h1><a href="/posts/tomato.html">Глупые IT названия</a></h1>
 11 мая 2023
 
 </p>
@@ -330,8 +323,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <published>17.09.2021</published>
     <updated>2021-09-17T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/server.html">Домашний сервер</a>
-<br />
+<h1><a href="/posts/server.html">Домашний сервер</a></h1>
 17 сентября 2021
 
 </p>
@@ -387,8 +379,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <published>19.07.2021</published>
     <updated>2021-07-19T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/retropc.html">Дачный ретрокомп</a>
-<br />
+<h1><a href="/posts/retropc.html">Дачный ретрокомп</a></h1>
 19 июля 2021
 
 </p>
@@ -447,8 +438,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <published>18.01.2021</published>
     <updated>2021-01-18T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/books.html">Книги которые взорвали мозг</a>
-<br />
+<h1><a href="/posts/books.html">Книги которые взорвали мозг</a></h1>
 18 января 2021
 
 </p>
@@ -477,8 +467,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <published>16.11.2019</published>
     <updated>2019-11-16T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/germany.html">Германия</a>
-<br />
+<h1><a href="/posts/germany.html">Германия</a></h1>
 16 ноября 2019
 
 </p>
@@ -525,8 +514,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <published>22.07.2008</published>
     <updated>2008-07-22T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/croatia.html">Хорватия</a>
-<br />
+<h1><a href="/posts/croatia.html">Хорватия</a></h1>
 22 июля 2008
 
 </p>
@@ -572,8 +560,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <published>01.06.2007</published>
     <updated>2007-06-01T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/greece.html">Греция</a>
-<br />
+<h1><a href="/posts/greece.html">Греция</a></h1>
  1 июня 2007
 
 </p>
@@ -614,8 +601,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <published>01.06.2005</published>
     <updated>2005-06-01T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/karelia.html">Карелия</a>
-<br />
+<h1><a href="/posts/karelia.html">Карелия</a></h1>
  1 июня 2005
 
 </p>
@@ -676,8 +662,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <published>01.06.2003</published>
     <updated>2003-06-01T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/england.html">Англия</a>
-<br />
+<h1><a href="/posts/england.html">Англия</a></h1>
  1 июня 2003
 
 </p>
@@ -723,8 +708,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <published>01.06.2001</published>
     <updated>2001-06-01T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>
-<a href="/posts/latvia.html">Латвия</a>
-<br />
+<h1><a href="/posts/latvia.html">Латвия</a></h1>
  1 июня 2001
 
 </p>
