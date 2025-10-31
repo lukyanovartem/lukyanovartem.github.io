@@ -20,7 +20,7 @@
 <div class="content">
 <p>
 <h1><a href="../posts/em7455.html">Настройки WWAN модема Sierra EM7455</a></h1>
- 9 апреля 2024
+<div class="meta"> 9 апреля 2024</div>
 
 </p>
 <p>Прошивание модема</p>
@@ -29,9 +29,9 @@
 AT!RMARESET=1
 AT!IMAGE=0
 AT!RESET</code></pre>
-<pre><code>qmi-firmware-update --reset -d &quot;1199:9079&quot;
-qmi-firmware-update --update-download -d &quot;1199:9079&quot; SWI9X30C_02.33.03.00.cwe SWI9X30C_02.33.03.00_GENERIC_002.072_001.nvu
-qmicli -d /dev/cdc-wdm0 --dms-set-firmware-preference=02.33.03.00,002.072_001,GENERIC</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qmi-firmware-update</span> <span class="at">--reset</span> <span class="at">-d</span> <span class="st">&quot;1199:9079&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qmi-firmware-update</span> <span class="at">--update-download</span> <span class="at">-d</span> <span class="st">&quot;1199:9079&quot;</span> SWI9X30C_02.33.03.00.cwe SWI9X30C_02.33.03.00_GENERIC_002.072_001.nvu</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">qmicli</span> <span class="at">-d</span> /dev/cdc-wdm0 <span class="at">--dms-set-firmware-preference</span><span class="op">=</span>02.33.03.00,002.072_001,GENERIC</span></code></pre></div>
 <pre><code>AT!ENTERCND=&quot;A710&quot;
 AT!USBVID=1199
 AT!USBPID=9071,9070
@@ -49,9 +49,11 @@ AT!OPENLOCK=&quot;&lt;newcode&gt;&quot;
 AT!PCFCCAUTH=0
 AT!RESET</code></pre>
 <p>
+    <div class="meta">
     
       категории <a title="All pages tagged 'wwan'." href="../tags/wwan.html" rel="tag">wwan</a>
     
+    </div>
     <span class="disqus-comment-count" data-disqus-identifier="posts/em7455.md"></span>
 </p>
 
