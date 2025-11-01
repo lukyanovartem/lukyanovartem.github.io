@@ -8,7 +8,7 @@
 
 html {
   -webkit-text-size-adjust: 100%; /* костыль для мобильного хрома */
-  font-size: 1.1rem;
+  font-size: 1.1em;
 }
 
 body {
