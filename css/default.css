@@ -8,6 +8,7 @@
 
 html {
   -webkit-text-size-adjust: 100%; /* костыль для мобильного хрома */
+  font-size: 1.1rem;
 }
 
 body {
@@ -17,6 +18,9 @@ body {
 }
 a {
   color: var(--text);
+}
+h1,h2,h3 {
+  font-weight: normal;
 }
 .header, .content {
   /* добавить отступы слева и справа от содержимого */
@@ -32,7 +36,6 @@ a {
 .header h1 {
   margin-top: 0; /* убрать дефолтный h1 отступ сверху */
   margin-bottom: 0.3em; /* настроить отступ между лого и слоганом */
-  font-family: 'Times New Roman', Times, serif;
   font-size: 3em;
   font-weight: normal;
 }
@@ -42,7 +45,6 @@ a {
 }
 .buttons a {
   text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
   display: inline-block; /* кнопки блочно-строчные элементы */
   padding: 0.3em 1em; /* добавил отступы к кнопкам */
 }
