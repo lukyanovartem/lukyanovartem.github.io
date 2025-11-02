@@ -12,7 +12,7 @@
     <title>Шпаргалка по NixOS</title>
     <link>https://lukyanovartem.github.io/posts/nixos.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/nixos.html">Шпаргалка по NixOS</a></h1>
+<div class="title"><h1><a href="/posts/nixos.html">Шпаргалка по NixOS</a></h1></div>
 <div class="meta"> 7 мая 2025</div>
 
 </p>
@@ -61,7 +61,7 @@
     <title>Запуск Stable Diffusion на слабом железе</title>
     <link>https://lukyanovartem.github.io/posts/sd.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/sd.html">Запуск Stable Diffusion на слабом железе</a></h1>
+<div class="title"><h1><a href="/posts/sd.html">Запуск Stable Diffusion на слабом железе</a></h1></div>
 <div class="meta">25 апреля 2025</div>
 
 </p>
@@ -89,7 +89,7 @@
     <title>Настройки YouTube ReVanced</title>
     <link>https://lukyanovartem.github.io/posts/revanced.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/revanced.html">Настройки YouTube ReVanced</a></h1>
+<div class="title"><h1><a href="/posts/revanced.html">Настройки YouTube ReVanced</a></h1></div>
 <div class="meta">11 апреля 2025</div>
 
 </p>
@@ -146,7 +146,7 @@
     <title>Настройки AdGuard Home</title>
     <link>https://lukyanovartem.github.io/posts/adguard.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/adguard.html">Настройки AdGuard Home</a></h1>
+<div class="title"><h1><a href="/posts/adguard.html">Настройки AdGuard Home</a></h1></div>
 <div class="meta">28 февраля 2025</div>
 
 </p>
@@ -185,7 +185,7 @@
     <title>Убираем белый список на WWAN модемы для ThinkPad T480s</title>
     <link>https://lukyanovartem.github.io/posts/wwan.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/wwan.html">Убираем белый список на WWAN модемы для ThinkPad T480s</a></h1>
+<div class="title"><h1><a href="/posts/wwan.html">Убираем белый список на WWAN модемы для ThinkPad T480s</a></h1></div>
 <div class="meta"> 9 апреля 2024</div>
 
 </p>
@@ -230,7 +230,7 @@
     <title>Настройки WWAN модема Sierra EM7455</title>
     <link>https://lukyanovartem.github.io/posts/em7455.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/em7455.html">Настройки WWAN модема Sierra EM7455</a></h1>
+<div class="title"><h1><a href="/posts/em7455.html">Настройки WWAN модема Sierra EM7455</a></h1></div>
 <div class="meta"> 9 апреля 2024</div>
 
 </p>
@@ -276,7 +276,7 @@ AT!RESET</code></pre>
     <title>Глупые IT названия</title>
     <link>https://lukyanovartem.github.io/posts/tomato.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/tomato.html">Глупые IT названия</a></h1>
+<div class="title"><h1><a href="/posts/tomato.html">Глупые IT названия</a></h1></div>
 <div class="meta">11 мая 2023</div>
 
 </p>
@@ -333,7 +333,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <title>Домашний сервер</title>
     <link>https://lukyanovartem.github.io/posts/server.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/server.html">Домашний сервер</a></h1>
+<div class="title"><h1><a href="/posts/server.html">Домашний сервер</a></h1></div>
 <div class="meta">17 сентября 2021</div>
 
 </p>
@@ -391,7 +391,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <title>Дачный ретрокомп</title>
     <link>https://lukyanovartem.github.io/posts/retropc.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/retropc.html">Дачный ретрокомп</a></h1>
+<div class="title"><h1><a href="/posts/retropc.html">Дачный ретрокомп</a></h1></div>
 <div class="meta">19 июля 2021</div>
 
 </p>
@@ -452,7 +452,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <title>Книги которые взорвали мозг</title>
     <link>https://lukyanovartem.github.io/posts/books.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/books.html">Книги которые взорвали мозг</a></h1>
+<div class="title"><h1><a href="/posts/books.html">Книги которые взорвали мозг</a></h1></div>
 <div class="meta">18 января 2021</div>
 
 </p>
@@ -483,7 +483,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <title>Германия</title>
     <link>https://lukyanovartem.github.io/posts/germany.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/germany.html">Германия</a></h1>
+<div class="title"><h1><a href="/posts/germany.html">Германия</a></h1></div>
 <div class="meta">16 ноября 2019</div>
 
 </p>
@@ -532,7 +532,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <title>Хорватия</title>
     <link>https://lukyanovartem.github.io/posts/croatia.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/croatia.html">Хорватия</a></h1>
+<div class="title"><h1><a href="/posts/croatia.html">Хорватия</a></h1></div>
 <div class="meta">22 июля 2008</div>
 
 </p>
@@ -580,7 +580,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <title>Греция</title>
     <link>https://lukyanovartem.github.io/posts/greece.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/greece.html">Греция</a></h1>
+<div class="title"><h1><a href="/posts/greece.html">Греция</a></h1></div>
 <div class="meta"> 1 июня 2007</div>
 
 </p>
@@ -623,7 +623,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <title>Карелия</title>
     <link>https://lukyanovartem.github.io/posts/karelia.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/karelia.html">Карелия</a></h1>
+<div class="title"><h1><a href="/posts/karelia.html">Карелия</a></h1></div>
 <div class="meta"> 1 июня 2005</div>
 
 </p>
@@ -686,7 +686,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <title>Англия</title>
     <link>https://lukyanovartem.github.io/posts/england.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/england.html">Англия</a></h1>
+<div class="title"><h1><a href="/posts/england.html">Англия</a></h1></div>
 <div class="meta"> 1 июня 2003</div>
 
 </p>
@@ -734,7 +734,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <title>Латвия</title>
     <link>https://lukyanovartem.github.io/posts/latvia.html</link>
     <description><![CDATA[<p>
-<h1><a href="/posts/latvia.html">Латвия</a></h1>
+<div class="title"><h1><a href="/posts/latvia.html">Латвия</a></h1></div>
 <div class="meta"> 1 июня 2001</div>
 
 </p>
