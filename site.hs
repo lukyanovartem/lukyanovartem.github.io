@@ -91,10 +91,6 @@ main = do
         makeItem ""
           >>= loadAndApplyTemplate "templates/robots.txt" postCtx
 
-    match "images/*" $ do
-        route   idRoute
-        compile copyFileCompiler
-
     match "content/*" $ do
         route   idRoute
         compile copyFileCompiler

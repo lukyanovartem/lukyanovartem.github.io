@@ -9,6 +9,7 @@
 html {
   -webkit-text-size-adjust: 100%; /* костыль для мобильного хрома */
   font-size: 1.1em;
+  font-family: serif;
 }
 
 body {
@@ -19,8 +20,8 @@ body {
 a {
   color: var(--text);
 }
-h1,h2,h3 {
-  font-weight: normal;
+ul li{
+  margin: 0.5em;
 }
 .header, .content {
   /* добавить отступы слева и справа от содержимого */
@@ -37,6 +38,9 @@ h1,h2,h3 {
   margin-top: 0; /* убрать дефолтный h1 отступ сверху */
   margin-bottom: 0.3em; /* настроить отступ между лого и слоганом */
   font-size: 3em;
+  font-weight: normal;
+}
+.title h1 {
   font-weight: normal;
 }
 .content a:hover {
@@ -93,11 +97,9 @@ h1,h2,h3 {
 }
 
 .arrow-left {
-  font-family: serif;
   margin-bottom: 2em; /* отступ между навигационными ссылками и концом страницы */
 }
 .arrow-right {
-  font-family: serif;
   text-align: right;
   float: right;
 }
@@ -119,8 +121,4 @@ blockquote:before {
 }
 blockquote p {
   display: inline;
-}
-
-ul li{
-  margin: 0.5em;
 }
