@@ -27,20 +27,21 @@ hdmi_mode=87
 # игнорировать отсутствие монитора
 hdmi_force_hotplug=1
 ```
-Передавать имя хоста на DHCP сервер  
+Имя хоста  
 /etc/dhcpcd.conf
 ```
 hostname
-```
-Настройки автозапуска сервисов  
+``` 
 /etc/rc.conf
 ```
-# имя хоста
 hostname=rpi3
-# автозапуск иксов
+```
+Настройка XDM  
+/etc/rc.conf
+```
 xdm=YES
 ```
-Разрешаем безпарольные логины  
+Разрешаем беспарольный вход  
 /etc/X11/xdm/Xresources
 ```
 xlogin*allowNullPasswd: true
@@ -61,7 +62,7 @@ export LANG="ru_RU.UTF-8"
 # xrandr из-за ошибки BadRROutput
 xrandr && setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 . ~/.profile
-...
+fvwm3
 ```
 Настройка pkgsrc  
 /etc/profile
@@ -82,15 +83,18 @@ AddToFunc   StartFunction
 + I Function SwitchDecor stoneage.decor
 + I Exec exec fvwm-root $$$$[FVWM_USERDIR]/hinh-anh-cay-xanh-lam-hinh-nen-11.png
 
+DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot
-...
-+ "Decors" Popup FancyDecors
++ "Терминал" Exec exec mlterm
++ "Темы" Popup FancyDecors
++ "Перезапустить" Restart
++ "Выйти"       Module FvwmScript FvwmScript-ConfirmQuit
 
 Mouse 1 I    A "Iconify off"
 ```
-Увеличение размера шрифта xterm  
-~/.Xdefaults
+Настройка терминала  
+~/.mlterm/config
 ```
-xterm*faceName: Monospace
-xterm*faceSize: 11
+scrollbar_view_name = motif
+wall_picture = /home/Artem/.mlterm/fracback.jpg
 ```
