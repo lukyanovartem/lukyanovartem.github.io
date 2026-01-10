@@ -89,6 +89,7 @@ AddToMenu   MenuFvwmRoot
 + "Выйти"       Module FvwmScript FvwmScript-ConfirmQuit
 
 Mouse 1 I    A "Iconify off"
+Style * NoButton 1
 ```
 Настройка терминала  
 ~/.mlterm/config
