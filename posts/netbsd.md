@@ -55,18 +55,16 @@ Xsetup_0
 ```
 #xconsole -geometry 480x130-0-0 -daemon -notify -verbose -fn fixed -exitOnFail
 ```
-Русификация  
 ~/.xsession
 ```sh
-export LANG="ru_RU.UTF-8"
 # xrandr из-за ошибки BadRROutput
 xrandr && setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 . ~/.profile
 fvwm3
-```
-Настройка pkgsrc  
-/etc/profile
+``` 
+~/.profile
 ```sh
+export LANG="ru_RU.UTF-8"
 export PKG_PATH="https://mirror.yandex.ru/pub/pkgsrc/packages/NetBSD/$$$$(uname -p)/$$$$(uname -r|cut -f '1 2' -d.|cut -f 1 -d_)/All"
 ```
 Исправление ошибки "No entry for terminal type" при удалённом входе. На других машинах  
