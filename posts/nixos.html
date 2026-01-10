@@ -35,7 +35,7 @@
 <p>Обновление flakes</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> flake update <span class="op">&lt;</span>flake<span class="op">&gt;</span> --flake <span class="op">&lt;</span>путь до конфигурации nixos<span class="op">&gt;</span></span></code></pre></div>
 <p>Использование системного nixpkgs в flakes репозитории</p>
-<pre><code>nix flake lock --override-input nixpkgs flake:nixpkgs</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> flake lock <span class="at">--override-input</span> nixpkgs flake:nixpkgs</span></code></pre></div>
 <p>nix-output-monitor</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>команда<span class="op">&gt;</span> --log-format <span class="ex">internal-json</span> <span class="at">-v</span> <span class="kw">|&amp;</span> <span class="ex">nom</span> <span class="at">--json</span></span></code></pre></div>
 <p>Тестирование конфигурации</p>
