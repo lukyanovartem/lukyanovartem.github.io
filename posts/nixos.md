@@ -24,7 +24,7 @@ sudo nix-store --verify --check-contents --repair
 nix flake update <flake> --flake <путь до конфигурации nixos>
 ```
 Использование системного nixpkgs в flakes репозитории
-```
+```sh
 nix flake lock --override-input nixpkgs flake:nixpkgs
 ```
 nix-output-monitor
