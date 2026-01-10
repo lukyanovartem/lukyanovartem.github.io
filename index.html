@@ -40,16 +40,15 @@ hdmi_group=2
 hdmi_mode=87
 # игнорировать отсутствие монитора
 hdmi_force_hotplug=1</code></pre>
-<p>Передавать имя хоста на DHCP сервер<br />
+<p>Имя хоста<br />
 /etc/dhcpcd.conf</p>
 <pre><code>hostname</code></pre>
-<p>Настройки автозапуска сервисов<br />
+<p>/etc/rc.conf</p>
+<pre><code>hostname=rpi3</code></pre>
+<p>Настройка XDM<br />
 /etc/rc.conf</p>
-<pre><code># имя хоста
-hostname=rpi3
-# автозапуск иксов
-xdm=YES</code></pre>
-<p>Разрешаем безпарольные логины<br />
+<pre><code>xdm=YES</code></pre>
+<p>Разрешаем беспарольный вход<br />
 /etc/X11/xdm/Xresources</p>
 <pre><code>xlogin*allowNullPasswd: true</code></pre>
 <p>/etc/pam.d/display_manager</p>
@@ -59,14 +58,14 @@ Xsetup_0</p>
 <pre><code>#xconsole -geometry 480x130-0-0 -daemon -notify -verbose -fn fixed -exitOnFail</code></pre>
 <p>Русификация<br />
 ~/.xsession</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LANG</span><span class="op">=</span><span class="st">&quot;ru_RU.UTF-8&quot;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># xrandr из-за ошибки BadRROutput</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">xrandr</span> <span class="kw">&amp;&amp;</span> <span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">'us,ru'</span> <span class="at">-option</span> <span class="st">'grp:caps_toggle,grp_led:caps'</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span> ~/.profile</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LANG</span><span class="op">=</span><span class="st">&quot;ru_RU.UTF-8&quot;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># xrandr из-за ошибки BadRROutput</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">xrandr</span> <span class="kw">&amp;&amp;</span> <span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">'us,ru'</span> <span class="at">-option</span> <span class="st">'grp:caps_toggle,grp_led:caps'</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span> ~/.profile</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">fvwm3</span></span></code></pre></div>
 <p>Настройка pkgsrc<br />
 /etc/profile</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PKG_PATH</span><span class="op">=</span><span class="st">&quot;https://mirror.yandex.ru/pub/pkgsrc/packages/NetBSD/</span><span class="va">$</span><span class="st">(uname -p)/</span><span class="va">$</span><span class="st">(uname -r|cut -f '1 2' -d.|cut -f 1 -d_)/All&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PKG_PATH</span><span class="op">=</span><span class="st">&quot;https://mirror.yandex.ru/pub/pkgsrc/packages/NetBSD/</span><span class="va">$</span><span class="st">(uname -p)/</span><span class="va">$</span><span class="st">(uname -r|cut -f '1 2' -d.|cut -f 1 -d_)/All&quot;</span></span></code></pre></div>
 <p>Исправление ошибки “No entry for terminal type” при удалённом входе. На других машинах<br />
 ~/.ssh/config</p>
 <pre><code>host rpi3
@@ -78,15 +77,18 @@ Xsetup_0</p>
 + I Function SwitchDecor stoneage.decor
 + I Exec exec fvwm-root $[FVWM_USERDIR]/hinh-anh-cay-xanh-lam-hinh-nen-11.png
 
+DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot
-...
-+ &quot;Decors&quot; Popup FancyDecors
++ &quot;Терминал&quot; Exec exec mlterm
++ &quot;Темы&quot; Popup FancyDecors
++ &quot;Перезапустить&quot; Restart
++ &quot;Выйти&quot;       Module FvwmScript FvwmScript-ConfirmQuit
 
 Mouse 1 I    A &quot;Iconify off&quot;</code></pre>
-<p>Увеличение размера шрифта xterm<br />
-~/.Xdefaults</p>
-<pre><code>xterm*faceName: Monospace
-xterm*faceSize: 11</code></pre>
+<p>Настройка терминала<br />
+~/.mlterm/config</p>
+<pre><code>scrollbar_view_name = motif
+wall_picture = /home/Artem/.mlterm/fracback.jpg</code></pre>
 <p>
     <div class="meta">
     
