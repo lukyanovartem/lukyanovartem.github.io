@@ -55,13 +55,14 @@ Xsetup_0
 ```
 #xconsole -geometry 480x130-0-0 -daemon -notify -verbose -fn fixed -exitOnFail
 ```
-~/.xsession
-```sh
-# xrandr из-за ошибки BadRROutput
-xrandr && setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
-. ~/.profile
-fvwm3
-``` 
+Русская раскладка  
+/etc/X11/xdm/Xsession
+```
+        ...
+        # xrandr из-за ошибки BadRROutput
+        xrandr && setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
+        exec /usr/X11R7/bin/ctwm -W
+```
 ~/.profile
 ```sh
 export LANG="ru_RU.UTF-8"
@@ -72,27 +73,4 @@ export PKG_PATH="https://mirror.yandex.ru/pub/pkgsrc/packages/NetBSD/$$$$(uname 
 ```
 host rpi3
    SetEnv TERM=vt100
-```
-Настройка fvwm3  
-~/.fvwm/config
-```
-AddToFunc   StartFunction
-+ I Read $$$$./decor-setup.fvwm
-+ I Function SwitchDecor stoneage.decor
-+ I Exec exec fvwm-root $$$$[FVWM_USERDIR]/hinh-anh-cay-xanh-lam-hinh-nen-11.png
-
-DestroyMenu MenuFvwmRoot
-AddToMenu   MenuFvwmRoot
-+ "Терминал" Exec exec mlterm
-+ "Темы" Popup FancyDecors
-+ "Перезапустить" Restart
-+ "Выйти"       Module FvwmScript FvwmScript-ConfirmQuit
-
-Mouse 1 I    A "Iconify off"
-```
-Настройка терминала  
-~/.mlterm/config
-```
-scrollbar_view_name = motif
-wall_picture = /home/Artem/.mlterm/fracback.jpg
 ```
