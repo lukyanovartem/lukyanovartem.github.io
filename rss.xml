@@ -74,8 +74,7 @@ AddToMenu   MenuFvwmRoot
 + &quot;Перезапустить&quot; Restart
 + &quot;Выйти&quot;       Module FvwmScript FvwmScript-ConfirmQuit
 
-Mouse 1 I    A &quot;Iconify off&quot;
-Style * NoButton 1</code></pre>
+Mouse 1 I    A &quot;Iconify off&quot;</code></pre>
 <p>Настройка терминала<br />
 ~/.mlterm/config</p>
 <pre><code>scrollbar_view_name = motif
