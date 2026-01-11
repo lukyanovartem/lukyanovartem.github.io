@@ -56,11 +56,12 @@ hdmi_force_hotplug=1</code></pre>
 <p>Отключаем xconsole<br />
 Xsetup_0</p>
 <pre><code>#xconsole -geometry 480x130-0-0 -daemon -notify -verbose -fn fixed -exitOnFail</code></pre>
-<p>~/.xsession</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># xrandr из-за ошибки BadRROutput</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">xrandr</span> <span class="kw">&amp;&amp;</span> <span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">'us,ru'</span> <span class="at">-option</span> <span class="st">'grp:caps_toggle,grp_led:caps'</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span> ~/.profile</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">fvwm3</span></span></code></pre></div>
+<p>Русская раскладка<br />
+/etc/X11/xdm/Xsession</p>
+<pre><code>        ...
+        # xrandr из-за ошибки BadRROutput
+        xrandr &amp;&amp; setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
+        exec /usr/X11R7/bin/ctwm -W</code></pre>
 <p>~/.profile</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LANG</span><span class="op">=</span><span class="st">&quot;ru_RU.UTF-8&quot;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PKG_PATH</span><span class="op">=</span><span class="st">&quot;https://mirror.yandex.ru/pub/pkgsrc/packages/NetBSD/</span><span class="va">$</span><span class="st">(uname -p)/</span><span class="va">$</span><span class="st">(uname -r|cut -f '1 2' -d.|cut -f 1 -d_)/All&quot;</span></span></code></pre></div>
@@ -68,25 +69,6 @@ Xsetup_0</p>
 ~/.ssh/config</p>
 <pre><code>host rpi3
    SetEnv TERM=vt100</code></pre>
-<p>Настройка fvwm3<br />
-~/.fvwm/config</p>
-<pre><code>AddToFunc   StartFunction
-+ I Read $./decor-setup.fvwm
-+ I Function SwitchDecor stoneage.decor
-+ I Exec exec fvwm-root $[FVWM_USERDIR]/hinh-anh-cay-xanh-lam-hinh-nen-11.png
-
-DestroyMenu MenuFvwmRoot
-AddToMenu   MenuFvwmRoot
-+ &quot;Терминал&quot; Exec exec mlterm
-+ &quot;Темы&quot; Popup FancyDecors
-+ &quot;Перезапустить&quot; Restart
-+ &quot;Выйти&quot;       Module FvwmScript FvwmScript-ConfirmQuit
-
-Mouse 1 I    A &quot;Iconify off&quot;</code></pre>
-<p>Настройка терминала<br />
-~/.mlterm/config</p>
-<pre><code>scrollbar_view_name = motif
-wall_picture = /home/Artem/.mlterm/fracback.jpg</code></pre>
 <p>
     <div class="meta">
     
