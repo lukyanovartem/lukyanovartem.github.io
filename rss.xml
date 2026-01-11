@@ -46,7 +46,7 @@ hdmi_force_hotplug=1</code></pre>
 <p>/etc/pam.d/display_manager</p>
 <pre><code>auth            required        pam_unix.so             no_warn try_first_pass nullok</code></pre>
 <p>Отключаем xconsole<br />
-Xsetup_0</p>
+/etc/X11/xdm/Xsetup_0</p>
 <pre><code>#xconsole -geometry 480x130-0-0 -daemon -notify -verbose -fn fixed -exitOnFail</code></pre>
 <p>Русская раскладка<br />
 /etc/X11/xdm/Xsession</p>
