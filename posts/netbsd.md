@@ -51,7 +51,7 @@ xlogin*allowNullPasswd: true
 auth            required        pam_unix.so             no_warn try_first_pass nullok
 ```
 Отключаем xconsole  
-Xsetup_0
+/etc/X11/xdm/Xsetup_0
 ```
 #xconsole -geometry 480x130-0-0 -daemon -notify -verbose -fn fixed -exitOnFail
 ```
