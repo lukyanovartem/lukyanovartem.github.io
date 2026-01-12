@@ -74,3 +74,8 @@ export PKG_PATH="https://mirror.yandex.ru/pub/pkgsrc/packages/NetBSD/$$$$(uname 
 host rpi3
    SetEnv TERM=vt100
 ```
+Монтирование сетевой файловой системы sshfs  
+/etc/fstab
+```
+ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_rsa,-t=-1
+```
