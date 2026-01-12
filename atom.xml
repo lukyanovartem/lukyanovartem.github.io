@@ -65,6 +65,9 @@ hdmi_force_hotplug=1</code></pre>
 ~/.ssh/config</p>
 <pre><code>host rpi3
    SetEnv TERM=vt100</code></pre>
+<p>Монтирование сетевой файловой системы sshfs<br />
+/etc/fstab</p>
+<pre><code>ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_rsa,-t=-1</code></pre>
 <p>
     <div class="meta">
     
