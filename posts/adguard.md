@@ -6,7 +6,7 @@ tags: dns, dhcp, adblock
 # Настройки
 ## Настройки DNS
 ### Upstream DNS-серверы
-```
+```default
 # внешние dns сервера для определённых доменов
 [/домен1/домен2/]1.2.3.4 5.6.7.8
 # использовать глобальные dns для этих поддоменов
@@ -20,7 +20,7 @@ tags: dns, dhcp, adblock
 
 # Фильтры
 ## Пользовательские правила фильтрации
-```
+```default
 # правила для yaos
 ||quasar.yandex.net^$$$$client=yaos
 ||rpc.alice.yandex.net^$$$$client=yaos

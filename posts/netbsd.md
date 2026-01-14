@@ -17,7 +17,7 @@ ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 ```
 Настройка разрешения экрана  
 /boot/config.txt
-```
+```default
 # последняя единица чтобы убрать рамки
 hdmi_cvt=1920 1080 60 3 0 0 1
 # игнорировать разрешение монитора
@@ -29,25 +29,25 @@ hdmi_force_hotplug=1
 ```
 Имя хоста  
 /etc/dhcpcd.conf
-```
+```default
 hostname
 ``` 
 /etc/rc.conf
-```
+```default
 hostname=rpi3
 ```
 Настройка XDM  
 /etc/rc.conf
-```
+```default
 xdm=YES
 ```
 Разрешаем локальный беспарольный вход  
 /etc/X11/xdm/Xresources
-```
+```default
 xlogin*allowNullPasswd: true
 ```
 /etc/pam.d/display_manager
-```
+```default
 auth            required        pam_unix.so             no_warn try_first_pass nullok
 ```
 Русская раскладка  
@@ -65,18 +65,18 @@ export PKG_PATH="https://mirror.yandex.ru/pub/pkgsrc/packages/NetBSD/$$$$(uname 
 ```
 Исправление ошибки "No entry for terminal type" при удалённом входе. На других машинах  
 ~/.ssh/config
-```
+```default
 host rpi3
    SetEnv TERM=vt100
 ```
 Монтирование сетевой файловой системы sshfs  
 /etc/fstab
-```
+```default
 ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_rsa,-t=-1
 ```
 Запрещаем удалённый вход по паролю  
 /etc/ssh/sshd_config
-```
+```default
 PasswordAuthentication no
 UsePAM no
 ```

@@ -6,7 +6,7 @@ a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode { white-space: pre; position: relative; display: block; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -30,8 +30,8 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
-code { background-color: var(--mantle); display: block; }
+  { }
+code { background-color: var(--mantle); }
 @media screen {
 a.sourceLine::before { text-decoration: underline; }
 }
