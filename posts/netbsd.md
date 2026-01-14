@@ -41,7 +41,7 @@ hostname=rpi3
 ```
 xdm=YES
 ```
-Разрешаем беспарольный вход  
+Разрешаем локальный беспарольный вход  
 /etc/X11/xdm/Xresources
 ```
 xlogin*allowNullPasswd: true
@@ -50,14 +50,9 @@ xlogin*allowNullPasswd: true
 ```
 auth            required        pam_unix.so             no_warn try_first_pass nullok
 ```
-Отключаем xconsole  
-/etc/X11/xdm/Xsetup_0
-```
-#xconsole -geometry 480x130-0-0 -daemon -notify -verbose -fn fixed -exitOnFail
-```
 Русская раскладка  
 /etc/X11/xdm/Xsession
-```
+```sh
         ...
         # xrandr из-за ошибки BadRROutput
         xrandr && setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
@@ -78,4 +73,10 @@ host rpi3
 /etc/fstab
 ```
 ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_rsa,-t=-1
+```
+Запрещаем удалённый вход по паролю  
+/etc/ssh/sshd_config
+```
+PasswordAuthentication no
+UsePAM no
 ```
