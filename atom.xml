@@ -28,27 +28,27 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-fs</span> /usr/share/zoneinfo/Europe/Moscow /etc/localtime</span></code></pre></div>
 <p>Настройка разрешения экрана<br />
 /boot/config.txt</p>
-<pre><code># последняя единица чтобы убрать рамки
-hdmi_cvt=1920 1080 60 3 0 0 1
-# игнорировать разрешение монитора
-hdmi_ignore_edid=0xa5000080
-hdmi_group=2
-hdmi_mode=87
-# игнорировать отсутствие монитора
-hdmi_force_hotplug=1</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a># последняя единица чтобы убрать рамки</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>hdmi_cvt=1920 1080 60 3 0 0 1</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a># игнорировать разрешение монитора</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>hdmi_ignore_edid=0xa5000080</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>hdmi_group=2</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>hdmi_mode=87</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a># игнорировать отсутствие монитора</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>hdmi_force_hotplug=1</span></code></pre></div>
 <p>Имя хоста<br />
 /etc/dhcpcd.conf</p>
-<pre><code>hostname</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>hostname</span></code></pre></div>
 <p>/etc/rc.conf</p>
-<pre><code>hostname=rpi3</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>hostname=rpi3</span></code></pre></div>
 <p>Настройка XDM<br />
 /etc/rc.conf</p>
-<pre><code>xdm=YES</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>xdm=YES</span></code></pre></div>
 <p>Разрешаем локальный беспарольный вход<br />
 /etc/X11/xdm/Xresources</p>
-<pre><code>xlogin*allowNullPasswd: true</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>xlogin*allowNullPasswd: true</span></code></pre></div>
 <p>/etc/pam.d/display_manager</p>
-<pre><code>auth            required        pam_unix.so             no_warn try_first_pass nullok</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>auth            required        pam_unix.so             no_warn try_first_pass nullok</span></code></pre></div>
 <p>Русская раскладка<br />
 /etc/X11/xdm/Xsession</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>        <span class="ex">...</span></span>
@@ -60,15 +60,15 @@ hdmi_force_hotplug=1</code></pre>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PKG_PATH</span><span class="op">=</span><span class="st">&quot;https://mirror.yandex.ru/pub/pkgsrc/packages/NetBSD/</span><span class="va">$</span><span class="st">(uname -p)/</span><span class="va">$</span><span class="st">(uname -r|cut -f &#39;1 2&#39; -d.|cut -f 1 -d_)/All&quot;</span></span></code></pre></div>
 <p>Исправление ошибки “No entry for terminal type” при удалённом входе. На других машинах<br />
 ~/.ssh/config</p>
-<pre><code>host rpi3
-   SetEnv TERM=vt100</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>host rpi3</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>   SetEnv TERM=vt100</span></code></pre></div>
 <p>Монтирование сетевой файловой системы sshfs<br />
 /etc/fstab</p>
-<pre><code>ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_rsa,-t=-1</code></pre>
-<p>Запрещаем удалённый беспарольный вход<br />
+<div class="sourceCode" id="cb13"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_rsa,-t=-1</span></code></pre></div>
+<p>Запрещаем удалённый вход по паролю<br />
 /etc/ssh/sshd_config</p>
-<pre><code>PasswordAuthentication no
-UsePAM no</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>PasswordAuthentication no</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>UsePAM no</span></code></pre></div>
 <p>
     <div class="meta">
     
@@ -220,21 +220,21 @@ UsePAM no</code></pre>
 <h1 id="настройки">Настройки</h1>
 <h2 id="настройки-dns">Настройки DNS</h2>
 <h3 id="upstream-dns-серверы">Upstream DNS-серверы</h3>
-<pre><code># внешние dns сервера для определённых доменов
-[/домен1/домен2/]1.2.3.4 5.6.7.8
-# использовать глобальные dns для этих поддоменов
-[/исключение1.домен1/исключение2.домен2/]#
-# для arr стека
-[/themoviedb.org/tmdb.org/]4.3.2.1</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a># внешние dns сервера для определённых доменов</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>[/домен1/домен2/]1.2.3.4 5.6.7.8</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a># использовать глобальные dns для этих поддоменов</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>[/исключение1.домен1/исключение2.домен2/]#</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a># для arr стека</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>[/themoviedb.org/tmdb.org/]4.3.2.1</span></code></pre></div>
 <h2 id="настройки-клиентов">Настройки клиентов</h2>
 <p>Имя клиента <code>yaos</code><br />
 Идентификатор <code>a9:cf:1d:65:79:9a</code></p>
 <h1 id="фильтры">Фильтры</h1>
 <h2 id="пользовательские-правила-фильтрации">Пользовательские правила фильтрации</h2>
-<pre><code># правила для yaos
-||quasar.yandex.net^$client=yaos
-||rpc.alice.yandex.net^$client=yaos
-||coslogdydy.in^$client=yaos</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a># правила для yaos</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>||quasar.yandex.net^$client=yaos</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>||rpc.alice.yandex.net^$client=yaos</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>||coslogdydy.in^$client=yaos</span></code></pre></div>
 <p>
     <div class="meta">
     
@@ -302,30 +302,30 @@ UsePAM no</code></pre>
 
 </p>
 <p>Прошивание модема</p>
-<pre><code>AT!ENTERCND=&quot;A710&quot;
-# Clear all changes and restore to (Lenovo/Sierra) factory settings
-AT!RMARESET=1
-AT!IMAGE=0
-AT!RESET</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>AT!ENTERCND=&quot;A710&quot;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a># Clear all changes and restore to (Lenovo/Sierra) factory settings</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>AT!RMARESET=1</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>AT!IMAGE=0</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>AT!RESET</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qmi-firmware-update</span> <span class="at">--reset</span> <span class="at">-d</span> <span class="st">&quot;1199:9079&quot;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qmi-firmware-update</span> <span class="at">--update-download</span> <span class="at">-d</span> <span class="st">&quot;1199:9079&quot;</span> SWI9X30C_02.33.03.00.cwe SWI9X30C_02.33.03.00_GENERIC_002.072_001.nvu</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">qmicli</span> <span class="at">-d</span> /dev/cdc-wdm0 <span class="at">--dms-set-firmware-preference</span><span class="op">=</span>02.33.03.00,002.072_001,GENERIC</span></code></pre></div>
-<pre><code>AT!ENTERCND=&quot;A710&quot;
-AT!USBVID=1199
-AT!USBPID=9071,9070
-AT!USBPRODUCT=&quot;EM7455&quot;
-AT!PRIID?
-# Carrier PRI: 9999999_9904609_SWI9X30C_02.24.05.06_00_GENERIC_002.026_000
-AT!PRIID=&quot;9904609&quot;,&quot;002.026&quot;,&quot;Generic-Laptop&quot;
-# Force USB2 mode to enable compatibility with newer M.2 interfaces
-AT!USBSPEED=0
-AT!RESET</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>AT!ENTERCND=&quot;A710&quot;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>AT!USBVID=1199</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>AT!USBPID=9071,9070</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>AT!USBPRODUCT=&quot;EM7455&quot;</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>AT!PRIID?</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a># Carrier PRI: 9999999_9904609_SWI9X30C_02.24.05.06_00_GENERIC_002.026_000</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>AT!PRIID=&quot;9904609&quot;,&quot;002.026&quot;,&quot;Generic-Laptop&quot;</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a># Force USB2 mode to enable compatibility with newer M.2 interfaces</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>AT!USBSPEED=0</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>AT!RESET</span></code></pre></div>
 <p>Отключение необходимости запуска скрипта по разблокировке модема</p>
-<pre><code>AT!OPENLOCK?
-sierrakeygen.py -l &lt;code&gt; -d MDM9x30
-AT!OPENLOCK=&quot;&lt;newcode&gt;&quot;
-AT!PCFCCAUTH=0
-AT!RESET</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>AT!OPENLOCK?</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sierrakeygen.py -l &lt;code&gt; -d MDM9x30</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>AT!OPENLOCK=&quot;&lt;newcode&gt;&quot;</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>AT!PCFCCAUTH=0</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>AT!RESET</span></code></pre></div>
 <p>
     <div class="meta">
     

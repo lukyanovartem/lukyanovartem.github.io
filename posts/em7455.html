@@ -24,30 +24,30 @@
 
 </p>
 <p>Прошивание модема</p>
-<pre><code>AT!ENTERCND=&quot;A710&quot;
-# Clear all changes and restore to (Lenovo/Sierra) factory settings
-AT!RMARESET=1
-AT!IMAGE=0
-AT!RESET</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>AT!ENTERCND=&quot;A710&quot;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a># Clear all changes and restore to (Lenovo/Sierra) factory settings</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>AT!RMARESET=1</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>AT!IMAGE=0</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>AT!RESET</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qmi-firmware-update</span> <span class="at">--reset</span> <span class="at">-d</span> <span class="st">&quot;1199:9079&quot;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qmi-firmware-update</span> <span class="at">--update-download</span> <span class="at">-d</span> <span class="st">&quot;1199:9079&quot;</span> SWI9X30C_02.33.03.00.cwe SWI9X30C_02.33.03.00_GENERIC_002.072_001.nvu</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">qmicli</span> <span class="at">-d</span> /dev/cdc-wdm0 <span class="at">--dms-set-firmware-preference</span><span class="op">=</span>02.33.03.00,002.072_001,GENERIC</span></code></pre></div>
-<pre><code>AT!ENTERCND=&quot;A710&quot;
-AT!USBVID=1199
-AT!USBPID=9071,9070
-AT!USBPRODUCT=&quot;EM7455&quot;
-AT!PRIID?
-# Carrier PRI: 9999999_9904609_SWI9X30C_02.24.05.06_00_GENERIC_002.026_000
-AT!PRIID=&quot;9904609&quot;,&quot;002.026&quot;,&quot;Generic-Laptop&quot;
-# Force USB2 mode to enable compatibility with newer M.2 interfaces
-AT!USBSPEED=0
-AT!RESET</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>AT!ENTERCND=&quot;A710&quot;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>AT!USBVID=1199</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>AT!USBPID=9071,9070</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>AT!USBPRODUCT=&quot;EM7455&quot;</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>AT!PRIID?</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a># Carrier PRI: 9999999_9904609_SWI9X30C_02.24.05.06_00_GENERIC_002.026_000</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>AT!PRIID=&quot;9904609&quot;,&quot;002.026&quot;,&quot;Generic-Laptop&quot;</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a># Force USB2 mode to enable compatibility with newer M.2 interfaces</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>AT!USBSPEED=0</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>AT!RESET</span></code></pre></div>
 <p>Отключение необходимости запуска скрипта по разблокировке модема</p>
-<pre><code>AT!OPENLOCK?
-sierrakeygen.py -l &lt;code&gt; -d MDM9x30
-AT!OPENLOCK=&quot;&lt;newcode&gt;&quot;
-AT!PCFCCAUTH=0
-AT!RESET</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>AT!OPENLOCK?</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sierrakeygen.py -l &lt;code&gt; -d MDM9x30</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>AT!OPENLOCK=&quot;&lt;newcode&gt;&quot;</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>AT!PCFCCAUTH=0</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>AT!RESET</span></code></pre></div>
 <p>
     <div class="meta">
     
