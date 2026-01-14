@@ -44,23 +44,20 @@ hdmi_force_hotplug=1</code></pre>
 <p>Настройка XDM<br />
 /etc/rc.conf</p>
 <pre><code>xdm=YES</code></pre>
-<p>Разрешаем беспарольный вход<br />
+<p>Разрешаем локальный беспарольный вход<br />
 /etc/X11/xdm/Xresources</p>
 <pre><code>xlogin*allowNullPasswd: true</code></pre>
 <p>/etc/pam.d/display_manager</p>
 <pre><code>auth            required        pam_unix.so             no_warn try_first_pass nullok</code></pre>
-<p>Отключаем xconsole<br />
-/etc/X11/xdm/Xsetup_0</p>
-<pre><code>#xconsole -geometry 480x130-0-0 -daemon -notify -verbose -fn fixed -exitOnFail</code></pre>
 <p>Русская раскладка<br />
 /etc/X11/xdm/Xsession</p>
-<pre><code>        ...
-        # xrandr из-за ошибки BadRROutput
-        xrandr &amp;&amp; setxkbmap -layout &#39;us,ru&#39; -option &#39;grp:caps_toggle,grp_led:caps&#39;
-        exec /usr/X11R7/bin/ctwm -W</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>        <span class="ex">...</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xrandr из-за ошибки BadRROutput</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="ex">xrandr</span> <span class="kw">&amp;&amp;</span> <span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">&#39;us,ru&#39;</span> <span class="at">-option</span> <span class="st">&#39;grp:caps_toggle,grp_led:caps&#39;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">exec</span> /usr/X11R7/bin/ctwm <span class="at">-W</span></span></code></pre></div>
 <p>~/.profile</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LANG</span><span class="op">=</span><span class="st">&quot;ru_RU.UTF-8&quot;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PKG_PATH</span><span class="op">=</span><span class="st">&quot;https://mirror.yandex.ru/pub/pkgsrc/packages/NetBSD/</span><span class="va">$</span><span class="st">(uname -p)/</span><span class="va">$</span><span class="st">(uname -r|cut -f &#39;1 2&#39; -d.|cut -f 1 -d_)/All&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LANG</span><span class="op">=</span><span class="st">&quot;ru_RU.UTF-8&quot;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PKG_PATH</span><span class="op">=</span><span class="st">&quot;https://mirror.yandex.ru/pub/pkgsrc/packages/NetBSD/</span><span class="va">$</span><span class="st">(uname -p)/</span><span class="va">$</span><span class="st">(uname -r|cut -f &#39;1 2&#39; -d.|cut -f 1 -d_)/All&quot;</span></span></code></pre></div>
 <p>Исправление ошибки “No entry for terminal type” при удалённом входе. На других машинах<br />
 ~/.ssh/config</p>
 <pre><code>host rpi3
@@ -68,6 +65,10 @@ hdmi_force_hotplug=1</code></pre>
 <p>Монтирование сетевой файловой системы sshfs<br />
 /etc/fstab</p>
 <pre><code>ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_rsa,-t=-1</code></pre>
+<p>Запрещаем удалённый беспарольный вход<br />
+/etc/ssh/sshd_config</p>
+<pre><code>PasswordAuthentication no
+UsePAM no</code></pre>
 <p>
     <div class="meta">
     
