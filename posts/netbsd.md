@@ -67,7 +67,7 @@ export PKG_PATH="https://mirror.yandex.ru/pub/pkgsrc/packages/NetBSD/$$$$(uname 
 ~/.ssh/config
 ```default
 host rpi3
-   SetEnv TERM=vt100
+   SetEnv TERM=xterm
 ```
 Монтирование сетевой файловой системы sshfs  
 /etc/fstab
