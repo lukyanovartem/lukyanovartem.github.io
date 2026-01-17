@@ -72,7 +72,7 @@ host rpi3
 Монтирование сетевой файловой системы sshfs  
 /etc/fstab
 ```default
-ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_rsa,-t=-1
+ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_ed25519,-t=-1
 ```
 Запрещаем удалённый вход по паролю  
 /etc/ssh/sshd_config
