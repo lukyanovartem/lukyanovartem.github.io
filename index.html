@@ -68,7 +68,7 @@
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>   SetEnv TERM=xterm</span></code></pre></div>
 <p>Монтирование сетевой файловой системы sshfs<br />
 /etc/fstab</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_rsa,-t=-1</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_ed25519,-t=-1</span></code></pre></div>
 <p>Запрещаем удалённый вход по паролю<br />
 /etc/ssh/sshd_config</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>PasswordAuthentication no</span>
