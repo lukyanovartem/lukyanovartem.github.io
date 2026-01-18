@@ -20,6 +20,7 @@
 <div class="meta"> 8 января 2026</div>
 
 </p>
+<p>Нужно записывать образ для архитектуры armv7, а не arm64, поскольку есть <a href="https://gnats.netbsd.org/cgi-bin/query-pr-single.pl?number=55998">баг с клавиатурой</a>, актуальный и для релиза 10.1</p>
 <p>Создание пользователя</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">useradd</span> <span class="at">-m</span> <span class="at">-G</span> wheel Artem</span></code></pre></div>
 <p>Редактирование /etc/passwd</p>
