@@ -3,6 +3,8 @@ title: NetBSD на Raspberry Pi 3
 published: 08.01.2026
 tags: netbsd
 ---
+Нужно записывать образ для архитектуры armv7, а не arm64, поскольку есть [баг с клавиатурой](https://gnats.netbsd.org/cgi-bin/query-pr-single.pl?number=55998), актуальный и для релиза 10.1
+
 Создание пользователя
 ```sh
 useradd -m -G wheel Artem
