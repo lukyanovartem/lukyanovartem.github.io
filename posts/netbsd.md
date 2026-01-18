@@ -61,7 +61,7 @@ auth            required        pam_unix.so             no_warn try_first_pass n
 ~/.profile
 ```sh
 export LANG="ru_RU.UTF-8"
-export PKG_PATH="https://mirror.yandex.ru/pub/pkgsrc/packages/NetBSD/$$$$(uname -p)/$$$$(uname -r|cut -f '1 2' -d.|cut -f 1 -d_)/All"
+export PKG_PATH="https://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/$$$$(uname -p)/$$$$(uname -r|cut -f '1 2' -d.|cut -f 1 -d_)/All"
 ```
 Исправление ошибки "No entry for terminal type" при удалённом входе. На других машинах  
 ~/.ssh/config
