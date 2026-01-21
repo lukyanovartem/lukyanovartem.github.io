@@ -7,6 +7,10 @@ tags: netbsd
 ```sh
 useradd -m -G wheel Artem
 ```
+Доступ к видеоядру под пользователем
+```sh
+chmod 660 /dev/vchiq
+```
 Редактирование /etc/passwd
 ```sh
 vipw
