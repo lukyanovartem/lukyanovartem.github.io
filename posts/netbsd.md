@@ -3,6 +3,8 @@ title: NetBSD на Raspberry Pi 3
 published: 08.01.2026
 tags: netbsd
 ---
+На версии 10.1 глючит ввод с клавиатуры
+
 Создание пользователя
 ```sh
 useradd -m -G wheel Artem
