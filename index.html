@@ -43,25 +43,57 @@
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>hdmi_mode=87</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a># игнорировать отсутствие монитора</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>hdmi_force_hotplug=1</span></code></pre></div>
-<p>Имя хоста<br />
-/etc/dhcpcd.conf</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>hostname</span></code></pre></div>
-<p>/etc/rc.conf</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>hostname=rpi3</span></code></pre></div>
+<p>Имя хоста</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/dhcpcd.conf	2026-01-25 10:57:09.781276564 +0300</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/dhcpcd.conf	2026-01-17 12:23:12.225890653 +0300</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -5,7 +5,7 @@</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a> #controlgroup wheel</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a> # Inform the DHCP server of our hostname for DDNS.</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">-#hostname</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="va">+hostname</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a> # Use the hardware address of the interface for the Client ID.</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a> #clientid</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/rc.conf	2026-01-25 10:58:39.683671207 +0300</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/rc.conf	2026-01-17 12:24:34.656929201 +0300</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -46,7 +46,7 @@ is_cloud() {</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> }</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a> rc_configured=YES</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="st">-hostname=armv7</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="va">+hostname=rpi3</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> no_swap=YES</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a> savecore=NO</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a> sshd=YES</span></code></pre></div>
 <p>Настройка XDM<br />
 /etc/rc.conf</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>xdm=YES</span></code></pre></div>
 <p>Разрешаем локальный беспарольный вход<br />
 /etc/X11/xdm/Xresources</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>xlogin*allowNullPasswd: true</span></code></pre></div>
-<p>/etc/pam.d/display_manager</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>auth            required        pam_unix.so             no_warn try_first_pass nullok</span></code></pre></div>
-<p>Русская раскладка<br />
-/etc/X11/xdm/Xsession</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>        <span class="ex">...</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>        <span class="co"># xrandr из-за ошибки BadRROutput</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="ex">xrandr</span> <span class="kw">&amp;&amp;</span> <span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">'us,ru'</span> <span class="at">-option</span> <span class="st">'grp:caps_toggle,grp_led:caps'</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">exec</span> /usr/X11R7/bin/ctwm <span class="at">-W</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/display_manager	2026-01-25 10:59:47.108565775 +0300</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/pam.d/display_manager	2026-01-17 12:24:53.049180985 +0300</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -11,7 +11,7 @@ auth		sufficient	pam_skey.so		no_warn tr</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a> auth		optional	pam_afslog.so		no_warn try_first_pass</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a> # pam_ssh has potential security risks.  See pam_ssh(8).</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a> #auth		sufficient	pam_ssh.so		no_warn try_first_pass</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="st">-auth		required	pam_unix.so		no_warn try_first_pass</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="va">+auth		required	pam_unix.so		no_warn try_first_pass nullok</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a> # account</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a> #account 	required	pam_krb5.so</span></code></pre></div>
+<p>Русская раскладка</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/Xsession	2026-01-25 11:01:45.856937940 +0300</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/X11/xdm/Xsession	2026-01-25 11:02:40.089933473 +0300</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -133,5 +133,7 @@ fi</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a> 	/usr/X11R7/bin/uxterm &amp;</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a> 	/usr/X11R7/bin/xclock -digital -strftime '%a %Y-%m-%d %H:%M' \</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a> 		-face &quot;spleen:pixelsize=$fontsize&quot; -g +0+0 &amp;</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="va">+	# xrandr из-за ошибки BadRROutput</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="va">+	xrandr &amp;&amp; setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a> 	exec /usr/X11R7/bin/ctwm -W</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a> fi</span></code></pre></div>
 <p>~/.profile</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LANG</span><span class="op">=</span><span class="st">&quot;ru_RU.UTF-8&quot;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PKG_PATH</span><span class="op">=</span><span class="st">&quot;https://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/</span><span class="va">$</span><span class="st">(uname -p)/</span><span class="va">$</span><span class="st">(uname -r|cut -f '1 2' -d.|cut -f 1 -d_)/All&quot;</span></span></code></pre></div>
@@ -72,10 +104,27 @@
 <p>Монтирование сетевой файловой системы sshfs<br />
 /etc/fstab</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_ed25519,-t=-1</span></code></pre></div>
-<p>Запрещаем удалённый вход по паролю<br />
-/etc/ssh/sshd_config</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>PasswordAuthentication no</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>UsePAM no</span></code></pre></div>
+<p>Запрещаем удалённый вход по паролю</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/sshd_config	2026-01-25 11:04:17.729054414 +0300</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/ssh/sshd_config	2026-01-17 12:46:13.649271081 +0300</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -54,7 +54,7 @@ AuthorizedKeysFile	.ssh/authorized_keys</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a> #IgnoreRhosts yes</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a> # To disable password authentication, set this and UsePAM to no</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="st">-#PasswordAuthentication yes</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="va">+PasswordAuthentication no</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a> #PermitEmptyPasswords no</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a> # Change to no to disable s/key passwords</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -79,7 +79,7 @@ AuthorizedKeysFile	.ssh/authorized_keys</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a> # If you just want the PAM account and session checks to run without</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a> # PAM authentication, then enable this but set PasswordAuthentication</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a> # and KbdInteractiveAuthentication to 'no'.</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="st">-#UsePAM yes</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="va">+UsePAM no</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a> #AllowAgentForwarding yes</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a> #AllowTcpForwarding yes</span></code></pre></div>
 <p>
     <div class="meta">
     
