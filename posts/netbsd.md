@@ -1,17 +1,11 @@
 ---
-title: NetBSD на Raspberry Pi 3
+title: NetBSD
 published: 08.01.2026
 tags: netbsd
 ---
-На версии 10.1/armv7hf глючит ввод с клавиатуры
-
 Создание пользователя
 ```sh
 useradd -m -G wheel Artem
-```
-Доступ к видеоядру под пользователем
-```sh
-chmod 660 /dev/vchiq
 ```
 Редактирование /etc/passwd
 ```sh
@@ -20,18 +14,6 @@ vipw
 Настройка времени
 ```sh
 ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
-```
-Настройка разрешения экрана  
-/boot/config.txt
-```default
-# последняя единица чтобы убрать рамки
-hdmi_cvt=1920 1080 60 3 0 0 1
-# игнорировать разрешение монитора
-hdmi_ignore_edid=0xa5000080
-hdmi_group=2
-hdmi_mode=87
-# игнорировать отсутствие монитора
-hdmi_force_hotplug=1
 ```
 Имя хоста
 ```diff
@@ -55,7 +37,7 @@ hdmi_force_hotplug=1
  
  rc_configured=YES
 -hostname=armv7
-+hostname=rpi3
++hostname=myname
  no_swap=YES
  savecore=NO
  sshd=YES
@@ -104,7 +86,7 @@ export PKG_PATH="https://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/$$$$(uname -p
 Исправление ошибки "No entry for terminal type" при удалённом входе. На других машинах  
 ~/.ssh/config
 ```default
-host rpi3
+host myname
    SetEnv TERM=xterm
 ```
 Монтирование сетевой файловой системы sshfs  
@@ -134,4 +116,23 @@ ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Ar
  
  #AllowAgentForwarding yes
  #AllowTcpForwarding yes
+```
+
+**Для Raspberry Pi 3**  
+На версии 10.1 глючит ввод с клавиатуры  
+Настройка разрешения экрана  
+/boot/config.txt
+```default
+# последняя единица чтобы убрать рамки
+hdmi_cvt=1920 1080 60 3 0 0 1
+# игнорировать разрешение монитора
+hdmi_ignore_edid=0xa5000080
+hdmi_group=2
+hdmi_mode=87
+# игнорировать отсутствие монитора
+hdmi_force_hotplug=1
+```
+Доступ к видеоядру под пользователем
+```sh
+chmod 660 /dev/vchiq
 ```
