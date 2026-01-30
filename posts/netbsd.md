@@ -119,7 +119,7 @@ ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Ar
 ```
 
 **Для Raspberry Pi 3**  
-На версии 10.1 глючит ввод с клавиатуры  
+**На версии 10.1 глючит ввод с клавиатуры**  
 Настройка разрешения экрана  
 /boot/config.txt
 ```default
@@ -136,3 +136,5 @@ hdmi_force_hotplug=1
 ```sh
 chmod 660 /dev/vchiq
 ```
+**Для Raspberry Pi 4**  
+В образ arm64.img, в раздел /boot положить файлы из [архива](https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip), иначе не будет изображения
