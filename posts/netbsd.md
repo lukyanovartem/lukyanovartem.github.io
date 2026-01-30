@@ -111,7 +111,7 @@ ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Ar
  # If you just want the PAM account and session checks to run without
  # PAM authentication, then enable this but set PasswordAuthentication
  # and KbdInteractiveAuthentication to 'no'.
--#UsePAM yes
+-UsePAM yes
 +UsePAM no
  
  #AllowAgentForwarding yes
