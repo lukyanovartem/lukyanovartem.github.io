@@ -109,7 +109,7 @@
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a> #AllowAgentForwarding yes</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a> #AllowTcpForwarding yes</span></code></pre></div>
 <p><strong>Для Raspberry Pi 3</strong><br />
-На версии 10.1 глючит ввод с клавиатуры<br />
+<strong>На версии 10.1 глючит ввод с клавиатуры</strong><br />
 Настройка разрешения экрана<br />
 /boot/config.txt</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a># последняя единица чтобы убрать рамки</span>
@@ -122,6 +122,8 @@
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>hdmi_force_hotplug=1</span></code></pre></div>
 <p>Доступ к видеоядру под пользователем</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 660 /dev/vchiq</span></code></pre></div>
+<p><strong>Для Raspberry Pi 4</strong><br />
+В образ arm64.img, в раздел /boot положить файлы из <a href="https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip">архива</a>, иначе не будет изображения</p>
 <p>
     <div class="meta">
     
