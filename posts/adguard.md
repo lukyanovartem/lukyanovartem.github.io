@@ -1,7 +1,7 @@
 ---
 title: Настройки AdGuard Home
 published: 28.02.2025
-tags: dns, dhcp, adblock
+tags: dns
 ---
 # Настройки
 ## Настройки DNS

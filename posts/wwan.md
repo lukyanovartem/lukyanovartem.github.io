@@ -1,7 +1,7 @@
 ---
 title: Убираем белый список на WWAN модемы для ThinkPad T480s 
 published: 09.04.2024
-tags: wwan, thinkpad
+tags: модем
 ---
 
 **Неактуально, появился порт [Libreboot](https://libreboot.org/docs/install/t480.html)**

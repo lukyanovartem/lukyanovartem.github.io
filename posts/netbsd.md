@@ -1,7 +1,7 @@
 ---
 title: NetBSD
 published: 08.01.2026
-tags: netbsd
+tags: bsd
 ---
 Создание пользователя
 ```sh

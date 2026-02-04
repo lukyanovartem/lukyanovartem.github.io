@@ -1,7 +1,7 @@
 ---
 title: Настройки YouTube ReVanced
 published: 11.04.2025
-tags: youtube, revanced
+tags: youtube
 ---
 # Настройки
 ## ReVanced

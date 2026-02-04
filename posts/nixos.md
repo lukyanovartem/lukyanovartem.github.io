@@ -1,7 +1,7 @@
 ---
 title: Шпаргалка по NixOS
 published: 07.05.2025
-tags: nixos
+tags: linux
 ---
 
 Работа офлайн  

@@ -1,7 +1,7 @@
 ---
 title: Запуск Stable Diffusion на слабом железе 
 published: 25.04.2025
-tags: stable diffusion
+tags: ai
 ---
 
 Удалось запустить Stable Diffusion на слабой машине с интегрированной карточкой Intel UHD Graphics 620.  

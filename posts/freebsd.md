@@ -1,7 +1,7 @@
 ---
 title: FreeBSD
 published: 03.02.2026
-tags: freebsd
+tags: bsd
 ---
 Интерактивное создание пользователя
 ```sh
