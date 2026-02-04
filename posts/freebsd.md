@@ -17,7 +17,7 @@ tzsetup Europe/Moscow
 ```
 Синхронизация времени  
 ```sh
-sysrc ntpd_enable="YES"
+sysrc ntpdate_enable="YES"
 ```
 Имя хоста
 ```sh
