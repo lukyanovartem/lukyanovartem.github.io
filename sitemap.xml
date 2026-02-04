@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
+        <loc>https://lukyanovartem.github.io/posts/freebsd.html</loc>
+        <lastmod>2026-02-04</lastmod>
+    </url>
+
+    <url>
         <loc>https://lukyanovartem.github.io/posts/netbsd.html</loc>
-        <lastmod>2026-01-30</lastmod>
+        <lastmod>2026-02-03</lastmod>
     </url>
 
     <url>
