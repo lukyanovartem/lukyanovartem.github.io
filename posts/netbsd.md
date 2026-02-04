@@ -42,7 +42,17 @@ ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
  savecore=NO
  sshd=YES
 ```
-Настройка XDM  
+Русский язык  
+~/.profile
+```sh
+export LANG="ru_RU.UTF-8"
+```
+Настройка для установки пакетов  
+~/.profile
+```sh
+export PKG_PATH="https://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/$$$$(uname -p)/$$$$(uname -r|cut -f '1 2' -d.|cut -f 1 -d_)/All"
+```
+Настройка X11  
 /etc/rc.conf
 ```default
 xdm=YES
@@ -77,11 +87,6 @@ xlogin*allowNullPasswd: true
 +	xrandr && setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
  	exec /usr/X11R7/bin/ctwm -W
  fi
-```
-~/.profile
-```sh
-export LANG="ru_RU.UTF-8"
-export PKG_PATH="https://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/$$$$(uname -p)/$$$$(uname -r|cut -f '1 2' -d.|cut -f 1 -d_)/All"
 ```
 Исправление ошибки "No entry for terminal type" при удалённом входе. На других машинах  
 ~/.ssh/config
