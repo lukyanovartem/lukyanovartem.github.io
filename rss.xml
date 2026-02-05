@@ -237,8 +237,6 @@
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>hdmi_mode=87</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a># игнорировать отсутствие монитора</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>hdmi_force_hotplug=1</span></code></pre></div>
-<p>Доступ к видеоядру под пользователем</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 660 /dev/vchiq</span></code></pre></div>
 <p><strong>Для Raspberry Pi 4</strong><br />
 В образ arm64.img, в раздел /boot положить файлы из <a href="https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip">архива</a>, иначе не будет изображения</p>
 <p>
