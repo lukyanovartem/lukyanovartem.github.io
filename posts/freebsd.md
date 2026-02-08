@@ -16,8 +16,28 @@ vipw
 tzsetup Europe/Moscow
 ```
 Синхронизация времени  
+Выключать ntpd после первичной синхронизации и синхронизировать при сильной разнице дат
 ```sh
-sysrc ntpdate_enable="YES"
+sysrc ntpd_enable="YES"
+sysrc ntpd_sync_on_start="YES"
+sysrc ntpd_flags="-q"
+```
+Локальный сервер времени
+```diff
+--- /tmp/ntp.conf	2014-01-01 01:05:25.997977000 +0400
++++ /etc/ntp.conf	2014-01-01 01:05:53.331831000 +0400
+@@ -29,8 +29,9 @@ tos minclock 3 maxclock 6
+ #
+ # The option `iburst' is used for faster initial synchronization.
+ #
+-pool 0.freebsd.pool.ntp.org iburst
+-pool 2.freebsd.pool.ntp.org iburst
++#pool 0.freebsd.pool.ntp.org iburst
++#pool 2.freebsd.pool.ntp.org iburst
++server server
+ 
+ #
+ # If you want to pick yourself which country's public NTP server
 ```
 Имя хоста
 ```sh

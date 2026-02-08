@@ -15,6 +15,42 @@ vipw
 ```sh
 ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 ```
+Синхронизация времени  
+Выключать ntpd после первичной синхронизации
+```diff
+--- /tmp/rc.conf	2026-02-08 20:41:34.639499149 +0300
++++ /etc/rc.conf	2026-02-08 20:42:56.966448494 +0300
+@@ -52,7 +52,7 @@ savecore=NO
+ sshd=YES
+ dhcpcd=YES
+ ntpd=YES
+-ntpd_flags="-g"
++ntpd_flags="-gq"
+ creds_msdos=YES
+ creds_msdos_partition=/boot
+ certctl_init=YES
+```
+Локальный сервер времени
+```diff
+--- /tmp/ntp.conf	2026-02-08 20:47:54.521861336 +0300
++++ /etc/ntp.conf	2026-02-08 20:46:44.792099428 +0300
+@@ -31,7 +31,7 @@ logconfig -syncstatus
+ # This may help minimize disruptions due to network congestion. Don't
+ # do this if you configure only one server!
+ 
+-tos minsane 2
++#tos minsane 2
+ 
+ # Set the target and limit for adding servers configured via pool statements
+ # or discovered dynamically via mechanisms such as broadcast and manycast.
+@@ -133,7 +133,7 @@ restrict ::1
+ # join are a nailed-up connection and a static IP address. For details,
+ # see the web page <http://www.pool.ntp.org/join.html>
+ 
+-pool 2.netbsd.pool.ntp.org iburst
++#pool 2.netbsd.pool.ntp.org iburst
++server 1.2.3.4
+```
 Имя хоста
 ```diff
 --- /tmp/dhcpcd.conf	2026-01-25 10:57:09.781276564 +0300
