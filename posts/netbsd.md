@@ -30,7 +30,7 @@ ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
  creds_msdos_partition=/boot
  certctl_init=YES
 ```
-Локальный сервер времени
+Синхронизировать с локальным сервером времени
 ```diff
 --- /tmp/ntp.conf	2026-02-08 20:47:54.521861336 +0300
 +++ /etc/ntp.conf	2026-02-08 20:46:44.792099428 +0300
@@ -49,7 +49,6 @@ ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
  
 -pool 2.netbsd.pool.ntp.org iburst
 +#pool 2.netbsd.pool.ntp.org iburst
-+server 1.2.3.4
 ```
 Имя хоста
 ```diff

@@ -22,7 +22,7 @@ sysrc ntpd_enable="YES"
 sysrc ntpd_sync_on_start="YES"
 sysrc ntpd_flags="-q"
 ```
-Локальный сервер времени
+Синхронизировать с локальным сервером времени
 ```diff
 --- /tmp/ntp.conf	2014-01-01 01:05:25.997977000 +0400
 +++ /etc/ntp.conf	2014-01-01 01:05:53.331831000 +0400
