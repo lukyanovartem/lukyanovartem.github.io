@@ -499,27 +499,7 @@
 
 
 </span></p>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;модем&#39;." href="/tags/%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC.html" rel="tag">модем</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/wwan.md"></span>
-</p>
-]]></description>
-    <pubDate>09.04.2024</pubDate>
-    <guid>https://lukyanovartem.github.io/posts/wwan.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
-</item>
-<item>
-    <title>Настройки WWAN модема Sierra EM7455</title>
-    <link>https://lukyanovartem.github.io/posts/em7455.html</link>
-    <description><![CDATA[<p>
-<div class="title"><h1><a href="/posts/em7455.html">Настройки WWAN модема Sierra EM7455</a></h1></div>
-<div class="meta"> 9 апреля 2024</div>
-
-</p>
+<h1 id="настройки-wwan-модема-sierra-em7455">Настройки WWAN модема Sierra EM7455</h1>
 <p>Прошивание модема</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>AT!ENTERCND=&quot;A710&quot;</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a># Clear all changes and restore to (Lenovo/Sierra) factory settings</span>
@@ -551,11 +531,11 @@
       категории <a title="All pages tagged &#39;модем&#39;." href="/tags/%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC.html" rel="tag">модем</a>
     
     </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/em7455.md"></span>
+    <span class="disqus-comment-count" data-disqus-identifier="posts/wwan.md"></span>
 </p>
 ]]></description>
     <pubDate>09.04.2024</pubDate>
-    <guid>https://lukyanovartem.github.io/posts/em7455.html</guid>
+    <guid>https://lukyanovartem.github.io/posts/wwan.html</guid>
     <dc:creator>Artem Lukyanov</dc:creator>
 </item>
 <item>
