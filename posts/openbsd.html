@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Хранилище заметок - OpenBSD</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="Ничего важного" href="./rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Ничего важного" href="./atom.xml">
+<meta name="description" content="artem lukyanov homepage">
+<meta name="Keywords" content="artem, lukyanov">
+</head>
+<body>
+<div class="buttons">
+<a href="../" class="posts/openbsd.md">Главная</a><a href="../gallery" class="posts/openbsd.md">Галерея</a><a href="../archive.html" class="posts/openbsd.md">Архив</a>
+</div>
+<div class="header">
+<h1>Хранилище заметок</h1>
+Ничего важного
+</div>
+<div class="content">
+<p>
+<div class="title"><h1><a href="../posts/openbsd.html">OpenBSD</a></h1></div>
+<div class="meta">19 февраля 2026</div>
+
+</p>
+<p>Интерактивное создание пользователя</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span></span></code></pre></div>
+<p>Редактирование /etc/passwd</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vipw</span></span></code></pre></div>
+<p>Синхронизировать с локальным сервером времени</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/ntpd.conf	Sat Feb 21 19:11:33 2026</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/ntpd.conf	Sat Feb 21 19:14:02 2026</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -2,10 +2,11 @@</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a> #</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a> # See ntpd.conf(5) and /etc/examples/ntpd.conf</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">-servers pool.ntp.org</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">-server time.cloudflare.com</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="va">+#servers pool.ntp.org</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="va">+#server time.cloudflare.com</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="va">+server &quot;server&quot;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a> sensor *</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">-constraint from &quot;9.9.9.9&quot;              # quad9 v4 without DNS</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">-constraint from &quot;2620:fe::fe&quot;          # quad9 v6 without DNS</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">-constraints from &quot;www.google.com&quot;      # intentionally not 8.8.8.8</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="va">+#constraint from &quot;9.9.9.9&quot;              # quad9 v4 without DNS</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="va">+#constraint from &quot;2620:fe::fe&quot;          # quad9 v6 without DNS</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="va">+#constraints from &quot;www.google.com&quot;      # intentionally not 8.8.8.8</span></span></code></pre></div>
+<p>Русский язык<br />
+~/.profile</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LANG</span><span class="op">=</span><span class="st">&quot;ru_RU.UTF-8&quot;</span></span></code></pre></div>
+<p>Настройка X11</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> enable xenodm</span></code></pre></div>
+<p>Разрешаем локальный беспарольный вход<br />
+/etc/X11/xenodm/Xresources</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>xlogin*allowNullPasswd: true</span></code></pre></div>
+<p>Русская раскладка</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/Xsession	Sat Feb 21 19:56:09 2026</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/X11/xenodm/Xsession	Sat Feb 21 19:56:42 2026</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -68,6 +68,7 @@ else</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> 	if [ -f &quot;$resources&quot; ]; then</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a> 		/usr/X11R6/bin/xrdb -load &quot;$resources&quot;</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a> 	fi</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="va">+	setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="va">+	xclock -geometry 50x50+1+1 &amp;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> 	${exec_prefix}/bin/xterm &amp;</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a> 	${exec_prefix}/bin/fvwm</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a> fi</span></code></pre></div>
+<p>Изменить размер шрифта терминала</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>xterm*faceName: Monospace</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>xterm*faceSize: 14</span></code></pre></div>
+<p>Монтирование сетевой файловой системы sshfs<br />
+Устанавливаем sshfs-fuse</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> sshfs-fuse</span></code></pre></div>
+<p>/etc/rc.local</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/bin/sshfs</span> <span class="at">-o</span> ro,allow_other,IdentityFile=/home/Artem/.ssh/id_ed25519 ssh@server:/data /mnt</span></code></pre></div>
+<p>Запрещаем удалённый вход по паролю</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/sshd_config	Sat Feb 21 19:20:06 2026</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/ssh/sshd_config	Sat Feb 21 19:20:37 2026</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -52,13 +52,13 @@ AuthorizedKeysFile	.ssh/authorized_keys</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a> #IgnoreRhosts yes</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a> # To disable tunneled clear text passwords, change to &quot;no&quot; here!</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="st">-#PasswordAuthentication yes</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="va">+PasswordAuthentication no</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a> #PermitEmptyPasswords no</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a> # Change to &quot;no&quot; to disable keyboard-interactive authentication.  Depending on</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a> # the system's configuration, this may involve passwords, challenge-response,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a> # one-time passwords or some combination of these and other methods.</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="st">-#KbdInteractiveAuthentication yes</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="va">+KbdInteractiveAuthentication no</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a> #AllowAgentForwarding yes</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a> #AllowTcpForwarding yes</span></code></pre></div>
+<p>Настройка doas<br />
+/etc/doas.conf</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>permit nopass :wheel</span></code></pre></div>
+<p>Отключение рандомизаций</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/rc	Fri Feb 20 11:07:05 2026</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/rc	Fri Feb 20 11:00:41 2026</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -677,7 +677,7 @@ echo '.'</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a> # Re-link the kernel, placing the objects in a random order.</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a> # Replace current with relinked kernel and inform root about it.</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="st">-/usr/libexec/reorder_kernel &amp;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="va">+#/usr/libexec/reorder_kernel &amp;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a> date</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a> exit 0</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> disable library_aslr</span></code></pre></div>
+<p><strong>Для Rock Pi 4</strong><br />
+В отличие от других BSD, у OpenBSD нет готового предустановленного образа. Требуется установка подобная установке на обычный ПК. В <a href="https://ftp.openbsd.org/pub/OpenBSD/7.8/arm64/INSTALL.arm64">официальной документации</a> всё описано. Если кратко, то нужно подготовить SD карту с установочным образом для данного одноплатника:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/packages/aarch64/u-boot-aarch64-2021.10p11.tgz</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzf u-boot-aarch64-2021.10p11.tgz</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=miniroot78.img of=/dev/sdX bs=1M</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/idbloader.img of=/dev/sdX seek=64</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/u-boot.itb of=/dev/sdXc seek=16384</span></code></pre></div>
+<p>Также miniroot образ не поддерживает графическую консоль, поэтому к <a href="https://docs.radxa.com/en/rock4/rock4d/system-config/uart_debug">соответствующим пинам</a> одноплатника нужно подключить TTL-USB адаптер на время установки. Miniroot образ загружается в память, так что можно спокойно устанавливать OpenBSD на ту же самую карту, откуда загрузился установщик. Для корректной работы системы обязательно создание раздела подкачки. После установки делаем:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;set tty fb0&quot;</span> <span class="op">&gt;</span> /etc/boot.conf</span></code></pre></div>
+<p>После чего можно отключать USB-TTL адаптер и подключать монитор и клавиатуру.</p>
+<p>OpenBSD <a href="https://man.openbsd.org/escodec">поддерживает звук</a> данного одноплатника, однако чтобы система увидела звуковую карту, надо пропатчить загрузчик:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># зависимости для сборки u-boot</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> aarch64-none-elf-gcc py3-elftools arm-trusted-firmware bison dtc swig py3-setuptools pythran gmake</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ftp</span> <span class="at">-o</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio https://github.com/torvalds/linux/commit/65bd2b8bdb3bddc37bea695789713916327e1c1f.patch</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s#b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi#arch/arm/dts/rk3399-rock-pi-4.dtsi#'</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/ports/sysutils/u-boot</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># нужно убрать все лишние платформы и платы в Makefile-ах перед сборкой</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=/usr/ports/pobj/u-boot-aarch64-2021.10/u-boot-2021.10/build/rock-pi-4-rk3399/u-boot.itb of=/dev/sd0c seek=16384</span></code></pre></div>
+<p>Уменьшить износ SD<br />
+/etc/fstab</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/fstab	Sat Feb 21 19:23:08 2026</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/fstab	Sat Feb 21 19:23:20 2026</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,2 +1,2 @@</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a> 7cfd13b5a74b3fca.b none swap sw</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">-7cfd13b5a74b3fca.a / ffs rw,wxallowed 1 1</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="va">+7cfd13b5a74b3fca.a / ffs rw,wxallowed,noatime 1 1</span></span></code></pre></div>
+<p>
+    <div class="meta">
+    
+      категории <a title="All pages tagged 'bsd'." href="../tags/bsd.html" rel="tag">bsd</a>
+    
+    </div>
+    <span class="disqus-comment-count" data-disqus-identifier="posts/openbsd.md"></span>
+</p>
+
+<!--<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+var disqus_config = function () {
+this.page.url = 'https://lukyanovartem.github.io/posts/openbsd.html';  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = 'posts/openbsd.md'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+-->
+
+</div>
+<!--<script id="dsq-count-scr" src="//.disqus.com/count.js" async></script>-->
+</body>
