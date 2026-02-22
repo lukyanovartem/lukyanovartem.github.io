@@ -95,34 +95,37 @@
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a> date</span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a> exit 0</span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> disable library_aslr</span></code></pre></div>
+<p>Включить динамическое изменение частоты процессора</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> enable apmd</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> set apmd flags <span class="at">-A</span></span></code></pre></div>
 <p><strong>Для Rock Pi 4</strong><br />
-В отличие от других BSD, у OpenBSD нет готового предустановленного образа. Требуется установка подобная установке на обычный ПК. В <a href="https://ftp.openbsd.org/pub/OpenBSD/7.8/arm64/INSTALL.arm64">официальной документации</a> всё описано. Если кратко, то нужно подготовить SD карту с установочным образом для данного одноплатника:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/packages/aarch64/u-boot-aarch64-2021.10p11.tgz</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzf u-boot-aarch64-2021.10p11.tgz</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=miniroot78.img of=/dev/sdX bs=1M</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/idbloader.img of=/dev/sdX seek=64</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/u-boot.itb of=/dev/sdXc seek=16384</span></code></pre></div>
-<p>Также miniroot образ не поддерживает графическую консоль, поэтому к <a href="https://docs.radxa.com/en/rock4/rock4d/system-config/uart_debug">соответствующим пинам</a> одноплатника нужно подключить TTL-USB адаптер на время установки. Miniroot образ загружается в память, так что можно спокойно устанавливать OpenBSD на ту же самую карту, откуда загрузился установщик. Для корректной работы системы обязательно создание раздела подкачки. После установки делаем:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;set tty fb0&quot;</span> <span class="op">&gt;</span> /etc/boot.conf</span></code></pre></div>
+В отличие от других BSD, у OpenBSD нет готового предустановленного образа. Требуется установка подобная установке на обычный ПК. В <a href="https://ftp.openbsd.org/pub/OpenBSD/7.8/arm64/INSTALL.arm64">официальной документации</a> всё описано. Если кратко, то нужно подготовить SD карту с установочным образом для данного одноплатника</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/packages/aarch64/u-boot-aarch64-2021.10p11.tgz</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzf u-boot-aarch64-2021.10p11.tgz</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=miniroot78.img of=/dev/sdX bs=1M</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/idbloader.img of=/dev/sdX seek=64</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/u-boot.itb of=/dev/sdXc seek=16384</span></code></pre></div>
+<p>Также miniroot образ не поддерживает графическую консоль, поэтому к <a href="https://docs.radxa.com/en/rock4/rock4d/system-config/uart_debug">соответствующим пинам</a> одноплатника нужно подключить USB-TTL адаптер на время установки. Miniroot образ загружается в память, так что можно спокойно устанавливать OpenBSD на ту же самую карту, откуда загрузился установщик. Для корректной работы системы обязательно создание раздела подкачки. После установки делаем</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;set tty fb0&quot;</span> <span class="op">&gt;</span> /etc/boot.conf</span></code></pre></div>
 <p>После чего можно отключать USB-TTL адаптер и подключать монитор и клавиатуру.</p>
-<p>OpenBSD <a href="https://man.openbsd.org/escodec">поддерживает звук</a> данного одноплатника, однако чтобы система увидела звуковую карту, надо пропатчить загрузчик:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># зависимости для сборки u-boot</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> aarch64-none-elf-gcc py3-elftools arm-trusted-firmware bison dtc swig py3-setuptools pythran gmake</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ftp</span> <span class="at">-o</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio https://github.com/torvalds/linux/commit/65bd2b8bdb3bddc37bea695789713916327e1c1f.patch</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;s#b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi#arch/arm/dts/rk3399-rock-pi-4.dtsi#&#39;</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/ports/sysutils/u-boot</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># нужно убрать все лишние платформы и платы в Makefile-ах перед сборкой</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=/usr/ports/pobj/u-boot-aarch64-2021.10/u-boot-2021.10/build/rock-pi-4-rk3399/u-boot.itb of=/dev/sd0c seek=16384</span></code></pre></div>
+<p>OpenBSD <a href="https://man.openbsd.org/escodec">поддерживает звук</a> данного одноплатника, однако чтобы система увидела звуковую карту, надо пропатчить загрузчик</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># зависимости для сборки u-boot</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> aarch64-none-elf-gcc py3-elftools arm-trusted-firmware bison dtc swig py3-setuptools pythran gmake</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ftp</span> <span class="at">-o</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio https://github.com/torvalds/linux/commit/65bd2b8bdb3bddc37bea695789713916327e1c1f.patch</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;s#b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi#arch/arm/dts/rk3399-rock-pi-4.dtsi#&#39;</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/ports/sysutils/u-boot</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># нужно убрать все лишние платформы и платы в Makefile-ах перед сборкой</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=/usr/ports/pobj/u-boot-aarch64-2021.10/u-boot-2021.10/build/rock-pi-4-rk3399/u-boot.itb of=/dev/sd0c seek=16384</span></code></pre></div>
 <p>Уменьшить износ SD<br />
 /etc/fstab</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/fstab	Sat Feb 21 19:23:08 2026</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/fstab	Sat Feb 21 19:23:20 2026</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,2 +1,2 @@</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a> 7cfd13b5a74b3fca.b none swap sw</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="st">-7cfd13b5a74b3fca.a / ffs rw,wxallowed 1 1</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="va">+7cfd13b5a74b3fca.a / ffs rw,wxallowed,noatime 1 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/fstab	Sat Feb 21 19:23:08 2026</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/fstab	Sat Feb 21 19:23:20 2026</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,2 +1,2 @@</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a> 7cfd13b5a74b3fca.b none swap sw</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="st">-7cfd13b5a74b3fca.a / ffs rw,wxallowed 1 1</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="va">+7cfd13b5a74b3fca.a / ffs rw,wxallowed,noatime 1 1</span></span></code></pre></div>
 <p>
     <div class="meta">
     
