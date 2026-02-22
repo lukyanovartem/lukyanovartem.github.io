@@ -11,27 +11,14 @@ adduser
 ```sh
 vipw
 ```
+Синхронизация времени  
 Синхронизировать с локальным сервером времени
-```diff
---- /tmp/ntpd.conf	Sat Feb 21 19:11:33 2026
-+++ /etc/ntpd.conf	Sat Feb 21 19:14:02 2026
-@@ -2,10 +2,11 @@
- #
- # See ntpd.conf(5) and /etc/examples/ntpd.conf
- 
--servers pool.ntp.org
--server time.cloudflare.com
-+#servers pool.ntp.org
-+#server time.cloudflare.com
-+server "server"
- sensor *
- 
--constraint from "9.9.9.9"              # quad9 v4 without DNS
--constraint from "2620:fe::fe"          # quad9 v6 without DNS
--constraints from "www.google.com"      # intentionally not 8.8.8.8
-+#constraint from "9.9.9.9"              # quad9 v4 without DNS
-+#constraint from "2620:fe::fe"          # quad9 v6 without DNS
-+#constraints from "www.google.com"      # intentionally not 8.8.8.8
+/etc/rc.local
+```default
+rdate server
+```
+```sh
+rcctl disable ntpd
 ```
 Русский язык  
 ~/.profile
@@ -65,6 +52,11 @@ xlogin*allowNullPasswd: true
 ```default
 xterm*faceName: Monospace
 xterm*faceSize: 14
+```
+Кастомизация fvwm
+```sh
+cp /usr/X11R6/lib/X11/fvwm/.fvwmrc ~/
+chmod +w ~/.fvwmrc
 ```
 Монтирование сетевой файловой системы sshfs  
 Устанавливаем sshfs-fuse
