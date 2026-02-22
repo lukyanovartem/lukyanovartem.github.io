@@ -110,8 +110,14 @@ permit nopass :wheel
 ```sh
 rcctl disable library_aslr
 ```
+Включить динамическое изменение частоты процессора
+```sh
+rcctl enable apmd
+rcctl set apmd flags -A
+```
+
 **Для Rock Pi 4**  
-В отличие от других BSD, у OpenBSD нет готового предустановленного образа. Требуется установка подобная установке на обычный ПК. В [официальной документации](https://ftp.openbsd.org/pub/OpenBSD/7.8/arm64/INSTALL.arm64) всё описано. Если кратко, то нужно подготовить SD карту с установочным образом для данного одноплатника:
+В отличие от других BSD, у OpenBSD нет готового предустановленного образа. Требуется установка подобная установке на обычный ПК. В [официальной документации](https://ftp.openbsd.org/pub/OpenBSD/7.8/arm64/INSTALL.arm64) всё описано. Если кратко, то нужно подготовить SD карту с установочным образом для данного одноплатника
 ```sh
 wget https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img
 wget https://cdn.openbsd.org/pub/OpenBSD/7.8/packages/aarch64/u-boot-aarch64-2021.10p11.tgz
@@ -120,13 +126,13 @@ dd if=miniroot78.img of=/dev/sdX bs=1M
 dd if=share/u-boot/rock-pi-4-rk3399/idbloader.img of=/dev/sdX seek=64
 dd if=share/u-boot/rock-pi-4-rk3399/u-boot.itb of=/dev/sdXc seek=16384
 ```
-Также miniroot образ не поддерживает графическую консоль, поэтому к [соответствующим пинам](https://docs.radxa.com/en/rock4/rock4d/system-config/uart_debug) одноплатника нужно подключить TTL-USB адаптер на время установки. Miniroot образ загружается в память, так что можно спокойно устанавливать OpenBSD на ту же самую карту, откуда загрузился установщик. Для корректной работы системы обязательно создание раздела подкачки. После установки делаем:
+Также miniroot образ не поддерживает графическую консоль, поэтому к [соответствующим пинам](https://docs.radxa.com/en/rock4/rock4d/system-config/uart_debug) одноплатника нужно подключить USB-TTL адаптер на время установки. Miniroot образ загружается в память, так что можно спокойно устанавливать OpenBSD на ту же самую карту, откуда загрузился установщик. Для корректной работы системы обязательно создание раздела подкачки. После установки делаем
 ```sh
 echo "set tty fb0" > /etc/boot.conf
 ```
 После чего можно отключать USB-TTL адаптер и подключать монитор и клавиатуру.
 
-OpenBSD [поддерживает звук](https://man.openbsd.org/escodec) данного одноплатника, однако чтобы система увидела звуковую карту, надо пропатчить загрузчик:
+OpenBSD [поддерживает звук](https://man.openbsd.org/escodec) данного одноплатника, однако чтобы система увидела звуковую карту, надо пропатчить загрузчик
 ```sh
 # зависимости для сборки u-boot
 pkg_add aarch64-none-elf-gcc py3-elftools arm-trusted-firmware bison dtc swig py3-setuptools pythran gmake
