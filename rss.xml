@@ -923,6 +923,205 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <dc:creator>Artem Lukyanov</dc:creator>
 </item>
 <item>
+    <title>ngle</title>
+    <link>https://lukyanovartem.github.io/posts/ngle.html</link>
+    <description><![CDATA[<p>
+<div class="title"><h1><a href="/posts/ngle.html">ngle</a></h1></div>
+<div class="meta"> 1 января 2015</div>
+
+</p>
+<p>Удалось отреверсить бинарь, отвечающий за ускорение графики, а именно копирование области (скроллинг) на старых машинах HP PA-RISC навроде HP 9000/712 и 715 и их графических картах именуемых HP Artist. Производитель поставлял этот бинарь в старых релизах X11, а именно в вендорном варианте под названием Xhp. Исходники были открыты, за исключением бинаря. Позже функционал был предоставлен в ассемблерном варианте в рамках проекта MkLinux. Проприетарастия как она есть</p>
+<p>Исходник с добавленными комментариями<br />
+Функция ngleDepth24_CopyAreaFromToScreen аналогична, за исключением инициализации регистра reg10: write4(-0x445f6000,reg10)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>.import ngleScreenPrivIndex<span class="op">,</span>data</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ngleDepth8_CopyAreaFromToScreen</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    ldo <span class="bn">0x40</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span><span class="kw">sp</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    stw arg0<span class="op">,-</span><span class="bn">0x64</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span> <span class="co">;pSrcDraw</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    stw arg1<span class="op">,-</span><span class="bn">0x68</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span> <span class="co">;pDstDraw</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    stw arg2<span class="op">,-</span><span class="bn">0x6c</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span> <span class="co">;pptSrc-&gt;x</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    stw arg3<span class="op">,-</span><span class="bn">0x70</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span> <span class="co">;pptSrc-&gt;y</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x68</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>r1  <span class="co">;pDstDraw</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    ldw <span class="bn">0x10</span><span class="op">(</span>r1<span class="op">),</span>r31  <span class="co">;-&gt;pScreen</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    ldw <span class="bn">0x19c</span><span class="op">(</span>r31<span class="op">),</span>t4 <span class="co">;-&gt;devPrivates</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    ldil L<span class="op">%</span>ngleScreenPrivIndex<span class="op">,</span>t3</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    ldw  R<span class="op">%</span>ngleScreenPrivIndex<span class="op">(</span>t3<span class="op">),</span>t3</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    ldwx<span class="op">,</span>s t3<span class="op">(</span>t4<span class="op">),</span>t2 <span class="co">;devPrivates[ngleScreenPrivIndex].ptr =&gt; NgleScreenPrivPtr pScreenPriv</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    stw t2<span class="op">,-</span><span class="bn">0x38</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x38</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t1 <span class="co">;pScreenPriv</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    ldw <span class="bn">0x14</span><span class="op">(</span>t1<span class="op">),</span>r1  <span class="co">;-&gt;pDregs</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    stw r1<span class="op">,-</span><span class="bn">0x34</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x34</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>r31</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    zdepi <span class="dv">1</span><span class="op">,</span><span class="dv">10</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span>t4</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">add</span> t4<span class="op">,</span>r31<span class="op">,</span>t3 <span class="co">;pDregs+0x200000 =&gt; REG_15b0</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    stw t3<span class="op">,-</span><span class="bn">0x28</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x28</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t2</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">;SETUP_HW()</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>$ngle2<span class="op">:</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    ldb <span class="dv">0</span><span class="op">(</span>t2<span class="op">),</span>t1 <span class="co">;read1(REG_15b0) =&gt; val1</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    extrs t1<span class="op">,</span><span class="dv">31</span><span class="op">,</span><span class="dv">8</span><span class="op">,</span>r1</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    stb r1<span class="op">,-</span><span class="bn">0x2c</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    ldb <span class="op">-</span><span class="bn">0x2c</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>r31</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    extrs r31<span class="op">,</span><span class="dv">31</span><span class="op">,</span><span class="dv">8</span><span class="op">,</span>t4</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    comibf<span class="op">,=,</span>n <span class="dv">0</span><span class="op">,</span>t4<span class="op">,$</span>ngle1 <span class="co">;if (val1) goto ngle1</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x28</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t3</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    ldb <span class="dv">0</span><span class="op">(</span>t3<span class="op">),</span>t2 <span class="co">;read1(REG_15b0) =&gt; val1</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    extrs t2<span class="op">,</span><span class="dv">31</span><span class="op">,</span><span class="dv">8</span><span class="op">,</span>t1</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    stb t1<span class="op">,-</span><span class="bn">0x2c</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>$ngle1<span class="op">:</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    ldb <span class="op">-</span><span class="bn">0x2c</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>r1</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    extrs r1<span class="op">,</span><span class="dv">31</span><span class="op">,</span><span class="dv">8</span><span class="op">,</span>r31</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    comibf<span class="op">,=,</span>n <span class="dv">0</span><span class="op">,</span>r31<span class="op">,$</span>ngle2 <span class="co">;if (val1) goto ngle2</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">;</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x28</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t2</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x38</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t4 <span class="co">;pScreenPriv</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    ldw <span class="bn">0x10</span><span class="op">(</span>t4<span class="op">),</span>t3  <span class="co">;-&gt;deviceID</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    .<span class="dt">word</span> <span class="bn">0x22B88578</span>    <span class="op">/*</span>  ldil <span class="bn">0x2bcb0000</span><span class="op">,</span>t2 <span class="op">*/</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    ldo <span class="bn">0x15a</span><span class="op">(</span>t2<span class="op">),</span>t1</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    combf<span class="op">,=,</span>n t3<span class="op">,</span>t1<span class="op">,$</span>ngle3 <span class="co">;if (deviceID != S9000_ID_HCRX) goto ngle3</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x34</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>r1</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    .<span class="dt">word</span> <span class="bn">0x23e10274</span>    <span class="op">/*</span> ldil <span class="bn">0x13a02000</span><span class="op">,</span>r31 <span class="op">*/</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    .<span class="dt">word</span> <span class="bn">0x282c0000</span>    <span class="op">/*</span> addil <span class="bn">0x18000</span><span class="op">,</span>r1 <span class="op">*/</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    stw r31<span class="op">,</span><span class="dv">0</span><span class="op">(</span>r1<span class="op">)</span> <span class="co">;write4(0x13a02000,REG_10)</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    b <span class="op">$</span>ngle4</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x78</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t2 <span class="co">;arg5 = alu</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>$ngle3<span class="op">:</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x34</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t4</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    .<span class="dt">word</span> <span class="bn">0x22802274</span>    <span class="op">/*</span> ldil <span class="bn">0x13a01000</span><span class="op">,</span>t3 <span class="op">*/</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    .<span class="dt">word</span> <span class="bn">0x2a6c0000</span>    <span class="op">/*</span> addil <span class="bn">0x18000</span><span class="op">,</span>t4 <span class="op">*/</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    stw t3<span class="op">,</span><span class="dv">0</span><span class="op">(</span>r1<span class="op">)</span> <span class="co">;write4(0x13a01000,REG_10)</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x78</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t2</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>$ngle4<span class="op">:</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    .<span class="dt">word</span> <span class="bn">0x23e00460</span>    <span class="op">/*</span> ldil <span class="bn">0x23000000</span><span class="op">,</span>r31 <span class="op">*/</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    zdep t2<span class="op">,</span><span class="dv">23</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span>r1 <span class="co">;(alu &lt;&lt; (31-23)) &amp; 0x00000f00</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="bu">or</span> r1<span class="op">,</span>r31<span class="op">,</span>t4    <span class="co">;| 0x23000000 =&gt; val2</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x34</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t3</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    .<span class="dt">word</span> <span class="bn">0x2a8c0000</span>    <span class="op">/*</span> addil <span class="bn">0x18000</span><span class="op">,</span>t3 <span class="op">*/</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    stw t4<span class="op">,</span><span class="bn">0x1c</span><span class="op">(</span>r1<span class="op">)</span> <span class="co">;write4(val2,REG_14)</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x34</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t2</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x7c</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t1 <span class="co">;arg6 = planeMask</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    .<span class="dt">word</span> <span class="bn">0x2aac0000</span>    <span class="op">/*</span> addil <span class="bn">0x18000</span><span class="op">,</span>t2 <span class="op">*/</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    stw t1<span class="op">,</span><span class="bn">0x18</span><span class="op">(</span>r1<span class="op">)</span> <span class="co">;write4(planeMask,REG_13)</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x6c</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>r1</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    sth r1<span class="op">,-</span><span class="bn">0x30</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span> <span class="co">;x</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x70</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>r31</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>    sth r31<span class="op">,-</span><span class="bn">0x2e</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span> <span class="co">;y</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x34</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t4</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x30</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t3</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>    stw t3<span class="op">,</span><span class="bn">0x808</span><span class="op">(</span>t4<span class="op">)</span> <span class="co">;write4((x &lt;&lt; 16) | y,REG_24)</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x74</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t2 <span class="co">;arg4 = pbox</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>    ldh <span class="dv">4</span><span class="op">(</span>t2<span class="op">),</span>t1     <span class="co">;-&gt;x2</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>    extrs t1<span class="op">,</span><span class="dv">31</span><span class="op">,</span><span class="dv">16</span><span class="op">,</span>r1</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x74</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>r31 <span class="co">;pbox</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    ldh <span class="dv">0</span><span class="op">(</span>r31<span class="op">),</span>t4     <span class="co">;-&gt;x1</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>    extrs t4<span class="op">,</span><span class="dv">31</span><span class="op">,</span><span class="dv">16</span><span class="op">,</span>t3</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sub</span> r1<span class="op">,</span>t3<span class="op">,</span>t2</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    sth t2<span class="op">,-</span><span class="bn">0x30</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span> <span class="co">;x2 - x1 =&gt; w</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x74</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t1 <span class="co">;pbox</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>    ldh <span class="dv">6</span><span class="op">(</span>t1<span class="op">),</span>r1     <span class="co">;-&gt;y2</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>    extrs r1<span class="op">,</span><span class="dv">31</span><span class="op">,</span><span class="dv">16</span><span class="op">,</span>r31</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x74</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t4 <span class="co">;pbox</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>    ldh <span class="dv">2</span><span class="op">(</span>t4<span class="op">),</span>t3     <span class="co">;-&gt;y1</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>    extrs t3<span class="op">,</span><span class="dv">31</span><span class="op">,</span><span class="dv">16</span><span class="op">,</span>t2</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sub</span> r31<span class="op">,</span>t2<span class="op">,</span>t1</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>    sth t1<span class="op">,-</span><span class="bn">0x2e</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span> <span class="co">;y2 - y1 =&gt; h</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x34</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>r1</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x30</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>r31</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>    stw r31<span class="op">,</span><span class="bn">0x804</span><span class="op">(</span>r1<span class="op">)</span> <span class="co">;write4((w &lt;&lt; 16) | h,REG_7)</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x74</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t4 <span class="co">;pbox</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>    ldh <span class="dv">0</span><span class="op">(</span>t4<span class="op">),</span>t3     <span class="co">;-&gt;x1</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>    extrs t3<span class="op">,</span><span class="dv">31</span><span class="op">,</span><span class="dv">16</span><span class="op">,</span>t2</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>    sth t2<span class="op">,-</span><span class="bn">0x30</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x74</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t1 <span class="co">;pbox</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>    ldh <span class="dv">2</span><span class="op">(</span>t1<span class="op">),</span>r1     <span class="co">;-&gt;y1</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>    extrs r1<span class="op">,</span><span class="dv">31</span><span class="op">,</span><span class="dv">16</span><span class="op">,</span>r31</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>    sth r31<span class="op">,-</span><span class="bn">0x2e</span><span class="op">(</span><span class="kw">sp</span><span class="op">)</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x34</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t4</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>    ldw <span class="op">-</span><span class="bn">0x30</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span>t3</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>    stw t3<span class="op">,</span><span class="bn">0xb00</span><span class="op">(</span>t4<span class="op">)</span> <span class="co">;write4((x1 &lt;&lt; 16) | y1,REG_25)</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>    bv r0<span class="op">(</span><span class="dt">rp</span><span class="op">)</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>    ldo <span class="op">-</span><span class="bn">0x40</span><span class="op">(</span><span class="kw">sp</span><span class="op">),</span><span class="kw">sp</span></span></code></pre></div>
+<p>Итоговый файл ngledoblt.c для использования с вендорным cfb X сервером версии X11R6.3</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ngleDepth8_CopyAreaFromToScreen<span class="op">(</span>DrawablePtr pSrcDraw<span class="op">,</span> DrawablePtr pDstDraw<span class="op">,</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                <span class="dt">short</span> srcx<span class="op">,</span> <span class="dt">short</span> srcy<span class="op">,</span> BoxPtr pbox<span class="op">,</span> <span class="dt">int</span> alu<span class="op">,</span> <span class="dt">unsigned</span> <span class="dt">long</span> planeMask<span class="op">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        NgleScreenPrivPtr   pScreenPriv<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        NgleHdwPtr          pDregs<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        pScreenPriv <span class="op">=</span> NGLE_SCREEN_PRIV<span class="op">(</span>pDstDraw<span class="op">-&gt;</span>pScreen<span class="op">);</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        pDregs <span class="op">=</span> <span class="op">(</span>NgleHdwPtr<span class="op">)</span> pScreenPriv<span class="op">-&gt;</span>pDregs<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        SETUP_HW<span class="op">(</span>pDregs<span class="op">);</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>pScreenPriv<span class="op">-&gt;</span>deviceID <span class="op">!=</span> S9000_ID_HCRX<span class="op">)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>             pDregs<span class="op">-&gt;</span>reg10 <span class="op">=</span> <span class="bn">0x13a01000</span><span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>             pDregs<span class="op">-&gt;</span>reg10 <span class="op">=</span> <span class="bn">0x13a02000</span><span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        pDregs<span class="op">-&gt;</span>reg14<span class="op">.</span>all <span class="op">=</span> <span class="op">((</span>alu <span class="op">&lt;&lt;</span> <span class="dv">8</span><span class="op">)</span> <span class="op">&amp;</span> <span class="bn">0x00000f00</span><span class="op">)</span> <span class="op">|</span> <span class="bn">0x23000000</span><span class="op">;</span> <span class="co">// raster op</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        pDregs<span class="op">-&gt;</span>reg13 <span class="op">=</span> planeMask<span class="op">;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        pDregs<span class="op">-&gt;</span>reg24<span class="op">.</span>all <span class="op">=</span> <span class="op">(</span>srcx <span class="op">&lt;&lt;</span> <span class="dv">16</span><span class="op">)</span> <span class="op">|</span> srcy<span class="op">;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        pDregs<span class="op">-&gt;</span>reg7<span class="op">.</span>all <span class="op">=</span> <span class="op">((</span>pbox<span class="op">-&gt;</span>x2 <span class="op">-</span> pbox<span class="op">-&gt;</span>x1<span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="dv">16</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span>pbox<span class="op">-&gt;</span>y2 <span class="op">-</span> pbox<span class="op">-&gt;</span>y1<span class="op">);</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        pDregs<span class="op">-&gt;</span>reg25<span class="op">.</span>all <span class="op">=</span> <span class="op">(</span>pbox<span class="op">-&gt;</span>x1 <span class="op">&lt;&lt;</span> <span class="dv">16</span><span class="op">)</span> <span class="op">|</span> pbox<span class="op">-&gt;</span>y1<span class="op">;</span> <span class="co">// destination</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Тест x11perf под MkLinux, показывающий прирост скорости от аппаратного ускорения</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 12%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 17%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: center;">Type</th>
+<th style="text-align: center;">scroll10</th>
+<th style="text-align: center;">scroll100</th>
+<th style="text-align: center;">scroll500</th>
+<th style="text-align: center;">copywinwin10</th>
+<th style="text-align: center;">copywinwin100</th>
+<th style="text-align: center;">copywinwin500</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">soft</td>
+<td style="text-align: center;">12300</td>
+<td style="text-align: center;">457</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">15700</td>
+<td style="text-align: center;">432</td>
+<td style="text-align: center;">20</td>
+</tr>
+<tr>
+<td style="text-align: center;">hw</td>
+<td style="text-align: center;">26700</td>
+<td style="text-align: center;">3380</td>
+<td style="text-align: center;">157</td>
+<td style="text-align: center;">26800</td>
+<td style="text-align: center;">3380</td>
+<td style="text-align: center;">158</td>
+</tr>
+</tbody>
+</table>
+<p>
+    <div class="meta">
+    
+      категории <a title="All pages tagged &#39;ретро&#39;." href="/tags/%D1%80%D0%B5%D1%82%D1%80%D0%BE.html" rel="tag">ретро</a>
+    
+    </div>
+    <span class="disqus-comment-count" data-disqus-identifier="posts/ngle.md"></span>
+</p>
+]]></description>
+    <pubDate>01.01.2015</pubDate>
+    <guid>https://lukyanovartem.github.io/posts/ngle.html</guid>
+    <dc:creator>Artem Lukyanov</dc:creator>
+</item>
+<item>
     <title>Хорватия</title>
     <link>https://lukyanovartem.github.io/posts/croatia.html</link>
     <description><![CDATA[<p>
