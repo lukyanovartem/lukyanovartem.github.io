@@ -44,6 +44,7 @@ xlogin*allowNullPasswd: true
  	fi
 +	setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 +	xclock -geometry 50x50+1+1 &
++	. ~/.profile
  	$$$${exec_prefix}/bin/xterm &
  	$$$${exec_prefix}/bin/fvwm
  fi
