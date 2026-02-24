@@ -157,6 +157,16 @@ ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Ar
  #AllowAgentForwarding yes
  #AllowTcpForwarding yes
 ```
+Включить динамическое изменение частоты процессора
+```sh
+pkgin install estd
+cp /usr/pkg/share/examples/rc.d/estd /etc/rc.d/
+chmod +x /etc/rc.d/estd
+```
+/etc/rc.conf
+```
+estd=YES
+```
 
 **Для Raspberry Pi 3**  
 **На версии 10.1 глючит ввод с клавиатуры**  
@@ -173,4 +183,5 @@ hdmi_mode=87
 hdmi_force_hotplug=1
 ```
 **Для Raspberry Pi 4**  
-В образ arm64.img, в раздел /boot положить файлы из [архива](https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip), иначе не будет изображения
+В образ arm64.img, в раздел /boot положить файлы из [архива](https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip), иначе не будет изображения  
+Для возможности изменять частоту процессора выставить в EFI "CPU Clock" = Custom and "CPU Clock Rate" = 600
