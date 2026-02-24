@@ -147,20 +147,27 @@
 <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a> #AllowAgentForwarding yes</span>
 <span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a> #AllowTcpForwarding yes</span></code></pre></div>
+<p>Включить динамическое изменение частоты процессора</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkgin</span> install estd</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /usr/pkg/share/examples/rc.d/estd /etc/rc.d/</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x /etc/rc.d/estd</span></code></pre></div>
+<p>/etc/rc.conf</p>
+<pre><code>estd=YES</code></pre>
 <p><strong>Для Raspberry Pi 3</strong><br />
 <strong>На версии 10.1 глючит ввод с клавиатуры</strong><br />
 Настройка разрешения экрана<br />
 /boot/config.txt</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a># последняя единица чтобы убрать рамки</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>hdmi_cvt=1920 1080 60 3 0 0 1</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a># игнорировать разрешение монитора</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>hdmi_ignore_edid=0xa5000080</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>hdmi_group=2</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>hdmi_mode=87</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a># игнорировать отсутствие монитора</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>hdmi_force_hotplug=1</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a># последняя единица чтобы убрать рамки</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>hdmi_cvt=1920 1080 60 3 0 0 1</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a># игнорировать разрешение монитора</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>hdmi_ignore_edid=0xa5000080</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>hdmi_group=2</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>hdmi_mode=87</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a># игнорировать отсутствие монитора</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>hdmi_force_hotplug=1</span></code></pre></div>
 <p><strong>Для Raspberry Pi 4</strong><br />
-В образ arm64.img, в раздел /boot положить файлы из <a href="https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip">архива</a>, иначе не будет изображения</p>
+В образ arm64.img, в раздел /boot положить файлы из <a href="https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip">архива</a>, иначе не будет изображения<br />
+Для возможности изменять частоту процессора выставить в EFI “CPU Clock” = Custom and “CPU Clock Rate” = 600</p>
 <p>
     <div class="meta">
     
