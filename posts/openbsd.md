@@ -39,7 +39,8 @@ xlogin*allowNullPasswd: true
 ```sh
 setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 ```
-Изменить размер шрифта терминала
+Изменить размер шрифта терминала  
+~/.Xresources
 ```default
 xterm*faceName: Monospace
 xterm*faceSize: 14
