@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<title>Хранилище заметок - ngle</title>
+<title>Хранилище заметок - NGLE</title>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="../style.css" />
 <link rel="alternate" type="application/rss+xml" title="Ничего важного" href="./rss.xml">
@@ -21,12 +21,12 @@
 </div>
 <div class="content">
 <p>
-<div class="title"><h1><a href="../posts/ngle.html">ngle</a></h1></div>
+<div class="title"><h1><a href="../posts/ngle.html">NGLE</a></h1></div>
 <div class="meta"> 1 января 2015</div>
 
 </p>
-<p>Удалось отреверсить бинарь, отвечающий за ускорение графики, а именно копирование области (скроллинг) на старых машинах HP PA-RISC навроде HP 9000/712 и 715 и их графических картах именуемых HP Artist. Производитель поставлял этот бинарь в старых релизах X11, а именно в вендорном варианте под названием Xhp. Исходники были открыты, за исключением бинаря. Позже функционал был предоставлен в ассемблерном варианте в рамках проекта MkLinux. Проприетарастия как она есть</p>
-<p>Исходник с добавленными комментариями<br />
+<p>Удалось отреверсить бинарь, отвечающий за ускорение графики, а именно копирование области (скроллинг) на старых машинах HP PA-RISC навроде HP 9000/712 и 715 и их графических картах именуемых HP Artist. Производитель поставлял этот бинарь в старых релизах X11, в вендорном варианте под названием Xhp. Исходники были открыты, за исключением бинаря. Позже функционал был предоставлен в ассемблерном варианте в рамках проекта MkLinux. Проприетарастия как она есть</p>
+<p>Листинг с добавленными комментариями<br />
 Функция ngleDepth24_CopyAreaFromToScreen аналогична, за исключением инициализации регистра reg10: write4(-0x445f6000,reg10)</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>.import ngleScreenPrivIndex<span class="op">,</span>data</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
