@@ -25,7 +25,7 @@
 <p>Редактирование /etc/passwd</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vipw</span></span></code></pre></div>
 <p>Синхронизация времени<br />
-Синхронизировать с локальным сервером времени
+Синхронизировать с локальным сервером времени<br />
 /etc/rc.local</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rdate server</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> disable ntpd</span></code></pre></div>
