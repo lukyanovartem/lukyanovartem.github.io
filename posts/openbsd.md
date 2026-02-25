@@ -34,20 +34,10 @@ rcctl enable xenodm
 ```default
 xlogin*allowNullPasswd: true
 ```
-Русская раскладка
-```diff
---- /tmp/Xsession	Sat Feb 21 19:56:09 2026
-+++ /etc/X11/xenodm/Xsession	Sat Feb 21 19:56:42 2026
-@@ -68,6 +68,7 @@ else
- 	if [ -f "$$$$resources" ]; then
- 		/usr/X11R6/bin/xrdb -load "$$$$resources"
- 	fi
-+	setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
-+	xclock -geometry 50x50+1+1 &
-+	. ~/.profile
- 	$$$${exec_prefix}/bin/xterm &
- 	$$$${exec_prefix}/bin/fvwm
- fi
+Русская раскладка  
+~/.xsession
+```sh
+setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 ```
 Изменить размер шрифта терминала
 ```default

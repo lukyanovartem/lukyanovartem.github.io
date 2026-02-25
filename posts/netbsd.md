@@ -110,18 +110,11 @@ xlogin*allowNullPasswd: true
  # account
  #account 	required	pam_krb5.so
 ```
-Русская раскладка
-```diff
---- /tmp/Xsession	2026-01-25 11:01:45.856937940 +0300
-+++ /etc/X11/xdm/Xsession	2026-01-25 11:02:40.089933473 +0300
-@@ -133,5 +133,7 @@ fi
- 	/usr/X11R7/bin/uxterm &
- 	/usr/X11R7/bin/xclock -digital -strftime '%a %Y-%m-%d %H:%M' \
- 		-face "spleen:pixelsize=$$$$fontsize" -g +0+0 &
-+	# xrandr из-за ошибки BadRROutput
-+	xrandr && setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
- 	exec /usr/X11R7/bin/ctwm -W
- fi
+Русская раскладка  
+~/.xsession
+```sh
+# xrandr из-за ошибки BadRROutput
+xrandr && setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 ```
 Исправление ошибки "No entry for terminal type" при удалённом входе. На других машинах  
 ~/.ssh/config
@@ -164,7 +157,7 @@ cp /usr/pkg/share/examples/rc.d/estd /etc/rc.d/
 chmod +x /etc/rc.d/estd
 ```
 /etc/rc.conf
-```
+```default
 estd=YES
 ```
 
