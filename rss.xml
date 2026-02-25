@@ -36,7 +36,8 @@
 <p>Русская раскладка<br />
 ~/.xsession</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">&#39;us,ru&#39;</span> <span class="at">-option</span> <span class="st">&#39;grp:caps_toggle,grp_led:caps&#39;</span></span></code></pre></div>
-<p>Изменить размер шрифта терминала</p>
+<p>Изменить размер шрифта терминала<br />
+~/.Xresources</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>xterm*faceName: Monospace</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>xterm*faceSize: 14</span></code></pre></div>
 <p>Кастомизация fvwm</p>
