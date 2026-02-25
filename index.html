@@ -43,19 +43,9 @@
 <p>Разрешаем локальный беспарольный вход<br />
 /etc/X11/xenodm/Xresources</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>xlogin*allowNullPasswd: true</span></code></pre></div>
-<p>Русская раскладка</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/Xsession	Sat Feb 21 19:56:09 2026</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/X11/xenodm/Xsession	Sat Feb 21 19:56:42 2026</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -68,6 +68,7 @@ else</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a> 	if [ -f &quot;$resources&quot; ]; then</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a> 		/usr/X11R6/bin/xrdb -load &quot;$resources&quot;</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a> 	fi</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="va">+	setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="va">+	xclock -geometry 50x50+1+1 &amp;</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="va">+	. ~/.profile</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a> 	${exec_prefix}/bin/xterm &amp;</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a> 	${exec_prefix}/bin/fvwm</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a> fi</span></code></pre></div>
+<p>Русская раскладка<br />
+~/.xsession</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">'us,ru'</span> <span class="at">-option</span> <span class="st">'grp:caps_toggle,grp_led:caps'</span></span></code></pre></div>
 <p>Изменить размер шрифта терминала</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>xterm*faceName: Monospace</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>xterm*faceSize: 14</span></code></pre></div>
@@ -373,17 +363,10 @@
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a> # account</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a> #account 	required	pam_krb5.so</span></code></pre></div>
-<p>Русская раскладка</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/Xsession	2026-01-25 11:01:45.856937940 +0300</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/X11/xdm/Xsession	2026-01-25 11:02:40.089933473 +0300</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -133,5 +133,7 @@ fi</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a> 	/usr/X11R7/bin/uxterm &amp;</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a> 	/usr/X11R7/bin/xclock -digital -strftime '%a %Y-%m-%d %H:%M' \</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a> 		-face &quot;spleen:pixelsize=$fontsize&quot; -g +0+0 &amp;</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="va">+	# xrandr из-за ошибки BadRROutput</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="va">+	xrandr &amp;&amp; setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a> 	exec /usr/X11R7/bin/ctwm -W</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a> fi</span></code></pre></div>
+<p>Русская раскладка<br />
+~/.xsession</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># xrandr из-за ошибки BadRROutput</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">xrandr</span> <span class="kw">&amp;&amp;</span> <span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">'us,ru'</span> <span class="at">-option</span> <span class="st">'grp:caps_toggle,grp_led:caps'</span></span></code></pre></div>
 <p>Исправление ошибки “No entry for terminal type” при удалённом входе. На других машинах<br />
 ~/.ssh/config</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>host myname</span>
@@ -417,7 +400,7 @@
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /usr/pkg/share/examples/rc.d/estd /etc/rc.d/</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x /etc/rc.d/estd</span></code></pre></div>
 <p>/etc/rc.conf</p>
-<pre><code>estd=YES</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>estd=YES</span></code></pre></div>
 <p><strong>Для Raspberry Pi 3</strong><br />
 <strong>На версии 10.1 глючит ввод с клавиатуры</strong><br />
 Настройка разрешения экрана<br />
