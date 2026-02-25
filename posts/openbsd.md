@@ -39,17 +39,6 @@ xlogin*allowNullPasswd: true
 ```sh
 setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 ```
-Изменить размер шрифта терминала  
-~/.Xresources
-```default
-xterm*faceName: Monospace
-xterm*faceSize: 14
-```
-Кастомизация fvwm
-```sh
-cp /usr/X11R6/lib/X11/fvwm/.fvwmrc ~/
-chmod +w ~/.fvwmrc
-```
 Монтирование сетевой файловой системы sshfs  
 Устанавливаем sshfs-fuse
 ```sh
