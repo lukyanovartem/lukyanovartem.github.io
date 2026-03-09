@@ -97,7 +97,7 @@ pkg prime-list
 sysrc dumpdev="NO"
 ```
 **Для Raspberry Pi 3**  
-Звук появится в релизе 16. Пока можно пропатчить и пересобрать ядро с изменениями из 16 ветки
+Поддержки звука ещё нет в 15 релизе. Пока можно пропатчить и пересобрать ядро
 ```sh
 git clone https://git.FreeBSD.org/src.git -b release/15.0.0 /usr/src
 cd /usr/src
