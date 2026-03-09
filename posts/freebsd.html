@@ -91,7 +91,7 @@
 <p>Отключить дампы ядра</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sysrc</span> dumpdev=<span class="st">&quot;NO&quot;</span></span></code></pre></div>
 <p><strong>Для Raspberry Pi 3</strong><br />
-Звук появится в релизе 16. Пока можно пропатчить и пересобрать ядро с изменениями из 16 ветки</p>
+Поддержки звука ещё нет в 15 релизе. Пока можно пропатчить и пересобрать ядро</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://git.FreeBSD.org/src.git <span class="at">-b</span> release/15.0.0 /usr/src</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/src</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> cherry-pick 1d100747d747 70e73c43a472 df764dd133ec 8b43286fc3ba</span>
