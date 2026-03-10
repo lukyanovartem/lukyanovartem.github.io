@@ -11,11 +11,14 @@ tags: модем
 $gallery("wwan")$
 
 # Настройки WWAN модема Sierra EM7455
-
+Включение эхо-режима
+```default
+ATE1
+```
 Прошивание модема
 ```default
 AT!ENTERCND="A710"
-# Clear all changes and restore to (Lenovo/Sierra) factory settings
+# Очистить все изменения и откатиться к заводским настройкам Lenovo/Sierra
 AT!RMARESET=1
 AT!IMAGE=0
 AT!RESET
@@ -33,7 +36,7 @@ AT!USBPRODUCT="EM7455"
 AT!PRIID?
 # Carrier PRI: 9999999_9904609_SWI9X30C_02.24.05.06_00_GENERIC_002.026_000
 AT!PRIID="9904609","002.026","Generic-Laptop"
-# Force USB2 mode to enable compatibility with newer M.2 interfaces
+# Заставить модем работать в USB2 режиме для совместимости с современными M.2 интерфейсами
 AT!USBSPEED=0
 AT!RESET
 ```
