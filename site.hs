@@ -155,7 +155,7 @@ myFeedConfiguration :: FeedConfiguration
 myFeedConfiguration = FeedConfiguration
     { feedTitle       = sitename
     , feedDescription = sitedescription
-    , feedAuthorName  = "Artem Lukyanov"
+    , feedAuthorName  = ""
     , feedAuthorEmail = ""
     , feedRoot        = siteurl
     }
