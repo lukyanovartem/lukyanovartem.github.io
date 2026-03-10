@@ -118,7 +118,7 @@
 ]]></description>
     <pubDate>19.02.2026</pubDate>
     <guid>https://lukyanovartem.github.io/posts/openbsd.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>FreeBSD</title>
@@ -254,7 +254,7 @@
 ]]></description>
     <pubDate>03.02.2026</pubDate>
     <guid>https://lukyanovartem.github.io/posts/freebsd.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>NetBSD</title>
@@ -411,7 +411,7 @@
 ]]></description>
     <pubDate>08.01.2026</pubDate>
     <guid>https://lukyanovartem.github.io/posts/netbsd.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Шпаргалка по NixOS</title>
@@ -453,7 +453,7 @@
 ]]></description>
     <pubDate>07.05.2025</pubDate>
     <guid>https://lukyanovartem.github.io/posts/nixos.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Запуск Stable Diffusion на слабом железе</title>
@@ -481,7 +481,7 @@
 ]]></description>
     <pubDate>25.04.2025</pubDate>
     <guid>https://lukyanovartem.github.io/posts/sd.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Настройки YouTube ReVanced</title>
@@ -538,7 +538,7 @@
 ]]></description>
     <pubDate>11.04.2025</pubDate>
     <guid>https://lukyanovartem.github.io/posts/revanced.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Настройки AdGuard Home</title>
@@ -577,7 +577,7 @@
 ]]></description>
     <pubDate>28.02.2025</pubDate>
     <guid>https://lukyanovartem.github.io/posts/adguard.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Убираем белый список на WWAN модемы для ThinkPad T480s</title>
@@ -650,7 +650,7 @@
 ]]></description>
     <pubDate>09.04.2024</pubDate>
     <guid>https://lukyanovartem.github.io/posts/wwan.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Глупые IT названия</title>
@@ -707,7 +707,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 ]]></description>
     <pubDate>11.05.2023</pubDate>
     <guid>https://lukyanovartem.github.io/posts/tomato.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Домашний сервер</title>
@@ -753,7 +753,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 ]]></description>
     <pubDate>17.09.2021</pubDate>
     <guid>https://lukyanovartem.github.io/posts/server.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Дачный ретрокомп</title>
@@ -814,7 +814,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 ]]></description>
     <pubDate>19.07.2021</pubDate>
     <guid>https://lukyanovartem.github.io/posts/retropc.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Книги которые взорвали мозг</title>
@@ -845,7 +845,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 ]]></description>
     <pubDate>18.01.2021</pubDate>
     <guid>https://lukyanovartem.github.io/posts/books.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Германия</title>
@@ -894,7 +894,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 ]]></description>
     <pubDate>16.11.2019</pubDate>
     <guid>https://lukyanovartem.github.io/posts/germany.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>NGLE</title>
@@ -1093,7 +1093,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 ]]></description>
     <pubDate>01.01.2015</pubDate>
     <guid>https://lukyanovartem.github.io/posts/ngle.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Хорватия</title>
@@ -1141,7 +1141,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 ]]></description>
     <pubDate>22.07.2008</pubDate>
     <guid>https://lukyanovartem.github.io/posts/croatia.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Греция</title>
@@ -1184,7 +1184,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 ]]></description>
     <pubDate>01.06.2007</pubDate>
     <guid>https://lukyanovartem.github.io/posts/greece.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Карелия</title>
@@ -1247,7 +1247,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 ]]></description>
     <pubDate>01.06.2005</pubDate>
     <guid>https://lukyanovartem.github.io/posts/karelia.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Англия</title>
@@ -1295,7 +1295,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 ]]></description>
     <pubDate>01.06.2003</pubDate>
     <guid>https://lukyanovartem.github.io/posts/england.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 <item>
     <title>Латвия</title>
@@ -1343,7 +1343,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 ]]></description>
     <pubDate>01.06.2001</pubDate>
     <guid>https://lukyanovartem.github.io/posts/latvia.html</guid>
-    <dc:creator>Artem Lukyanov</dc:creator>
+    <dc:creator></dc:creator>
 </item>
 
     </channel>
