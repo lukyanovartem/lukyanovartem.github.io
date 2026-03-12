@@ -3,7 +3,8 @@ title: 8-pin Linux BOM
 published: 12.03.2026
 tags: diy
 ---
-Перечень компонентов для изготовления [8-pin Linux](https://dmitry.gr/?proj=36.%208pinLinux&r=05.Projects) из спичек и желудей
+Перечень компонентов для изготовления [8-pin Linux](https://dmitry.gr/?proj=36.%208pinLinux&r=05.Projects) из спичек и желудей  
+Эмулируется рабочая станция DECstation2100 с процессором MIPS R3000 и 8 Мб ОЗУ
 
 - микроконтроллер STM32G031J6M6
 - память ESP-PSRAM64H т.к. упоминаемых в статье нет в рознице
