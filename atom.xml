@@ -8,8 +8,40 @@
         <name></name>
         
     </author>
-    <updated>2026-02-19T00:00:00Z</updated>
+    <updated>2026-03-12T00:00:00Z</updated>
     <entry>
+    <title>8-pin Linux BOM</title>
+    <link href="https://lukyanovartem.github.io/posts/8pin.html" />
+    <id>https://lukyanovartem.github.io/posts/8pin.html</id>
+    <published>12.03.2026</published>
+    <updated>2026-03-12T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>
+<div class="title"><h1><a href="/posts/8pin.html">8-pin Linux BOM</a></h1></div>
+<div class="meta">12 марта 2026</div>
+
+</p>
+<p>Перечень компонентов для изготовления <a href="https://dmitry.gr/?proj=36.%208pinLinux&amp;r=05.Projects">8-pin Linux</a> из спичек и желудей</p>
+<ul>
+<li>микроконтроллер STM32G031J6M6</li>
+<li>память ESP-PSRAM64H т.к. упоминаемых в статье нет в рознице</li>
+<li>2x переходная плата SOIC-8 на DIP-8</li>
+<li>3x конденсатор 1.0мкФ</li>
+<li>3x резистор 5.1 кОм</li>
+<li>переходник MicroSD на SD + вилка штыревая 2.54мм 1x6pin угловая. вилку припаять к контактным площадкам переходника. таким образом получится простейший слот для microSD карт</li>
+<li>адаптер USB-TTL желательно с самовосстанавливающимся предохранителем</li>
+<li>макетная плата для пайки 30x70мм</li>
+</ul>
+<p>
+    <div class="meta">
+    
+      категории <a title="All pages tagged &#39;diy&#39;." href="/tags/diy.html" rel="tag">diy</a>
+    
+    </div>
+    <span class="disqus-comment-count" data-disqus-identifier="posts/8pin.md"></span>
+</p>
+]]></summary>
+</entry>
+<entry>
     <title>OpenBSD</title>
     <link href="https://lukyanovartem.github.io/posts/openbsd.html" />
     <id>https://lukyanovartem.github.io/posts/openbsd.html</id>
