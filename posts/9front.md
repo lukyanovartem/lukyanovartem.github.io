@@ -7,7 +7,7 @@ tags: plan9
 ```sh
 ip/ipconfig
 cd /sys
-hget https://lukyanovartem.github.io/content/bcm-audio.patch | patch -p2
+hget https://lukyanovartem.github.io/content/bcm-audio.diff | patch -p2
 cd src/9/bcm
 mk 'CONF=pi'
 bind -b '#S' /dev
