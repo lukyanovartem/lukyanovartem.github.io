@@ -5,7 +5,6 @@ tags: plan9
 ---
 **Для Raspberry Pi 1**  
 ```sh
-ip/ipconfig
 cd /sys/src/9/bcm
 hget https://lukyanovartem.github.io/content/bcm-audio.diff | patch
 mk 'CONF=pi'
