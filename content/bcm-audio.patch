@@ -1,0 +1,996 @@
+Source: https://plan9.stanleylieber.com/src/bcm-audio.tgz
+diff --git a/sys/src/9/bcm/devaudio.c b/sys/src/9/bcm/devaudio.c
+new file mode 100644
+index 000000000..a67775242
+--- /dev/null
++++ b/sys/src/9/bcm/devaudio.c
+@@ -0,0 +1,313 @@
++/*
++ * BCM2835 PWM audio driver. Needs PWM 'W' device.
++ */
++#include "u.h"
++#include "../port/lib.h"
++#include "mem.h"
++#include "dat.h"
++#include "fns.h"
++#include "../port/error.h"
++#include "io.h"
++
++#define PLLDFREQ	500000000
++
++enum
++{
++	Dbg			= 0,
++
++	Vaudio		= 0,
++	Vspeed,
++	Bufsz		= 2048,
++	IDiv		= 2,	/* divisor for pwm clock frequency */
++
++	Qdir		= 0,
++	Qaudio,
++	Qvolume,
++
++	Rate		= 44100,
++	Depth		= 16,
++	Maxvol		= 100,
++};
++
++u32int	abuf[Bufsz];
++Chan	*po;			/* For PWM out device */
++
++static struct
++{
++	QLock;
++	int	opened;
++	int	error;
++
++	ulong volume;
++	int	rate;
++	int	obd;
++	int	range;
++
++	ulong	vfact;		/* volume factor */
++
++	int	playing;
++	int	bufnum;
++}audio;
++
++static Dirtab audiodir[] =
++{
++	".",	{ Qdir, 0, QTDIR },	0,	0555,
++	"audio",	{Qaudio},		0,	0222,
++	"volume",	{Qvolume},		0,	0666,
++};
++
++static Cmdtab vols[] =
++{
++	{Vaudio, "audio", 2},
++	{Vspeed, "speed", 2},
++};
++
++static void
++audioinit(void)
++{
++	qlock(&audio);
++	audio.volume = Maxvol;
++	qunlock(&audio);
++}
++
++/*
++ * return largest power of 2 <= n, from port/usbehci.c
++ */
++static int
++flog2lower(int n)
++{
++	int i;
++
++	for(i = 0; (1 << (i + 1)) <= n; i++)
++		;
++	return i;
++}
++
++static void
++setrate(ulong rate)
++{
++	Chan *c;
++	char b[32];
++
++	if(rate != audio.rate){
++		qlock(&audio);
++		audio.rate = rate;
++
++		/* rounding division, avoid pitch inaccuracy */
++		audio.range = (PLLDFREQ/IDiv + rate/2) / rate;
++
++		audio.obd = flog2lower(audio.range);
++		audio.vfact = audio.range * audio.volume / Maxvol;
++		qunlock(&audio);
++	}
++	c = namec("#W/pwmctl", Aopen, OWRITE, 0);
++	snprint(b, sizeof b, "range %d", audio.range);
++	devtab[c->type]->write(c, b, strlen(b), 0);
++	cclose(c);
++
++	if(Dbg) print("#A: range %d outbitdepth %d\n", audio.range, audio.obd);
++}
++
++static Chan*
++audioopen(Chan *c, int omode)
++{
++	Chan *ctl;
++	char b[32];
++
++	if(Dbg) print("#A: audioopen %ld\n", (ulong)c->qid.path);
++	switch((ulong)c->qid.path){
++	default:
++		error(Eperm);
++
++	case Qvolume:
++	case Qdir:
++		break;
++
++	case Qaudio:
++		if((omode&7) != OWRITE)
++			error(Eperm);
++		qlock(&audio);
++		if(audio.opened){
++			qunlock(&audio);
++			error(Einuse);
++		}
++		audio.opened = 1;
++		qunlock(&audio);
++
++		ctl = namec("#W/pwmctl", Aopen, OWRITE, 0);
++		snprint(b, sizeof b, "idiv %d", IDiv);
++		devtab[ctl->type]->write(ctl, b, strlen(b), 0);
++		strcpy(b, "clksrc PLLD");
++		devtab[ctl->type]->write(ctl, b, strlen(b), 0);
++
++		/* GPIO 40 and 45 are the TRS jack output */
++		strcpy(b, "gpio 40");
++		devtab[ctl->type]->write(ctl, b, strlen(b), 0);
++		strcpy(b, "gpio 45");
++		devtab[ctl->type]->write(ctl, b, strlen(b), 0);
++		cclose(ctl);
++
++		po = namec("#W/pwmout", Aopen, OWRITE, 0);
++		setrate(Rate);
++		break;
++	}
++	c = devopen(c, omode, audiodir, nelem(audiodir), devgen);
++	c->mode = openmode(omode);
++	c->flag |= COPEN;
++	c->offset = 0;
++
++	return c;
++}
++
++static void
++audioclose(Chan *c)
++{
++	if(Dbg) print("#A: audioclose(%ld)\n", (ulong)c->qid.path);
++
++	switch((ulong)c->qid.path){
++	default:
++		error(Eperm);
++		break;
++
++	case Qdir:
++	case Qvolume:
++		break;
++
++	case Qaudio:
++		if(c->flag & COPEN){
++			cclose(po);
++			qlock(&audio);
++			audio.opened = 0;
++			audio.playing = 0;
++			qunlock(&audio);
++		}
++		break;
++	}
++}
++
++static long
++audioread(Chan *c, void *v, long n, vlong off)
++{
++	char *a;
++	char buf[64];
++
++	if(Dbg) print("#A: audioread()\n");
++
++	a = v;
++	switch((ulong)c->qid.path){
++	default:
++		error(Eperm);
++
++	case Qdir:
++		return devdirread(c, a, n, audiodir, nelem(audiodir), devgen);
++
++	case Qvolume:
++		buf[0] = 0;
++		snprint(buf, sizeof(buf), "audio %uld\nspeed %d\n",
++				audio.volume, audio.rate);
++		return readstr(off, a, n, buf);
++	}
++}
++
++/*
++ * Get little endian audio sample n from address a unaligned, return it
++ * represented as an unsigned 16-bit sample for the PWM.
++ */
++static u16int
++getsample(u8int *a, long n)
++{
++	return ((a[n*2] | (a[n*2 + 1] << 8)) + 32768) & 0xFFFF;
++}
++
++static long
++audiowrite(Chan *c, void *a, long n, vlong)
++{
++	int i, bi;
++	Cmdbuf *cbuf;
++	Cmdtab *ct;
++
++	bi = 0;
++
++	switch((ulong)c->qid.path){
++	default:
++		error(Eperm);
++		break;
++
++	case Qaudio:
++		for(i = 0; i < n / 2; i++){
++			/* signed 16bit -> unsigned in pwm's range */
++			abuf[bi++] = getsample(a, i) * audio.vfact / (1 << Depth);
++
++			if(bi >= Bufsz - 1){
++				devtab[po->type]->write(po, abuf, bi * 4, 0);
++				bi = 0;
++			}
++		}
++		if(bi > 0)
++			devtab[po->type]->write(po, abuf, bi * 4, 0);
++		break;
++
++	case Qvolume:
++		cbuf = parsecmd(a, n);
++		if(waserror()){
++			free(cbuf);
++			nexterror();
++		}
++		ct = lookupcmd(cbuf, vols, nelem(vols));
++		switch(ct->index){
++		case Vaudio:
++			qlock(&audio);
++			audio.volume = strtoul(cbuf->f[1], nil, 0);
++			audio.vfact = audio.range * audio.volume / Maxvol;
++			qunlock(&audio);
++			break;
++
++		case Vspeed:
++			setrate(strtoul(cbuf->f[1], nil, 0));
++			break;
++		}
++		free(cbuf);
++		poperror();
++	}
++
++	return n;
++}
++
++static Chan*
++audioattach(char *spec)
++{
++	return devattach('A', spec);
++}
++
++static Walkqid*
++audiowalk(Chan *c, Chan *nc, char **name, int nname)
++{
++	return devwalk(c, nc, name, nname, audiodir, nelem(audiodir), devgen);
++}
++
++static int
++audiostat(Chan *c, uchar *db, int n)
++{
++	return devstat(c, db, n, audiodir, nelem(audiodir), devgen);
++}
++
++Dev audiodevtab = {
++	'A',
++	"audio",
++
++	devreset,
++	audioinit,
++	devshutdown,
++	audioattach,
++	audiowalk,
++	audiostat,
++	audioopen,
++	devcreate,
++	audioclose,
++	audioread,
++	devbread,
++	audiowrite,
++	devbwrite,
++	devremove,
++	devwstat,
++};
+diff --git a/sys/src/9/bcm/devpwm.c b/sys/src/9/bcm/devpwm.c
+new file mode 100644
+index 000000000..08aea68f9
+--- /dev/null
++++ b/sys/src/9/bcm/devpwm.c
+@@ -0,0 +1,568 @@
++/*
++ * BCM2835 PWM driver. Allows writing to the FIFO using DMA, useful for
++ * analog stereo audio output, and setting the PWM to certain values, both
++ * via the same 'out' file. For DMA, the PWM is shut down when the device
++ * is closed and all the data has been transmitted.
++ */
++#include "u.h"
++#include "../port/lib.h"
++#include "mem.h"
++#include "dat.h"
++#include "fns.h"
++#include "../port/error.h"
++#include "io.h"
++
++#define CLKREGS		((u32int*)(VIRTIO + 0x101000))
++#define PWMREGS		((u32int*)(VIRTIO + 0x20c000))
++
++#define IDIV(X)	(X << 12)	/* integer divisor for clock frequency */
++
++typedef struct Buf Buf;
++
++enum
++{
++	Dbg		= 0,
++
++	Qdir	= 0,
++	Qchan1,
++	Qchan2,
++	Qctl,
++	Qout,
++
++	/* ctl commands */
++	CMclksrc	= 0,
++	CMidiv,
++	CMrange,
++	CMgpio,
++	
++	RBufSize	= 65536,	/* In bytes, should be a multiple of 4 */
++	RBufCount	= RBufSize / 4,
++
++	IDiv	= 2,
++
++	/* Needed control values for GPIO, clock, PWM */
++	ClkMgrPasswd	= 0x5a000000,
++	ClkMgrKILL	= 1 << 5 | ClkMgrPasswd,
++
++	ClkMgrEnab	= 0x10 | ClkMgrPasswd,
++	ClkMgrBusy	= 1 << 7,
++	ClkOSCIL	= 1,
++	ClkPLLA		= 4,
++	ClkPLLC		= 5,
++	ClkPLLD		= 6,
++
++	PWMCtlEN1	= 1,
++	PWMCtlEN2	= 1 << 8,
++	PWMCtlEN	= PWMCtlEN1 | PWMCtlEN2,
++
++	PWMCtlUSEF1	= 1 << 5,
++	PWMCtlUSEF2	= 1 << 13,
++	PWMCtlUSEF	= PWMCtlUSEF1 | PWMCtlUSEF2,
++	PWMCtlCLRF1	= 1 << 6,
++
++	PWMDMAOn	= 1 << 31,
++
++	/* Peripheral register offsets */
++	ClkPWMCtl	= 40,
++	ClkPWMDiv	= 41,
++
++	PWMCtl		= 0,
++	PWMSta		= 1,
++	PWMDMACfg	= 2,
++	PWMRng1		= 4,
++	PWMDat1		= 5,
++	PWMFif1		= 6,
++	PWMRng2		= 8,
++	PWMDat2		= 9,
++};
++
++static struct
++{
++	QLock;
++	int active;
++	int opened;
++	int enabled;
++
++	int clksrc;
++	int idiv;
++	int range;
++}pwm;
++
++static struct
++{
++	int begin;
++	int end;
++	int count;
++	u32int b[RBufCount];
++}rbuf;
++
++static Dirtab pwmdir[] =
++{
++	".",	{Qdir, 0, QTDIR},	0,	0555,
++	"pwmchan1",	{Qchan1},	0,	0666,
++	"pwmchan2",	{Qchan2},	0,	0666,
++	"pwmctl",	{Qctl},		0,	0666,
++	"pwmout",	{Qout},		0,	0222,
++};
++
++static Cmdtab pwmctls[] =
++{
++	CMclksrc,	"clksrc",	2,
++	CMidiv,		"idiv",		2,
++	CMrange,	"range",	2,
++	CMgpio,		"gpio",		2,
++};
++
++/* if index n is on the filled portion of the ring buffer */
++static int
++inrbuf(int n)
++{
++	int b, e, c;
++
++	b = rbuf.begin;
++	e = rbuf.end;
++	c = rbuf.count;
++	return b < e && n < e && n >= b ||
++		c > 0 && e <= b && (n < e || n >= b);
++}
++
++static int
++bufwrite(u8int *c, long n)
++{
++	int i, d;
++	u8int *b;
++
++	b = (u8int *)rbuf.b;
++
++	while(n > RBufSize - rbuf.count){
++		tsleep(&up->sleep, return0, nil, 50);
++		if(pwm.active)
++			d = RBufSize - dmagettx(DmaChanPwm);
++		else
++			d = 0;
++		if(d > rbuf.begin){
++			rbuf.count -= d - rbuf.begin;
++			rbuf.begin = d;
++		}else if(rbuf.end <= rbuf.begin && d < rbuf.end){
++			rbuf.count -= (RBufSize - rbuf.begin) + d;
++			rbuf.begin = d;
++		}
++		if(inrbuf(d) == 0)
++			print("#W: warning: dma skip\n");
++		continue;
++	}
++
++	if(rbuf.end + n < RBufSize){
++		memmove(b + rbuf.end, c, n);
++		rbuf.end += n;
++	}else{
++		i = RBufSize - rbuf.end;
++		memmove(b + rbuf.end, c, i);
++		memmove(b, c + i, n - i);
++		rbuf.end = n - i;
++	}
++	coherence();
++	rbuf.count += n;
++	return n;
++}
++
++static void
++printstatr(void)
++{
++	u32int *reg;
++
++	reg = (u32int *)PWMREGS;
++	print("#W: status 0x%08x\n", reg[PWMSta]);
++}
++
++/*
++ * return largest power of 2 <= n, from port/usbehci.c
++ */
++static int
++flog2lower(int n)
++{
++	int i;
++
++	for(i = 0; (1 << (i + 1)) <= n; i++)
++		;
++	return i;
++}
++
++static void
++setrange(int range)
++{
++	u32int *reg;
++
++	qlock(&pwm);
++	pwm.range = range;
++	qunlock(&pwm);
++
++	reg = (u32int *)PWMREGS;
++	reg[PWMRng1] = reg[PWMRng2] = range;
++
++	if(Dbg) print("#W: range set to %d\n", range);
++}
++
++static void
++bcmpwmenable(int wfifo)
++{
++	u32int *r;
++
++	if(Dbg) print("#W: bcmpwmenable()\n");
++
++	r = CLKREGS;
++	r[ClkPWMCtl] = pwm.clksrc | ClkMgrPasswd | ClkMgrEnab;
++	microdelay(64);
++
++	if(Dbg) print("#W: clock state1 %08x\n", r[ClkPWMCtl]);
++
++	setrange(pwm.range);
++	r = PWMREGS;
++	if(wfifo){
++		r[PWMCtl] = PWMCtlUSEF | PWMCtlCLRF1 | PWMCtlEN;
++		/* panic thres: 0. dreq thres: 4 */
++		r[PWMDMACfg] = PWMDMAOn | 4;
++	}else
++		r[PWMCtl] = PWMCtlEN;
++	if(Dbg) printstatr();
++
++	pwm.enabled = 1;
++}
++
++static void
++bcmpwmdisable(void)
++{
++	u32int *r;
++
++	if(Dbg) print("#W: bcmpwmdisable()\n");
++
++	r = CLKREGS;
++	r[ClkPWMCtl] = r[ClkPWMCtl] & ~ClkMgrEnab | ClkMgrPasswd;
++
++	/*
++	 * Disable channels 1, 2, and everything.  Should
++	 * also default to using data regs instead of FIFO if
++	 * the out file was opened and then closed.
++	 */
++	PWMREGS[PWMCtl] = 0;
++	pwm.enabled = 0;
++}
++
++static void
++pwminit(void)
++{
++	if(Dbg) print("#W: pwminit()\n");
++
++	bcmpwmdisable();
++	setrange(100);
++
++	qlock(&pwm);
++	pwm.idiv = IDiv;
++	pwm.clksrc = ClkPLLD;
++	qunlock(&pwm);
++}
++
++static Chan*
++pwmopen(Chan *c, int omode)
++{
++	if(Dbg) print("#W: pwmopen(%ld)\n", (ulong)c->qid.path);
++	switch((ulong)c->qid.path){
++	default:
++		error(Eperm);
++
++	case Qdir:
++	case Qctl:
++		break;
++
++	case Qout:
++		if((omode&7) != OWRITE)
++			error(Eperm);
++		qlock(&pwm);
++		if(pwm.opened){
++			qunlock(&pwm);
++			error(Einuse);
++		}
++		pwm.opened = 1;
++		qunlock(&pwm);
++
++		bcmpwmdisable();
++		bcmpwmenable(1);
++
++		break;
++
++	case Qchan1:
++	case Qchan2:
++		if(pwm.opened)
++			error(Einuse);
++		if(pwm.enabled == 0)
++			bcmpwmenable(0);
++		break;
++	}
++
++	c = devopen(c, omode, pwmdir, nelem(pwmdir), devgen);
++	c->mode = openmode(omode);
++	c->flag |= COPEN;
++	c->offset = 0;
++
++	return c;
++}
++
++static void
++pwmclose(Chan *c)
++{
++	int d, od, looped;
++
++	if(Dbg) print("#W: pwmclose(%ld)\n", (ulong)c->qid.path);
++
++	od = looped = 0;
++
++	switch((ulong)c->qid.path){
++	default:
++		error(Eperm);
++		break;
++
++	case Qdir:
++	case Qctl:
++	case Qchan1:
++	case Qchan2:
++		break;
++
++	case Qout:
++		if(c->flag & COPEN){
++			if(pwm.active){
++				/*
++				 * Poll the dma, shutting it down when it reaches the
++				 * last sample.
++				 */
++				do{
++					d = RBufCount - dmagettx(DmaChanPwm) / 4;
++					if(d < rbuf.end/4 || d < od)
++						looped = 1;
++					od = d;
++				}while(looped ? d < rbuf.end/4 : inrbuf(d));
++				dmareset(DmaChanPwm);
++			}
++			bcmpwmdisable();
++
++			qlock(&pwm);
++			pwm.opened = 0;
++			pwm.active = 0;
++			qunlock(&pwm);
++			if(Dbg) print("** begin(%d) end(%d) count(%d) first(%d)\n",
++				rbuf.begin, rbuf.end, rbuf.count, rbuf.b[0]);
++			rbuf.begin = rbuf.end = rbuf.count = 0;
++		}
++		break;
++	}
++}
++
++static long
++pwmread(Chan *c, void *v, long n, vlong off)
++{
++	char *a, buf[64];
++	char *clks[] = {
++		[ClkOSCIL] "oscillator",
++		[ClkPLLA] "PLLA",
++		[ClkPLLC] "PLLC",
++		[ClkPLLD] "PLLD",
++	};
++
++	if(Dbg) print("#A: pwmread()\n");
++
++	a = v;
++	switch((ulong)c->qid.path){
++	default:
++		error(Eperm);
++		break;
++
++	case Qdir:
++		return devdirread(c, a, n, pwmdir, nelem(pwmdir), devgen);
++
++	case Qctl:
++		snprint(buf, sizeof buf,
++				"clksrc %s\n"
++				"idiv %d\n"
++				"range %d\n",
++				clks[pwm.clksrc], pwm.idiv, pwm.range);
++		return readstr(off, a, n, buf);
++	
++	case Qchan1:
++		snprint(buf, sizeof buf, "%d\n", PWMREGS[PWMDat1]);
++		return readstr(off, a, n, buf);
++	case Qchan2:
++		snprint(buf, sizeof buf, "%d\n", PWMREGS[PWMDat2]);
++		return readstr(off, a, n, buf);
++	}
++
++	return 0;
++}
++
++static void
++pwmctlwrite(void *a, long n)
++{
++	Cmdbuf *cbuf;
++	Cmdtab *ct;
++	u32int *r;
++	ulong num;
++	int clksrc;
++	char *rptr;
++
++	clksrc = ClkPLLD;
++
++	cbuf = parsecmd(a, n);
++	if(waserror()){
++		free(cbuf);
++		nexterror();
++	}
++	ct = lookupcmd(cbuf, pwmctls, nelem(pwmctls));
++	switch(ct->index){
++	case CMclksrc:
++		if(pwm.opened)
++			error("can't change clock: PWM enabled");
++
++		if(strcmp(cbuf->f[1], "PLLA") == 0)
++			clksrc = ClkPLLA;
++		else if(strcmp(cbuf->f[1], "PLLC") == 0)
++			clksrc = ClkPLLC;
++		else if(strcmp(cbuf->f[1], "PLLD") == 0)
++			clksrc = ClkPLLD;
++		else if(strcmp(cbuf->f[1], "oscillator") == 0)
++			clksrc = ClkOSCIL;
++		else
++			error("Invalid clock source");
++		qlock(&pwm);
++		pwm.clksrc = clksrc;
++		qunlock(&pwm);
++		break;
++
++	case CMidiv:
++		if(pwm.opened)
++			error("can't change clock: PWM enabled");
++		num = strtoul(cbuf->f[1], &rptr, 0);
++		if(*rptr != '\0')
++			error("invalid argument in control message");
++		if(num > 4095)
++			error("integer divisor too large");
++		qlock(&pwm);
++		pwm.idiv = num;
++		qunlock(&pwm);
++		r = CLKREGS;
++		r[ClkPWMDiv] = ClkMgrPasswd | IDIV(pwm.idiv);
++		break;
++
++	case CMrange:
++		num = strtoul(cbuf->f[1], &rptr, 0);
++		if(*rptr != '\0')
++			error("invalid argument in control message");
++		setrange(num);
++		break;
++	
++	case CMgpio:
++		num = strtoul(cbuf->f[1], &rptr, 0);
++		if(*rptr != '\0')
++			error("invalid argument in control message");
++		switch(num){
++		default:
++			error("GPIO pin does not support PWM");
++			break;
++		case 12:
++		case 13:
++		case 40:
++		case 41:
++		case 45:
++			gpiosel(num, Alt0);
++			break;
++		case 18:
++		case 19:
++			gpiosel(num, Alt5);
++			break;
++		case 52:
++		case 53:
++			gpiosel(num, Alt1);
++			break;
++		}
++	}
++	free(cbuf);
++	poperror();
++}
++
++static long
++pwmwrite(Chan *c, void *a, long n, vlong)
++{
++	u32int *r;
++	char s[32];
++
++	r = PWMREGS;
++
++	switch((ulong)c->qid.path){
++	default:
++		error(Eperm);
++		break;
++
++	case Qout:
++		bufwrite(a, n);
++		if(pwm.active == 0){
++			dmastart2(DmaChanPwm, DmaDevPwm, DmaM2D,
++				rbuf.b, &r[PWMFif1], RBufSize, 1);
++			qlock(&pwm);
++			pwm.active = 1;
++			qunlock(&pwm);
++		}
++		break;
++
++	case Qchan1:
++		strecpy(s, s + MIN(sizeof s, n), a);
++		r[PWMDat1] = strtoul(s, nil, 0);
++		break;
++
++	case Qchan2:
++		strecpy(s, s + MIN(sizeof s, n), a);
++		r[PWMDat2] = strtoul(s, nil, 0);
++		break;
++
++	case Qctl:
++		pwmctlwrite(a, n);
++		break;
++	}
++
++	return n;
++}
++
++static Chan*
++pwmattach(char *spec)
++{
++	return devattach('W', spec);
++}
++
++static Walkqid*
++pwmwalk(Chan *c, Chan *nc, char **name, int nname)
++{
++	return devwalk(c, nc, name, nname, pwmdir, nelem(pwmdir), devgen);
++}
++
++static int
++pwmstat(Chan *c, uchar *db, int n)
++{
++	return devstat(c, db, n, pwmdir, nelem(pwmdir), devgen);
++}
++
++Dev pwmdevtab = {
++	'W',
++	"pwm",
++
++	devreset,
++	pwminit,
++	devshutdown,
++	pwmattach,
++	pwmwalk,
++	pwmstat,
++	pwmopen,
++	devcreate,
++	pwmclose,
++	pwmread,
++	devbread,
++	pwmwrite,
++	devbwrite,
++	devremove,
++	devwstat,
++};
+diff --git a/sys/src/9/bcm/dma.c b/sys/src/9/bcm/dma.c
+index 07b067259..f0b173622 100644
+--- a/sys/src/9/bcm/dma.c
++++ b/sys/src/9/bcm/dma.c
+@@ -150,8 +150,32 @@ dmainterrupt(Ureg*, void *a)
+ 	wakeup(&ctlr->r);
+ }
+ 
++uint
++dmagettx(int chan)
++{
++	Ctlr *ctlr;
++	
++	ctlr = &dma[chan];
++	return ctlr->regs[Txfrlen];
++}
++
++void
++dmareset(int chan)
++{
++	Ctlr *ctlr;
++	
++	ctlr = &dma[chan];
++	ctlr->regs[Cs] = 1 << 31;
++}
++
+ void
+ dmastart(int chan, int dev, int dir, void *src, void *dst, int len)
++{
++	dmastart2(chan, dev, dir, src, dst, len, 0);
++}
++
++void
++dmastart2(int chan, int dev, int dir, void *src, void *dst, int len, int loop)
+ {
+ 	Ctlr *ctlr;
+ 	Cb *cb;
+@@ -195,10 +219,15 @@ dmastart(int chan, int dev, int dir, void *src, void *dst, int len)
+ 		cb->destad = dmaaddr(dst);
+ 		break;
+ 	}
+-	cb->ti = ti | dev<<Permapshift | Inten;
++	cb->ti = ti | dev<<Permapshift;
+ 	cb->txfrlen = len;
+ 	cb->stride = 0;
+-	cb->nextconbk = 0;
++	if(loop)
++		cb->nextconbk = dmaaddr(cb);
++	else{
++		cb->nextconbk = 0;
++		cb->ti |= Inten;
++	}
+ 	dmaflush(1, cb, sizeof(Cb));
+ 	ctlr->regs[Cs] = 0;
+ 	microdelay(1);
+diff --git a/sys/src/9/bcm/fns.h b/sys/src/9/bcm/fns.h
+index 5ed9f910e..7f36084e4 100644
+--- a/sys/src/9/bcm/fns.h
++++ b/sys/src/9/bcm/fns.h
+@@ -29,7 +29,11 @@ extern void cpwr(int cp, int op1, int crn, int crm, int op2, ulong val);
+ extern void cpwrsc(int op1, int crn, int crm, int op2, ulong val);
+ #define cycles(ip) *(ip) = lcycles()
+ extern void dmaflush(int, void*, ulong);
++extern uint dmagettx(int chan);
++extern void dmareset(int chan);
++extern void dmaloop(int, int, int, void*, void*, int);
+ extern void dmastart(int, int, int, void*, void*, int);
++extern void dmastart2(int, int, int, void*, void*, int, int);
+ extern int dmawait(int);
+ extern uintptr dmaaddr(void *va);
+ extern void egpset(uint, int);
+diff --git a/sys/src/9/bcm/io.h b/sys/src/9/bcm/io.h
+index 711cb3146..5e41ed371 100644
+--- a/sys/src/9/bcm/io.h
++++ b/sys/src/9/bcm/io.h
+@@ -36,11 +36,13 @@ enum {
+ 	DmaChanSdhost	= 5,
+ 	DmaChanSpiTx= 2,
+ 	DmaChanSpiRx= 0,
++	DmaChanPwm	= 5,
+ 
+ 	DmaDevSpiTx	= 6,
+ 	DmaDevSpiRx	= 7,
+ 	DmaDevEmmc	= 11,
+ 	DmaDevSdhost	= 13,
++	DmaDevPwm	= 5,
+ 
+ 	PowerSd		= 0,
+ 	PowerUart0,
+diff --git a/sys/src/9/bcm/pi b/sys/src/9/bcm/pi
+index 8c617fa51..55a648e25 100644
+--- a/sys/src/9/bcm/pi
++++ b/sys/src/9/bcm/pi
+@@ -22,6 +22,8 @@ dev
+ 	i2c
+ 	sd
+ 	usb
++	audio
++	pwm
+ 
+ link
+ 	archbcm
