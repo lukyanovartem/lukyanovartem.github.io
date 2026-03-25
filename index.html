@@ -24,12 +24,35 @@
 <div class="meta">24 марта 2026</div>
 
 </p>
-<p><strong>Для Raspberry Pi 1</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /sys/src/9/bcm</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hget</span> https://lukyanovartem.github.io/content/bcm-audio.diff <span class="kw">|</span> <span class="fu">patch</span> <span class="at">-p5</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mk</span> <span class="st">'CONF=pi'</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">9fs</span> 9fat /dev/sdM0/dos</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> 9pi /n/9fat</span></code></pre></div>
+<p>Отключение вывода сообщений ядра поверх графического окружения</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> /sys/log/consoles</span></code></pre></div>
+<p>/bin/riostart</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /dev/kprint <span class="op">&gt;&gt;</span>/sys/log/consoles/<span class="va">$</span>sysname <span class="op">&gt;</span><span class="pp">[</span><span class="ss">2=1</span><span class="pp">]</span> <span class="kw">&amp;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div>
+<p>Настройка сети<br />
+/bin/riostart</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ip/ipconfig</span></span></code></pre></div>
+<p><strong>Для Raspberry Pi 1</strong><br />
+Монтировать загрузочный раздел</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">9fs</span> 9fat /dev/sdM0/dos</span></code></pre></div>
+<p>Для поддержки звука надо пропатчить и пересобрать ядро</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /sys/src/9/bcm</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hget</span> https://lukyanovartem.github.io/content/bcm-audio.diff <span class="kw">|</span> <span class="fu">patch</span> <span class="at">-p5</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mk</span> <span class="st">'CONF=pi'</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> 9pi /n/9fat</span></code></pre></div>
+<p>Настройка разрешения экрана<br />
+/n/9fat/config.txt</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a># последняя единица чтобы убрать рамки</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>hdmi_cvt=1920 1080 60 3 0 0 1</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a># игнорировать разрешение монитора</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>hdmi_ignore_edid=0xa5000080</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>hdmi_group=2</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>hdmi_mode=87</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a># игнорировать отсутствие монитора</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>hdmi_force_hotplug=1</span></code></pre></div>
+<p>Автозагрузка<br />
+/n/9fat/cmdline.txt</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>console=0 user=glenda nobootprompt=local!/dev/sdM0/fs</span></code></pre></div>
 <p>
     <div class="meta">
     
