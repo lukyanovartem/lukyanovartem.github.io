@@ -45,5 +45,5 @@ hdmi_force_hotplug=1
 Автозагрузка  
 /n/pidos/cmdline.txt
 ```default
-console=0 user=glenda nobootprompt=local!/dev/sdM0/fs sysname=rpi
+console=0 user=glenda nobootprompt=local!/dev/sdM0/fs sysname=myname
 ```
