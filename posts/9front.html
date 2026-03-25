@@ -26,14 +26,13 @@
 <p>Отключение вывода сообщений ядра поверх графического окружения</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> /sys/log/consoles</span></code></pre></div>
 <p>/bin/riostart</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /dev/kprint <span class="op">&gt;&gt;</span>/sys/log/consoles/<span class="va">$</span>sysname <span class="op">&gt;</span><span class="pp">[</span><span class="ss">2=1</span><span class="pp">]</span> <span class="kw">&amp;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /dev/kprint <span class="op">&gt;&gt;</span>/sys/log/consoles/<span class="va">$</span>sysname <span class="op">&gt;</span><span class="pp">[</span><span class="ss">2=1</span><span class="pp">]</span> <span class="kw">&amp;</span></span></code></pre></div>
 <p>Настройка сети<br />
 /bin/riostart</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ip/ipconfig</span></span></code></pre></div>
 <p><strong>Для Raspberry Pi 1</strong><br />
-Могут глючить мыши от Logitech, можно попробовать другую мышь<br />
-Монтировать загрузочный раздел</p>
+Могут глючить мыши от Logitech, можно попробовать другую мышь</p>
+<p>Монтировать загрузочный раздел</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">9fs</span> 9fat /dev/sdM0/dos</span></code></pre></div>
 <p>Для поддержки звука надо пропатчить и пересобрать ядро</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /sys/src/9/bcm</span>
