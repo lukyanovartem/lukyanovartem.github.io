@@ -18,6 +18,7 @@ cat /dev/kprint >>/sys/log/consoles/$$$$sysname >[2=1] &
 ip/ipconfig
 ```
 **Для Raspberry Pi 1**  
+Могут глючить мыши от Logitech, можно попробовать другую мышь  
 Монтировать загрузочный раздел
 ```sh
 9fs 9fat /dev/sdM0/dos
