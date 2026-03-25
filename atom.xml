@@ -48,7 +48,7 @@
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>hdmi_force_hotplug=1</span></code></pre></div>
 <p>Автозагрузка<br />
 /n/pidos/cmdline.txt</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>console=0 user=glenda nobootprompt=local!/dev/sdM0/fs sysname=rpi</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>console=0 user=glenda nobootprompt=local!/dev/sdM0/fs sysname=myname</span></code></pre></div>
 <p>
     <div class="meta">
     
