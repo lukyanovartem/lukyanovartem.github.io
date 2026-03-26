@@ -3,6 +3,32 @@ title: 9Front
 published: 24.03.2026
 tags: plan9
 ---
+Переключение раскладки клавиатуры  
+/bin/riostart
+```sh
+window 161,0,278,117 kbmap /sys/lib/kbmap/us /sys/lib/kbmap/ru
+```
+Настройка времени  
+/adm/timezone/local
+```default
+MSK 10800 MSK 10800
+...
+```
+Синхронизация с локальным сервером времени  
+/bin/riostart
+```sh
+aux/timesync -n server.lan
+```
+Удалённый терминал  
+/bin/riostart
+```sh
+echo 'key proto=dp9ik dom=plan9 user=glenda !password=mypassword' > /mnt/factotum/ctl
+aux/listen1 -t tcp!*!rcpu /rc/bin/service/tcp17019 -R &
+```
+На удалённом хосте
+```sh
+drawterm -h myname -u glenda
+```
 Отключение вывода сообщений ядра поверх графического окружения
 ```sh
 mkdir -p /sys/log/consoles
