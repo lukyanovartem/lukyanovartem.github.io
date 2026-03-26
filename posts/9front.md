@@ -21,17 +21,17 @@ ip/ipconfig -h $$$$sysname
 
 Монтировать загрузочный раздел
 ```sh
-9fs pidos
+9fs dos
 ```
 Для поддержки звука надо пропатчить и пересобрать ядро
 ```sh
 cd /sys/src/9/bcm
 hget https://lukyanovartem.github.io/content/bcm-audio.diff | patch -p5
 mk 'CONF=pi'
-cp 9pi /n/pidos
+cp 9pi /n/dos
 ```
 Настройка разрешения экрана  
-/n/pidos/config.txt
+/n/dos/config.txt
 ```default
 # последняя единица чтобы убрать рамки
 hdmi_cvt=1920 1080 60 3 0 0 1
@@ -43,7 +43,7 @@ hdmi_mode=87
 hdmi_force_hotplug=1
 ```
 Автозагрузка  
-/n/pidos/cmdline.txt
+/n/dos/cmdline.txt
 ```default
 console=0 user=glenda nobootprompt=local!/dev/sdM0/fs sysname=myname
 ```
