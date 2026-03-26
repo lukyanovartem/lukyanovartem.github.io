@@ -26,14 +26,14 @@
 <p><strong>Для Raspberry Pi 1</strong><br />
 Могут глючить мыши от Logitech, можно попробовать другую мышь</p>
 <p>Монтировать загрузочный раздел</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">9fs</span> pidos</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">9fs</span> dos</span></code></pre></div>
 <p>Для поддержки звука надо пропатчить и пересобрать ядро</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /sys/src/9/bcm</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hget</span> https://lukyanovartem.github.io/content/bcm-audio.diff <span class="kw">|</span> <span class="fu">patch</span> <span class="at">-p5</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mk</span> <span class="st">&#39;CONF=pi&#39;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> 9pi /n/pidos</span></code></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> 9pi /n/dos</span></code></pre></div>
 <p>Настройка разрешения экрана<br />
-/n/pidos/config.txt</p>
+/n/dos/config.txt</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a># последняя единица чтобы убрать рамки</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>hdmi_cvt=1920 1080 60 3 0 0 1</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a># игнорировать разрешение монитора</span>
@@ -43,7 +43,7 @@
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a># игнорировать отсутствие монитора</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>hdmi_force_hotplug=1</span></code></pre></div>
 <p>Автозагрузка<br />
-/n/pidos/cmdline.txt</p>
+/n/dos/cmdline.txt</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>console=0 user=glenda nobootprompt=local!/dev/sdM0/fs sysname=myname</span></code></pre></div>
 <p>
     <div class="meta">
