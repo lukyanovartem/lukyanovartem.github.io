@@ -23,9 +23,11 @@
 <div class="meta">24 марта 2026</div>
 
 </p>
-<p>Переключение раскладки клавиатуры<br />
+<p>Виджеты<br />
 /bin/riostart</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 161,0,278,117 kbmap /sys/lib/kbmap/us /sys/lib/kbmap/ru</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 0,0,100,100 clock</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 100,0,200,100 kbmap /sys/lib/kbmap/us /sys/lib/kbmap/ru</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 200,0,400,100 winwatch <span class="at">-e</span> <span class="st">'^(winwatch|clock|kbmap)'</span></span></code></pre></div>
 <p>Настройка времени<br />
 /adm/timezone/local</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MSK 10800 MSK 10800</span>
