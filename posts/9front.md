@@ -29,7 +29,7 @@ aux/listen1 -t tcp!*!rcpu /rc/bin/service/tcp17019 -R &
 ```
 На удалённом хосте
 ```sh
-PASS=mypassword drawterm -h myname -u glenda
+PASS=mypassword drawterm -h myname -a myname -u glenda
 ```
 Отключение вывода сообщений ядра поверх графического окружения
 ```sh
