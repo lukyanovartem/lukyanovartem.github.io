@@ -49,7 +49,7 @@ ip/ipconfig -h $$$$sysname
 ```sh
 9fs dos
 ```
-Для поддержки звука надо пропатчить и пересобрать ядро
+Для поддержки звука надо пропатчить и пересобрать ядро. Патч проверялся на версии 9front-11554
 ```sh
 cd /sys/src/9/bcm
 hget https://lukyanovartem.github.io/content/bcm-audio.diff | patch -p5
