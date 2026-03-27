@@ -3,10 +3,12 @@ title: 9Front
 published: 24.03.2026
 tags: plan9
 ---
-Переключение раскладки клавиатуры  
+Виджеты  
 /bin/riostart
 ```sh
-window 161,0,278,117 kbmap /sys/lib/kbmap/us /sys/lib/kbmap/ru
+window 0,0,100,100 clock
+window 100,0,200,100 kbmap /sys/lib/kbmap/us /sys/lib/kbmap/ru
+window 200,0,400,100 winwatch -e '^(winwatch|clock|kbmap)'
 ```
 Настройка времени  
 /adm/timezone/local
