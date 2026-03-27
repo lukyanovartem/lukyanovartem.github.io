@@ -10,10 +10,19 @@ auth/rsagen -t 'service=ssh role=client' >key
 auth/rsa2ssh key
 ```
 Монтирование при запуске системы  
-`$$$$home/lib/profile`
-```sh
-cat key >/mnt/factotum/ctl
-sshfs -r /data -- -R ssh@server.lan
+```diff
+--- /tmp/profile
++++ /usr/glenda/lib/profile
+@@ -8,6 +8,9 @@
+ 	if(! webcookies >[2]/dev/null)
+ 		webcookies -f /tmp/webcookies
+ 	webfs
++	ip/ipconfig -h $$$$sysname
++	cat key >/mnt/factotum/ctl
++	sshfs -r /data -- -R ssh@server.lan
+ 	plumber
+ 	echo -n accelerated > '#m/mousectl'
+ 	echo -n 'res 3' > '#m/mousectl'
 ```
 Виджеты  
 /bin/riostart
@@ -22,11 +31,16 @@ window 0,0,100,100 clock
 window 100,0,200,100 kbmap /sys/lib/kbmap/us /sys/lib/kbmap/ru
 window 200,0,400,100 winwatch -e '^(winwatch|clock|kbmap)'
 ```
-Настройка времени  
-/adm/timezone/local
-```default
-MSK 10800 MSK 10800
-...
+Настройка времени
+```diff
+--- /adm/timezone/CET
++++ /adm/timezone/local
+@@ -1,4 +1,4 @@
+-CET 3600 CES 7200
++MSK 10800 MSK 10800
+  512532000  528256800  543981600  559706400  575431200  591156000
+  606880800  622605600  638330400  654660000  670384800  686109600
+  701834400  717559200  733284000  749008800  764733600  780458400
 ```
 Синхронизация с локальным сервером времени  
 /bin/riostart
@@ -50,11 +64,6 @@ mkdir -p /sys/log/consoles
 /bin/riostart
 ```sh
 cat /dev/kprint >>/sys/log/consoles/$$$$sysname >[2=1] &
-```
-Настройка сети  
-`$$$$home/lib/profile`
-```sh
-ip/ipconfig -h $$$$sysname
 ```
 **Для Raspberry Pi 1**  
 Могут глючить мыши от Logitech, можно попробовать другую мышь
