@@ -50,7 +50,7 @@
 Могут глючить мыши от Logitech, можно попробовать другую мышь</p>
 <p>Монтировать загрузочный раздел</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">9fs</span> dos</span></code></pre></div>
-<p>Для поддержки звука надо пропатчить и пересобрать ядро</p>
+<p>Для поддержки звука надо пропатчить и пересобрать ядро. Патч проверялся на версии 9front-11554</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /sys/src/9/bcm</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hget</span> https://lukyanovartem.github.io/content/bcm-audio.diff <span class="kw">|</span> <span class="fu">patch</span> <span class="at">-p5</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mk</span> <span class="st">'CONF=pi'</span></span>
