@@ -33,7 +33,7 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&#39;key proto=dp9ik dom=plan9 user=glenda !password=mypassword&#39;</span> <span class="op">&gt;</span> /mnt/factotum/ctl</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">aux/listen1</span> <span class="at">-t</span> tcp!<span class="pp">*</span>!rcpu /rc/bin/service/tcp17019 <span class="at">-R</span> <span class="kw">&amp;</span></span></code></pre></div>
 <p>На удалённом хосте</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">drawterm</span> <span class="at">-h</span> myname <span class="at">-u</span> glenda</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">PASS</span><span class="op">=</span>mypassword <span class="ex">drawterm</span> <span class="at">-h</span> myname <span class="at">-u</span> glenda</span></code></pre></div>
 <p>Отключение вывода сообщений ядра поверх графического окружения</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> /sys/log/consoles</span></code></pre></div>
 <p>/bin/riostart</p>
