@@ -22,8 +22,8 @@
 </p>
 <p>Монтирование удалённой файловой системы по sshfs<br />
 Создание ключа</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">auth/rsagen</span> <span class="at">-t</span> <span class="st">&#39;service=ssh role=client&#39;</span> <span class="op">&gt;</span>key</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">auth/rsa2ssh</span> key</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rc"><code class="sourceCode toml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">auth</span><span class="er">/</span><span class="dt">rsagen</span> <span class="dt">-t</span> <span class="dt">&#39;service=ssh role=client&#39;</span> <span class="er">&gt;</span><span class="dt">key</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">auth</span><span class="er">/</span><span class="dt">rsa2ssh</span> <span class="dt">key</span></span></code></pre></div>
 <p>Монтирование при запуске системы</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/profile</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /usr/glenda/lib/profile</span></span>
@@ -37,11 +37,20 @@
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a> 	plumber</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a> 	echo -n accelerated &gt; &#39;#m/mousectl&#39;</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a> 	echo -n &#39;res 3&#39; &gt; &#39;#m/mousectl&#39;</span></code></pre></div>
-<p>Виджеты<br />
+<p>Панель<br />
 /bin/riostart</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 0,0,100,100 clock</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 100,0,200,100 kbmap /sys/lib/kbmap/us /sys/lib/kbmap/ru</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 200,0,400,100 winwatch <span class="at">-e</span> <span class="st">&#39;^(winwatch|clock|kbmap)&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rc"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">fn</span> <span class="dt">send_prog</span><span class="er">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>	<span class="dt">while</span><span class="er">(){</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>		<span class="dt">echo</span> <span class="dt">-n</span> <span class="dt">&#39;&gt; &#39;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>		<span class="dt">proglaunch</span><span class="op">=</span><span class="er">`{</span><span class="dt">read</span><span class="er">}</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>		<span class="dt">window</span> <span class="er">$</span><span class="dt">proglaunch</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>		<span class="er">&gt;/</span><span class="dt">dev</span><span class="er">/</span><span class="dt">text</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>	<span class="er">}</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dt">window</span> <span class="dt">-m</span> <span class="dt">-r</span> <span class="dt">0</span> <span class="dt">1050</span> <span class="dt">200</span> <span class="dt">1080</span> <span class="dt">-scroll</span> <span class="dt">rc</span> <span class="dt">-c</span> <span class="dt">&#39;send_prog&#39;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="dt">window</span> <span class="dt">-r</span> <span class="dt">200</span> <span class="dt">1050</span> <span class="dt">1600</span> <span class="dt">1080</span> <span class="dt">winwatch</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dt">window</span> <span class="dt">-r</span> <span class="dt">1600</span> <span class="dt">1050</span> <span class="dt">1720</span> <span class="dt">1080</span> <span class="dt">kbmap</span> <span class="er">/</span><span class="dt">sys</span><span class="er">/</span><span class="dt">lib</span><span class="er">/</span><span class="dt">kbmap</span><span class="er">/</span><span class="dt">us</span> <span class="er">/</span><span class="dt">sys</span><span class="er">/</span><span class="dt">lib</span><span class="er">/</span><span class="dt">kbmap</span><span class="er">/</span><span class="dt">ru</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="dt">window</span> <span class="dt">-m</span> <span class="dt">bar</span></span></code></pre></div>
 <p>Настройка времени</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /adm/timezone/CET</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /adm/timezone/local</span></span>
@@ -53,26 +62,26 @@
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  701834400  717559200  733284000  749008800  764733600  780458400</span></code></pre></div>
 <p>Синхронизация с локальным сервером времени<br />
 /bin/riostart</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">aux/timesync</span> <span class="at">-n</span> server.lan</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rc"><code class="sourceCode toml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">aux</span><span class="er">/</span><span class="dt">timesync</span> <span class="dt">-n</span> <span class="dt">server.lan</span></span></code></pre></div>
 <p>Удалённый терминал<br />
 /bin/riostart</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&#39;key proto=dp9ik dom=plan9 user=glenda !password=mypassword&#39;</span> <span class="op">&gt;</span> /mnt/factotum/ctl</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">aux/listen1</span> <span class="at">-t</span> tcp!<span class="pp">*</span>!rcpu /rc/bin/service/tcp17019 <span class="at">-R</span> <span class="kw">&amp;</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rc"><code class="sourceCode toml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">echo</span> <span class="dt">&#39;key proto=dp9ik dom=plan9 user=glenda !password=mypassword&#39;</span> <span class="er">&gt;</span> <span class="er">/</span><span class="dt">mnt</span><span class="er">/</span><span class="dt">factotum</span><span class="er">/</span><span class="dt">ctl</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">aux</span><span class="er">/</span><span class="dt">listen1</span> <span class="dt">-t</span> <span class="dt">tcp</span><span class="er">!*!</span><span class="dt">rcpu</span> <span class="er">/</span><span class="dt">rc</span><span class="er">/</span><span class="dt">bin</span><span class="er">/</span><span class="dt">service</span><span class="er">/</span><span class="dt">tcp17019</span> <span class="dt">-R</span> <span class="er">&amp;</span></span></code></pre></div>
 <p>На другом хосте</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">PASS</span><span class="op">=</span>mypassword <span class="ex">drawterm</span> <span class="at">-h</span> myname <span class="at">-a</span> myname <span class="at">-u</span> glenda</span></code></pre></div>
 <p>Отключение вывода сообщений ядра поверх графического окружения</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> /sys/log/consoles</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rc"><code class="sourceCode toml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">mkdir</span> <span class="dt">-p</span> <span class="er">/</span><span class="dt">sys</span><span class="er">/</span><span class="dt">log</span><span class="er">/</span><span class="dt">consoles</span></span></code></pre></div>
 <p>/bin/riostart</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /dev/kprint <span class="op">&gt;&gt;</span>/sys/log/consoles/<span class="va">$</span>sysname <span class="op">&gt;</span><span class="pp">[</span><span class="ss">2=1</span><span class="pp">]</span> <span class="kw">&amp;</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rc"><code class="sourceCode toml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">cat</span> <span class="er">/</span><span class="dt">dev</span><span class="er">/</span><span class="dt">kprint</span> <span class="er">&gt;&gt;/</span><span class="dt">sys</span><span class="er">/</span><span class="dt">log</span><span class="er">/</span><span class="dt">consoles</span><span class="er">/$</span><span class="dt">sysname</span> <span class="er">&gt;</span><span class="kw">[2</span><span class="op">=</span><span class="dv">1</span><span class="er">]</span> <span class="er">&amp;</span></span></code></pre></div>
 <p><strong>Для Raspberry Pi 1</strong><br />
 Могут глючить мыши от Logitech, можно попробовать другую мышь</p>
 <p>Монтировать загрузочный раздел</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">9fs</span> dos</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rc"><code class="sourceCode toml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">9fs</span> <span class="dt">dos</span></span></code></pre></div>
 <p>Для поддержки звука надо пропатчить и пересобрать ядро. Патч проверялся на версии 9front-11554</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /sys/src/9/bcm</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hget</span> https://lukyanovartem.github.io/content/bcm-audio.diff <span class="kw">|</span> <span class="fu">patch</span> <span class="at">-p5</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mk</span> <span class="st">&#39;CONF=pi&#39;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> 9pi /n/dos</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode rc"><code class="sourceCode toml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">cd</span> <span class="er">/</span><span class="dt">sys</span><span class="er">/</span><span class="dt">src</span><span class="er">/</span><span class="dt">9</span><span class="er">/</span><span class="dt">bcm</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">hget</span> <span class="dt">https</span><span class="er">://</span><span class="dt">lukyanovartem.github.io</span><span class="er">/</span><span class="dt">content</span><span class="er">/</span><span class="dt">bcm-audio.diff</span> <span class="er">|</span> <span class="dt">patch</span> <span class="dt">-p5</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">mk</span> <span class="dt">&#39;CONF=pi&#39;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="dt">cp</span> <span class="dt">9pi</span> <span class="er">/</span><span class="dt">n</span><span class="er">/</span><span class="dt">dos</span></span></code></pre></div>
 <p>Настройка разрешения экрана</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/config.txt</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /n/dos/config.txt</span></span>
