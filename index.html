@@ -44,17 +44,18 @@
 <p>Панель<br />
 /bin/riostart</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fn</span> send_prog{</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>	<span class="cf">while</span><span class="kw">(){</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>		<span class="bu">echo</span> <span class="at">-n</span> <span class="st">'&gt; '</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>		<span class="va">proglaunch</span><span class="op">=</span><span class="kw">`</span><span class="ex">{read}</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>		<span class="ex">window</span> <span class="va">$</span>proglaunch</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>		<span class="op">&gt;</span>/dev/text</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>	<span class="er">}</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> <span class="at">-m</span> <span class="at">-r</span> 0 1050 200 1080 <span class="at">-scroll</span> rc <span class="at">-c</span> <span class="st">'send_prog'</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> <span class="at">-r</span> 200 1050 1600 1080 winwatch</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> <span class="at">-r</span> 1600 1050 1720 1080 kbmap /sys/lib/kbmap/us /sys/lib/kbmap/ru</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> <span class="at">-m</span> bar</span></code></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>	<span class="ex">label</span> send_prog</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>	<span class="cf">while</span><span class="kw">(){</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>		<span class="bu">echo</span> <span class="at">-n</span> <span class="st">'% '</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>		<span class="va">proglaunch</span><span class="op">=</span><span class="kw">`</span><span class="ex">{read}</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>		<span class="ex">window</span> <span class="va">$</span>proglaunch</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>		<span class="op">&gt;</span>/dev/text</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>	<span class="er">}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> <span class="at">-m</span> <span class="at">-r</span> 0 1050 200 1080 <span class="at">-scroll</span> rc <span class="at">-c</span> <span class="st">'send_prog'</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> <span class="at">-m</span> <span class="at">-r</span> 200 1050 1600 1080 winwatch <span class="at">-e</span> <span class="st">'^(kbmap|bar|send_prog)'</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> <span class="at">-r</span> 1600 1050 1720 1080 kbmap /sys/lib/kbmap/us /sys/lib/kbmap/ru</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> <span class="at">-m</span> bar</span></code></pre></div>
 <p>Настройка времени</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /adm/timezone/CET</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /adm/timezone/local</span></span>
