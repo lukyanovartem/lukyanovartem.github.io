@@ -37,8 +37,12 @@ auth/rsa2ssh key
 /bin/riostart
 ```sh
 window 0,0,100,100 clock
-window 100,0,200,100 kbmap /sys/lib/kbmap/us /sys/lib/kbmap/ru
-window 200,0,400,100 winwatch -e '^(winwatch|clock|kbmap)'
+window 100,0,300,100 winwatch -e '^(winwatch|clock)'
+```
+Переключение раскладки клавиатуры по ctrl+space  
+/bin/riostart
+```sh
+kbremap us ru </dev/kbdtap >/dev/kbdtap &
 ```
 Настройка времени
 ```diff
