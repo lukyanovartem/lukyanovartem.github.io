@@ -48,61 +48,63 @@
 <p>Виджеты<br />
 /bin/riostart</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 0,0,100,100 clock</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 100,0,200,100 kbmap /sys/lib/kbmap/us /sys/lib/kbmap/ru</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 200,0,400,100 winwatch <span class="at">-e</span> <span class="st">'^(winwatch|clock|kbmap)'</span></span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 100,0,300,100 winwatch <span class="at">-e</span> <span class="st">'^(winwatch|clock)'</span></span></code></pre></div>
+<p>Переключение раскладки клавиатуры по ctrl+space<br />
+/bin/riostart</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kbremap</span> us ru <span class="op">&lt;</span>/dev/kbdtap <span class="op">&gt;</span>/dev/kbdtap <span class="kw">&amp;</span></span></code></pre></div>
 <p>Настройка времени</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /adm/timezone/CET</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /adm/timezone/local</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,4 +1,4 @@</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">-CET 3600 CES 7200</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="va">+MSK 10800 MSK 10800</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  512532000  528256800  543981600  559706400  575431200  591156000</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  606880800  622605600  638330400  654660000  670384800  686109600</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  701834400  717559200  733284000  749008800  764733600  780458400</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /adm/timezone/CET</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /adm/timezone/local</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,4 +1,4 @@</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">-CET 3600 CES 7200</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="va">+MSK 10800 MSK 10800</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  512532000  528256800  543981600  559706400  575431200  591156000</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  606880800  622605600  638330400  654660000  670384800  686109600</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  701834400  717559200  733284000  749008800  764733600  780458400</span></code></pre></div>
 <p>Синхронизация с локальным сервером времени<br />
 /bin/riostart</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">aux/timesync</span> <span class="at">-n</span> server.lan</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">aux/timesync</span> <span class="at">-n</span> server.lan</span></code></pre></div>
 <p>Удалённый терминал<br />
 /bin/riostart</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'key proto=dp9ik dom=plan9 user=glenda !password=mypassword'</span> <span class="op">&gt;</span> /mnt/factotum/ctl</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">aux/listen1</span> <span class="at">-t</span> tcp!<span class="pp">*</span>!rcpu /rc/bin/service/tcp17019 <span class="at">-R</span> <span class="kw">&amp;</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'key proto=dp9ik dom=plan9 user=glenda !password=mypassword'</span> <span class="op">&gt;</span> /mnt/factotum/ctl</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">aux/listen1</span> <span class="at">-t</span> tcp!<span class="pp">*</span>!rcpu /rc/bin/service/tcp17019 <span class="at">-R</span> <span class="kw">&amp;</span></span></code></pre></div>
 <p>На другом хосте</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="va">PASS</span><span class="op">=</span>mypassword <span class="ex">drawterm</span> <span class="at">-h</span> myname <span class="at">-a</span> myname <span class="at">-u</span> glenda</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="va">PASS</span><span class="op">=</span>mypassword <span class="ex">drawterm</span> <span class="at">-h</span> myname <span class="at">-a</span> myname <span class="at">-u</span> glenda</span></code></pre></div>
 <p>Отключение вывода сообщений ядра поверх графического окружения</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> /sys/log/consoles</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> /sys/log/consoles</span></code></pre></div>
 <p>/bin/riostart</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /dev/kprint <span class="op">&gt;&gt;</span>/sys/log/consoles/<span class="va">$</span>sysname <span class="op">&gt;</span><span class="pp">[</span><span class="ss">2=1</span><span class="pp">]</span> <span class="kw">&amp;</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /dev/kprint <span class="op">&gt;&gt;</span>/sys/log/consoles/<span class="va">$</span>sysname <span class="op">&gt;</span><span class="pp">[</span><span class="ss">2=1</span><span class="pp">]</span> <span class="kw">&amp;</span></span></code></pre></div>
 <p><strong>Для Raspberry Pi 1</strong><br />
 Могут глючить мыши от Logitech, можно попробовать другую мышь</p>
 <p>Монтировать загрузочный раздел</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">9fs</span> dos</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">9fs</span> dos</span></code></pre></div>
 <p>Для поддержки звука надо пропатчить и пересобрать ядро. Патч проверялся на версии 9front-11554</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /sys/src/9/bcm</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hget</span> https://lukyanovartem.github.io/content/bcm-audio.diff <span class="kw">|</span> <span class="fu">patch</span> <span class="at">-p5</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mk</span> <span class="st">'CONF=pi'</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> 9pi /n/dos</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /sys/src/9/bcm</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hget</span> https://lukyanovartem.github.io/content/bcm-audio.diff <span class="kw">|</span> <span class="fu">patch</span> <span class="at">-p5</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mk</span> <span class="st">'CONF=pi'</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> 9pi /n/dos</span></code></pre></div>
 <p>Настройка разрешения экрана</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/config.txt</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /n/dos/config.txt</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -11,3 +11,12 @@</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a> gpu_mem=16</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a> enable_uart=1</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a> boot_delay=1</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="va">+</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="va">+# последняя единица чтобы убрать рамки</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_cvt=1920 1080 60 3 0 0 1</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="va">+# игнорировать разрешение монитора</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_ignore_edid=0xa5000080</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_group=2</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_mode=87</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="va">+# игнорировать отсутствие монитора</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_force_hotplug=1</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/config.txt</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /n/dos/config.txt</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -11,3 +11,12 @@</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a> gpu_mem=16</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a> enable_uart=1</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a> boot_delay=1</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="va">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="va">+# последняя единица чтобы убрать рамки</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_cvt=1920 1080 60 3 0 0 1</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="va">+# игнорировать разрешение монитора</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_ignore_edid=0xa5000080</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_group=2</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_mode=87</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="va">+# игнорировать отсутствие монитора</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_force_hotplug=1</span></span></code></pre></div>
 <p>Автозагрузка</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/cmdline.txt</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /n/dos/cmdline.txt</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,1 +1,1 @@</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="st">-console=0</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="va">+console=0 user=glenda nobootprompt=local!/dev/sdM0/fs sysname=rpi</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/cmdline.txt</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /n/dos/cmdline.txt</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,1 +1,1 @@</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">-console=0</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="va">+console=0 user=glenda nobootprompt=local!/dev/sdM0/fs sysname=rpi</span></span></code></pre></div>
 <p>
     <div class="meta">
     
