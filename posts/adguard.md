@@ -25,4 +25,6 @@ tags: dns
 ||quasar.yandex.net^$$$$client=yaos
 ||rpc.alice.yandex.net^$$$$client=yaos
 ||coslogdydy.in^$$$$client=yaos
+# отключение QUIC
+#||*^$$$$dnstype=HTTPS
 ```
