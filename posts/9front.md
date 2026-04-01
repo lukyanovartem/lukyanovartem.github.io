@@ -3,6 +3,15 @@ title: 9Front
 published: 24.03.2026
 tags: plan9
 ---
+Создание нового пользователя
+```sh
+echo newuser Artem >>/srv/hjfs.cmd
+echo newuser sys +Artem >>/srv/hjfs.cmd
+```
+Затем под созданным пользователем выполнить скрипт
+```sh
+/sys/lib/newuser
+```
 Монтирование удалённой файловой системы по sshfs  
 Создание ключа
 ```sh
@@ -12,7 +21,7 @@ auth/rsa2ssh key
 Монтирование при запуске системы  
 ```diff
 --- /tmp/profile
-+++ /usr/glenda/lib/profile
++++ lib/profile
 @@ -8,6 +8,9 @@
  	if(! webcookies >[2]/dev/null)
  		webcookies -f /tmp/webcookies
