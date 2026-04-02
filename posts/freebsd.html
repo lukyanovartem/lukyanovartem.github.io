@@ -23,14 +23,14 @@
 <div class="meta"> 3 февраля 2026</div>
 
 </p>
-<p>Интерактивное создание пользователя</p>
+<h3 id="интерактивное-создание-пользователя">Интерактивное создание пользователя</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span></span></code></pre></div>
-<p>Редактирование /etc/passwd</p>
+<h3 id="редактирование-etcpasswd">Редактирование /etc/passwd</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vipw</span></span></code></pre></div>
-<p>Настройка времени</p>
+<h3 id="настройка-времени">Настройка времени</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tzsetup</span> Europe/Moscow</span></code></pre></div>
-<p>Синхронизация времени<br />
-Выключать ntpd после первичной синхронизации и синхронизировать при сильной разнице дат</p>
+<h3 id="синхронизация-времени">Синхронизация времени</h3>
+<p>Выключать ntpd после первичной синхронизации и синхронизировать при сильной разнице дат</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sysrc</span> ntpd_enable=<span class="st">&quot;YES&quot;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sysrc</span> ntpd_sync_on_start=<span class="st">&quot;YES&quot;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sysrc</span> ntpd_flags=<span class="st">&quot;-q&quot;</span></span></code></pre></div>
@@ -49,9 +49,9 @@
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a> #</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a> # If you want to pick yourself which country's public NTP server</span></code></pre></div>
-<p>Имя хоста</p>
+<h3 id="имя-хоста">Имя хоста</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sysrc</span> hostname=<span class="st">&quot;myhost&quot;</span></span></code></pre></div>
-<p>Русский язык</p>
+<h3 id="русский-язык">Русский язык</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/login.conf	2026-02-03 17:50:43.699057000 +0300</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/login.conf	2026-02-03 17:51:22.556223000 +0300</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -47,7 +47,7 @@ default:\</span></span>
@@ -65,14 +65,14 @@
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a> # A collection of common class names - forward them all to 'default'</span></code></pre></div>
 <p>После чего выполняем</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cap_mkdb</span> /etc/login.conf</span></code></pre></div>
-<p>Монтирование сетевой файловой системы sshfs<br />
-Устанавливаем fusefs-sshfs</p>
+<h3 id="монтирование-сетевой-файловой-системы-sshfs">Монтирование сетевой файловой системы sshfs</h3>
+<p>Устанавливаем fusefs-sshfs</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg</span> install <span class="at">-y</span> fusefs-sshfs</span></code></pre></div>
 <p>/boot/loader.conf</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fusefs_load=&quot;YES&quot;</span></code></pre></div>
 <p>/etc/fstab</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ssh@server:/data /mnt fusefs noauto,ro,mountprog=/usr/local/bin/sshfs,allow_other,IdentityFile=/home/Artem/.ssh/id_ed25519 0 0</span></code></pre></div>
-<p>Запрещаем удалённый вход по паролю</p>
+<h3 id="запрещаем-удалённый-вход-по-паролю">Запрещаем удалённый вход по паролю</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/sshd_config	2026-02-03 17:57:55.388157000 +0300</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/ssh/sshd_config	2026-02-03 17:56:18.635920000 +0300</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -65,7 +65,7 @@ AuthorizedKeysFile	.ssh/authorized_keys</span></span>
@@ -84,20 +84,21 @@
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a> # Kerberos options</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a> #KerberosAuthentication no</span></code></pre></div>
-<p>Список установленных вручную пакетов</p>
+<h3 id="список-установленных-вручную-пакетов">Список установленных вручную пакетов</h3>
 <pre><code>pkg prime-list</code></pre>
-<p>Отключить дампы ядра</p>
+<h3 id="отключить-дампы-ядра">Отключить дампы ядра</h3>
 <div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sysrc</span> dumpdev=<span class="st">&quot;NO&quot;</span></span></code></pre></div>
-<p><strong>Для Raspberry Pi 3</strong><br />
-Поддержки звука ещё нет в 15 релизе. Пока можно пропатчить и пересобрать ядро</p>
+<h2 id="для-raspberry-pi-3">Для Raspberry Pi 3</h2>
+<h3 id="поддержка-звука">Поддержка звука</h3>
+<p>Поддержки звука ещё нет в 15 релизе. Пока можно пропатчить и пересобрать ядро</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://git.FreeBSD.org/src.git <span class="at">-b</span> release/15.0.0 /usr/src</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/src</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> cherry-pick 1d100747d747 70e73c43a472 df764dd133ec 8b43286fc3ba</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff HEAD..78c5026ae13b <span class="at">--</span> sys/arm/broadcom/bcm2835/bcm2835_audio.c <span class="kw">|</span> <span class="fu">git</span> apply <span class="kw">&amp;&amp;</span> <span class="fu">git</span> commit <span class="at">-am</span> <span class="st">&quot;.&quot;</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> cherry-pick aa6b871ea77e</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> <span class="at">-j4</span> kernel</span></code></pre></div>
-<p>Уменьшить износ SD<br />
-/etc/fstab</p>
+<h3 id="уменьшить-износ-sd">Уменьшить износ SD</h3>
+<p>/etc/fstab</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/fstab	2026-02-03 18:47:47.025358000 +0300</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/fstab	2026-02-03 18:44:33.816719000 +0300</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,5 +1,5 @@</span></span>
@@ -107,7 +108,7 @@
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a> /dev/msdosfs/EFI		/boot/efi	msdosfs	rw,noatime	0	0</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a> tmpfs			/tmp		tmpfs	rw,mode=1777	0	0</span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a> /dev/label/growfs_swap	none		swap	sw		0	0</span></code></pre></div>
-<p>Настройка разрешения экрана</p>
+<h3 id="настройка-разрешения-экрана">Настройка разрешения экрана</h3>
 <div class="sourceCode" id="cb17"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/config.txt	2026-02-03 21:59:35.820476000 +0300</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /boot/msdos/config.txt	2026-02-03 21:55:24.000000000 +0300</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -6,6 +6,15 @@ kernel=u-boot.bin</span></span>
@@ -126,7 +127,7 @@
 <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a> [pi4]</span>
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a> hdmi_safe=1</span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a> armstub=armstub8-gic.bin</span></code></pre></div>
-<p>Сделать HDMI основной консолью</p>
+<h3 id="сделать-hdmi-основной-консолью">Сделать HDMI основной консолью</h3>
 <div class="sourceCode" id="cb18"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/loader.conf	2026-02-04 10:30:23.292759000 +0300</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /boot/loader.conf	2026-02-04 10:27:17.990643000 +0300</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -3,7 +3,7 @@ boot_multicons=&quot;YES&quot;</span></span>

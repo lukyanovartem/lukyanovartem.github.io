@@ -16,13 +16,13 @@
 <div class="meta">24 марта 2026</div>
 
 </p>
-<p>Создание нового пользователя</p>
+<h3 id="создание-нового-пользователя">Создание нового пользователя</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> newuser Artem <span class="op">&gt;&gt;</span>/srv/hjfs.cmd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> newuser sys +Artem <span class="op">&gt;&gt;</span>/srv/hjfs.cmd</span></code></pre></div>
 <p>Затем под созданным пользователем выполнить скрипт</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/sys/lib/newuser</span></span></code></pre></div>
-<p>Монтирование удалённой файловой системы по sshfs<br />
-Создание ключа</p>
+<h3 id="монтирование-удалённой-файловой-системы-по-sshfs">Монтирование удалённой файловой системы по sshfs</h3>
+<p>Создание ключа</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">auth/rsagen</span> <span class="at">-t</span> <span class="st">&#39;service=ssh role=client&#39;</span> <span class="op">&gt;</span>key</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">auth/rsa2ssh</span> key</span></code></pre></div>
 <p>Монтирование при запуске системы</p>
@@ -38,14 +38,14 @@
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a> 	plumber</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a> 	echo -n accelerated &gt; &#39;#m/mousectl&#39;</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a> 	echo -n &#39;res 3&#39; &gt; &#39;#m/mousectl&#39;</span></code></pre></div>
-<p>Виджеты<br />
-/bin/riostart</p>
+<h3 id="виджеты">Виджеты</h3>
+<p>/bin/riostart</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 0,0,100,100 clock</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 100,0,300,100 winwatch <span class="at">-e</span> <span class="st">&#39;^(winwatch|clock)&#39;</span></span></code></pre></div>
-<p>Переключение раскладки клавиатуры по ctrl+space<br />
-/bin/riostart</p>
+<h3 id="переключение-раскладки-клавиатуры-по-ctrlspace">Переключение раскладки клавиатуры по ctrl+space</h3>
+<p>/bin/riostart</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kbremap</span> us ru <span class="op">&lt;</span>/dev/kbdtap <span class="op">&gt;</span>/dev/kbdtap <span class="kw">&amp;</span></span></code></pre></div>
-<p>Настройка времени</p>
+<h3 id="настройка-времени">Настройка времени</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /adm/timezone/CET</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /adm/timezone/local</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,4 +1,4 @@</span></span>
@@ -57,26 +57,27 @@
 <p>Синхронизация с локальным сервером времени<br />
 /bin/riostart</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">aux/timesync</span> <span class="at">-n</span> server.lan</span></code></pre></div>
-<p>Удалённый терминал<br />
-/bin/riostart</p>
+<h3 id="удалённый-терминал">Удалённый терминал</h3>
+<p>/bin/riostart</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&#39;key proto=dp9ik dom=plan9 user=glenda !password=mypassword&#39;</span> <span class="op">&gt;</span> /mnt/factotum/ctl</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">aux/listen1</span> <span class="at">-t</span> tcp!<span class="pp">*</span>!rcpu /rc/bin/service/tcp17019 <span class="at">-R</span> <span class="kw">&amp;</span></span></code></pre></div>
 <p>На другом хосте</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="va">PASS</span><span class="op">=</span>mypassword <span class="ex">drawterm</span> <span class="at">-h</span> myname <span class="at">-a</span> myname <span class="at">-u</span> glenda</span></code></pre></div>
-<p>Отключение вывода сообщений ядра поверх графического окружения</p>
+<h3 id="отключение-вывода-сообщений-ядра-поверх-графического-окружения">Отключение вывода сообщений ядра поверх графического окружения</h3>
 <div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> /sys/log/consoles</span></code></pre></div>
 <p>/bin/riostart</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /dev/kprint <span class="op">&gt;&gt;</span>/sys/log/consoles/<span class="va">$</span>sysname <span class="op">&gt;</span><span class="pp">[</span><span class="ss">2=1</span><span class="pp">]</span> <span class="kw">&amp;</span></span></code></pre></div>
-<p><strong>Для Raspberry Pi 1</strong><br />
-Могут глючить мыши от Logitech, можно попробовать другую мышь</p>
-<p>Монтировать загрузочный раздел</p>
+<h2 id="для-raspberry-pi-1">Для Raspberry Pi 1</h2>
+<p>Могут глючить мыши от Logitech, можно попробовать другую мышь</p>
+<h3 id="монтировать-загрузочный-раздел">Монтировать загрузочный раздел</h3>
 <div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">9fs</span> dos</span></code></pre></div>
+<h3 id="поддержка-звука">Поддержка звука</h3>
 <p>Для поддержки звука надо пропатчить и пересобрать ядро. Патч проверялся на версии 9front-11554</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /sys/src/9/bcm</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hget</span> https://lukyanovartem.github.io/content/bcm-audio.diff <span class="kw">|</span> <span class="fu">patch</span> <span class="at">-p5</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mk</span> <span class="st">&#39;CONF=pi&#39;</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> 9pi /n/dos</span></code></pre></div>
-<p>Настройка разрешения экрана</p>
+<h3 id="настройка-разрешения-экрана">Настройка разрешения экрана</h3>
 <div class="sourceCode" id="cb15"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/config.txt</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /n/dos/config.txt</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -11,3 +11,12 @@</span></span>
@@ -92,7 +93,7 @@
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_mode=87</span></span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="va">+# игнорировать отсутствие монитора</span></span>
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_force_hotplug=1</span></span></code></pre></div>
-<p>Автозагрузка</p>
+<h3 id="автозагрузка">Автозагрузка</h3>
 <div class="sourceCode" id="cb16"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/cmdline.txt</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /n/dos/cmdline.txt</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,1 +1,1 @@</span></span>
@@ -152,32 +153,32 @@
 <div class="meta">19 февраля 2026</div>
 
 </p>
-<p>Интерактивное создание пользователя</p>
+<h3 id="интерактивное-создание-пользователя">Интерактивное создание пользователя</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span></span></code></pre></div>
-<p>Редактирование /etc/passwd</p>
+<h3 id="редактирование-etcpasswd">Редактирование /etc/passwd</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vipw</span></span></code></pre></div>
-<p>Синхронизация времени<br />
-Синхронизировать с локальным сервером времени<br />
+<h3 id="синхронизация-времени">Синхронизация времени</h3>
+<p>Синхронизировать с локальным сервером времени<br />
 /etc/rc.local</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rdate server</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> disable ntpd</span></code></pre></div>
-<p>Русский язык<br />
-~/.profile</p>
+<h3 id="русский-язык">Русский язык</h3>
+<p>~/.profile</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LANG</span><span class="op">=</span><span class="st">&quot;ru_RU.UTF-8&quot;</span></span></code></pre></div>
-<p>Настройка X11</p>
+<h3 id="настройка-x11">Настройка X11</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> enable xenodm</span></code></pre></div>
-<p>Разрешаем локальный беспарольный вход<br />
-/etc/X11/xenodm/Xresources</p>
+<h3 id="разрешаем-локальный-беспарольный-вход">Разрешаем локальный беспарольный вход</h3>
+<p>/etc/X11/xenodm/Xresources</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>xlogin*allowNullPasswd: true</span></code></pre></div>
-<p>Русская раскладка<br />
-~/.xsession</p>
+<h3 id="русская-раскладка">Русская раскладка</h3>
+<p>~/.xsession</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">&#39;us,ru&#39;</span> <span class="at">-option</span> <span class="st">&#39;grp:caps_toggle,grp_led:caps&#39;</span></span></code></pre></div>
-<p>Монтирование сетевой файловой системы sshfs<br />
-Устанавливаем sshfs-fuse</p>
+<h3 id="монтирование-сетевой-файловой-системы-sshfs">Монтирование сетевой файловой системы sshfs</h3>
+<p>Устанавливаем sshfs-fuse</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> sshfs-fuse</span></code></pre></div>
 <p>/etc/rc.local</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/bin/sshfs</span> <span class="at">-o</span> ro,allow_other,IdentityFile=/home/Artem/.ssh/id_ed25519 ssh@server:/data /mnt</span></code></pre></div>
-<p>Запрещаем удалённый вход по паролю</p>
+<h3 id="запрещаем-удалённый-вход-по-паролю">Запрещаем удалённый вход по паролю</h3>
 <div class="sourceCode" id="cb11"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/sshd_config	Sat Feb 21 19:20:06 2026</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/ssh/sshd_config	Sat Feb 21 19:20:37 2026</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -52,13 +52,13 @@ AuthorizedKeysFile	.ssh/authorized_keys</span></span>
@@ -196,10 +197,10 @@
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a> #AllowAgentForwarding yes</span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a> #AllowTcpForwarding yes</span></code></pre></div>
-<p>Настройка doas<br />
-/etc/doas.conf</p>
+<h3 id="настройка-doas">Настройка doas</h3>
+<p>/etc/doas.conf</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>permit nopass :wheel</span></code></pre></div>
-<p>Отключение рандомизаций</p>
+<h3 id="отключение-рандомизаций">Отключение рандомизаций</h3>
 <div class="sourceCode" id="cb13"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/rc	Fri Feb 20 11:07:05 2026</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/rc	Fri Feb 20 11:00:41 2026</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -677,7 +677,7 @@ echo &#39;.&#39;</span></span>
@@ -212,11 +213,12 @@
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a> date</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a> exit 0</span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> disable library_aslr</span></code></pre></div>
-<p>Включить динамическое изменение частоты процессора</p>
+<h3 id="включить-динамическое-изменение-частоты-процессора">Включить динамическое изменение частоты процессора</h3>
 <div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> enable apmd</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> set apmd flags <span class="at">-A</span></span></code></pre></div>
-<p><strong>Для Rock Pi 4</strong><br />
-В отличие от других BSD, у OpenBSD нет готового предустановленного образа. Требуется установка подобная установке на обычный ПК. В <a href="https://ftp.openbsd.org/pub/OpenBSD/7.8/arm64/INSTALL.arm64">официальной документации</a> всё описано. Если кратко, то нужно подготовить SD карту с установочным образом для данного одноплатника</p>
+<h2 id="для-rock-pi-4">Для Rock Pi 4</h2>
+<h3 id="установка">Установка</h3>
+<p>В отличие от других BSD, у OpenBSD нет готового предустановленного образа. Требуется установка подобная установке на обычный ПК. В <a href="https://ftp.openbsd.org/pub/OpenBSD/7.8/arm64/INSTALL.arm64">официальной документации</a> всё описано. Если кратко, то нужно подготовить SD карту с установочным образом для данного одноплатника</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/packages/aarch64/u-boot-aarch64-2021.10p11.tgz</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzf u-boot-aarch64-2021.10p11.tgz</span>
@@ -226,6 +228,7 @@
 <p>Также miniroot образ не поддерживает графическую консоль, поэтому к <a href="https://docs.radxa.com/en/rock4/rock4d/system-config/uart_debug">соответствующим пинам</a> одноплатника нужно подключить USB-TTL адаптер на время установки. Miniroot образ загружается в память, так что можно спокойно устанавливать OpenBSD на ту же самую карту, откуда загрузился установщик. Для корректной работы системы обязательно создание раздела подкачки. После установки делаем</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;set tty fb0&quot;</span> <span class="op">&gt;</span> /etc/boot.conf</span></code></pre></div>
 <p>После чего можно отключать USB-TTL адаптер и подключать монитор и клавиатуру.</p>
+<h3 id="поддержка-звука">Поддержка звука</h3>
 <p>OpenBSD <a href="https://man.openbsd.org/escodec">поддерживает звук</a> данного одноплатника, однако чтобы система увидела звуковую карту, надо пропатчить загрузчик</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># зависимости для сборки u-boot</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> aarch64-none-elf-gcc py3-elftools arm-trusted-firmware bison dtc swig py3-setuptools pythran gmake</span>
@@ -235,8 +238,8 @@
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># нужно убрать все лишние платформы и платы в Makefile-ах перед сборкой</span></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=/usr/ports/pobj/u-boot-aarch64-2021.10/u-boot-2021.10/build/rock-pi-4-rk3399/u-boot.itb of=/dev/sd0c seek=16384</span></code></pre></div>
-<p>Уменьшить износ SD<br />
-/etc/fstab</p>
+<h3 id="уменьшить-износ-sd">Уменьшить износ SD</h3>
+<p>/etc/fstab</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/fstab	Sat Feb 21 19:23:08 2026</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/fstab	Sat Feb 21 19:23:20 2026</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,2 +1,2 @@</span></span>
@@ -264,14 +267,14 @@
 <div class="meta"> 3 февраля 2026</div>
 
 </p>
-<p>Интерактивное создание пользователя</p>
+<h3 id="интерактивное-создание-пользователя">Интерактивное создание пользователя</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span></span></code></pre></div>
-<p>Редактирование /etc/passwd</p>
+<h3 id="редактирование-etcpasswd">Редактирование /etc/passwd</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vipw</span></span></code></pre></div>
-<p>Настройка времени</p>
+<h3 id="настройка-времени">Настройка времени</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tzsetup</span> Europe/Moscow</span></code></pre></div>
-<p>Синхронизация времени<br />
-Выключать ntpd после первичной синхронизации и синхронизировать при сильной разнице дат</p>
+<h3 id="синхронизация-времени">Синхронизация времени</h3>
+<p>Выключать ntpd после первичной синхронизации и синхронизировать при сильной разнице дат</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sysrc</span> ntpd_enable=<span class="st">&quot;YES&quot;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sysrc</span> ntpd_sync_on_start=<span class="st">&quot;YES&quot;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sysrc</span> ntpd_flags=<span class="st">&quot;-q&quot;</span></span></code></pre></div>
@@ -290,9 +293,9 @@
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a> #</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a> # If you want to pick yourself which country&#39;s public NTP server</span></code></pre></div>
-<p>Имя хоста</p>
+<h3 id="имя-хоста">Имя хоста</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sysrc</span> hostname=<span class="st">&quot;myhost&quot;</span></span></code></pre></div>
-<p>Русский язык</p>
+<h3 id="русский-язык">Русский язык</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/login.conf	2026-02-03 17:50:43.699057000 +0300</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/login.conf	2026-02-03 17:51:22.556223000 +0300</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -47,7 +47,7 @@ default:\</span></span>
@@ -306,14 +309,14 @@
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a> # A collection of common class names - forward them all to &#39;default&#39;</span></code></pre></div>
 <p>После чего выполняем</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cap_mkdb</span> /etc/login.conf</span></code></pre></div>
-<p>Монтирование сетевой файловой системы sshfs<br />
-Устанавливаем fusefs-sshfs</p>
+<h3 id="монтирование-сетевой-файловой-системы-sshfs">Монтирование сетевой файловой системы sshfs</h3>
+<p>Устанавливаем fusefs-sshfs</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg</span> install <span class="at">-y</span> fusefs-sshfs</span></code></pre></div>
 <p>/boot/loader.conf</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fusefs_load=&quot;YES&quot;</span></code></pre></div>
 <p>/etc/fstab</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ssh@server:/data /mnt fusefs noauto,ro,mountprog=/usr/local/bin/sshfs,allow_other,IdentityFile=/home/Artem/.ssh/id_ed25519 0 0</span></code></pre></div>
-<p>Запрещаем удалённый вход по паролю</p>
+<h3 id="запрещаем-удалённый-вход-по-паролю">Запрещаем удалённый вход по паролю</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/sshd_config	2026-02-03 17:57:55.388157000 +0300</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/ssh/sshd_config	2026-02-03 17:56:18.635920000 +0300</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -65,7 +65,7 @@ AuthorizedKeysFile	.ssh/authorized_keys</span></span>
@@ -325,20 +328,21 @@
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a> # Kerberos options</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a> #KerberosAuthentication no</span></code></pre></div>
-<p>Список установленных вручную пакетов</p>
+<h3 id="список-установленных-вручную-пакетов">Список установленных вручную пакетов</h3>
 <pre><code>pkg prime-list</code></pre>
-<p>Отключить дампы ядра</p>
+<h3 id="отключить-дампы-ядра">Отключить дампы ядра</h3>
 <div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sysrc</span> dumpdev=<span class="st">&quot;NO&quot;</span></span></code></pre></div>
-<p><strong>Для Raspberry Pi 3</strong><br />
-Поддержки звука ещё нет в 15 релизе. Пока можно пропатчить и пересобрать ядро</p>
+<h2 id="для-raspberry-pi-3">Для Raspberry Pi 3</h2>
+<h3 id="поддержка-звука">Поддержка звука</h3>
+<p>Поддержки звука ещё нет в 15 релизе. Пока можно пропатчить и пересобрать ядро</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://git.FreeBSD.org/src.git <span class="at">-b</span> release/15.0.0 /usr/src</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/src</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> cherry-pick 1d100747d747 70e73c43a472 df764dd133ec 8b43286fc3ba</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff HEAD..78c5026ae13b <span class="at">--</span> sys/arm/broadcom/bcm2835/bcm2835_audio.c <span class="kw">|</span> <span class="fu">git</span> apply <span class="kw">&amp;&amp;</span> <span class="fu">git</span> commit <span class="at">-am</span> <span class="st">&quot;.&quot;</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> cherry-pick aa6b871ea77e</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> <span class="at">-j4</span> kernel</span></code></pre></div>
-<p>Уменьшить износ SD<br />
-/etc/fstab</p>
+<h3 id="уменьшить-износ-sd">Уменьшить износ SD</h3>
+<p>/etc/fstab</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/fstab	2026-02-03 18:47:47.025358000 +0300</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/fstab	2026-02-03 18:44:33.816719000 +0300</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,5 +1,5 @@</span></span>
@@ -348,7 +352,7 @@
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a> /dev/msdosfs/EFI		/boot/efi	msdosfs	rw,noatime	0	0</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a> tmpfs			/tmp		tmpfs	rw,mode=1777	0	0</span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a> /dev/label/growfs_swap	none		swap	sw		0	0</span></code></pre></div>
-<p>Настройка разрешения экрана</p>
+<h3 id="настройка-разрешения-экрана">Настройка разрешения экрана</h3>
 <div class="sourceCode" id="cb17"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/config.txt	2026-02-03 21:59:35.820476000 +0300</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /boot/msdos/config.txt	2026-02-03 21:55:24.000000000 +0300</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -6,6 +6,15 @@ kernel=u-boot.bin</span></span>
@@ -367,7 +371,7 @@
 <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a> [pi4]</span>
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a> hdmi_safe=1</span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a> armstub=armstub8-gic.bin</span></code></pre></div>
-<p>Сделать HDMI основной консолью</p>
+<h3 id="сделать-hdmi-основной-консолью">Сделать HDMI основной консолью</h3>
 <div class="sourceCode" id="cb18"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/loader.conf	2026-02-04 10:30:23.292759000 +0300</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /boot/loader.conf	2026-02-04 10:27:17.990643000 +0300</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -3,7 +3,7 @@ boot_multicons=&quot;YES&quot;</span></span>
@@ -400,14 +404,14 @@
 <div class="meta"> 8 января 2026</div>
 
 </p>
-<p>Создание пользователя</p>
+<h3 id="создание-пользователя">Создание пользователя</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">useradd</span> <span class="at">-m</span> <span class="at">-G</span> wheel Artem</span></code></pre></div>
-<p>Редактирование /etc/passwd</p>
+<h3 id="редактирование-etcpasswd">Редактирование /etc/passwd</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vipw</span></span></code></pre></div>
-<p>Настройка времени</p>
+<h3 id="настройка-времени">Настройка времени</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-fs</span> /usr/share/zoneinfo/Europe/Moscow /etc/localtime</span></code></pre></div>
-<p>Синхронизация времени<br />
-Выключать ntpd после первичной синхронизации</p>
+<h3 id="синхронизация-времени">Синхронизация времени</h3>
+<p>Выключать ntpd после первичной синхронизации</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/rc.conf	2026-02-08 20:41:34.639499149 +0300</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/rc.conf	2026-02-08 20:42:56.966448494 +0300</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -52,7 +52,7 @@ savecore=NO</span></span>
@@ -437,7 +441,7 @@
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="st">-pool 2.netbsd.pool.ntp.org iburst</span></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="va">+#pool 2.netbsd.pool.ntp.org iburst</span></span></code></pre></div>
-<p>Имя хоста</p>
+<h3 id="имя-хоста">Имя хоста</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/dhcpcd.conf	2026-01-25 10:57:09.781276564 +0300</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/dhcpcd.conf	2026-01-17 12:23:12.225890653 +0300</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -5,7 +5,7 @@</span></span>
@@ -460,17 +464,17 @@
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> no_swap=YES</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a> savecore=NO</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a> sshd=YES</span></code></pre></div>
-<p>Русский язык<br />
-~/.profile</p>
+<h3 id="русский-язык">Русский язык</h3>
+<p>~/.profile</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LANG</span><span class="op">=</span><span class="st">&quot;ru_RU.UTF-8&quot;</span></span></code></pre></div>
-<p>Настройка для установки пакетов<br />
-~/.profile</p>
+<h3 id="настройка-для-установки-пакетов">Настройка для установки пакетов</h3>
+<p>~/.profile</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PKG_PATH</span><span class="op">=</span><span class="st">&quot;https://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/</span><span class="va">$</span><span class="st">(uname -p)/</span><span class="va">$</span><span class="st">(uname -r|cut -f &#39;1 2&#39; -d.|cut -f 1 -d_)/All&quot;</span></span></code></pre></div>
-<p>Настройка X11<br />
-/etc/rc.conf</p>
+<h3 id="настройка-x11">Настройка X11</h3>
+<p>/etc/rc.conf</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>xdm=YES</span></code></pre></div>
-<p>Разрешаем локальный беспарольный вход<br />
-/etc/X11/xdm/Xresources</p>
+<h3 id="разрешаем-локальный-беспарольный-вход">Разрешаем локальный беспарольный вход</h3>
+<p>/etc/X11/xdm/Xresources</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>xlogin*allowNullPasswd: true</span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/display_manager	2026-01-25 10:59:47.108565775 +0300</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/pam.d/display_manager	2026-01-17 12:24:53.049180985 +0300</span></span>
@@ -483,18 +487,19 @@
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a> # account</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a> #account 	required	pam_krb5.so</span></code></pre></div>
-<p>Русская раскладка<br />
-~/.xsession</p>
+<h3 id="русская-раскладка">Русская раскладка</h3>
+<p>~/.xsession</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># xrandr из-за ошибки BadRROutput</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">xrandr</span> <span class="kw">&amp;&amp;</span> <span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">&#39;us,ru&#39;</span> <span class="at">-option</span> <span class="st">&#39;grp:caps_toggle,grp_led:caps&#39;</span></span></code></pre></div>
-<p>Исправление ошибки “No entry for terminal type” при удалённом входе. На других машинах<br />
+<h3 id="исправление-ошибки-no-entry-for-terminal-type-при-удалённом-входе">Исправление ошибки “No entry for terminal type” при удалённом входе</h3>
+<p>На других машинах<br />
 ~/.ssh/config</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>host myname</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>   SetEnv TERM=xterm</span></code></pre></div>
-<p>Монтирование сетевой файловой системы sshfs<br />
-/etc/fstab</p>
+<h3 id="монтирование-сетевой-файловой-системы-sshfs">Монтирование сетевой файловой системы sshfs</h3>
+<p>/etc/fstab</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_ed25519,-t=-1</span></code></pre></div>
-<p>Запрещаем удалённый вход по паролю</p>
+<h3 id="запрещаем-удалённый-вход-по-паролю">Запрещаем удалённый вход по паролю</h3>
 <div class="sourceCode" id="cb16"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/sshd_config	2026-01-25 11:04:17.729054414 +0300</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/ssh/sshd_config	2026-01-17 12:46:13.649271081 +0300</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -54,7 +54,7 @@ AuthorizedKeysFile	.ssh/authorized_keys</span></span>
@@ -515,16 +520,16 @@
 <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a> #AllowAgentForwarding yes</span>
 <span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a> #AllowTcpForwarding yes</span></code></pre></div>
-<p>Включить динамическое изменение частоты процессора</p>
+<h3 id="включить-динамическое-изменение-частоты-процессора">Включить динамическое изменение частоты процессора</h3>
 <div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkgin</span> install estd</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /usr/pkg/share/examples/rc.d/estd /etc/rc.d/</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x /etc/rc.d/estd</span></code></pre></div>
 <p>/etc/rc.conf</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>estd=YES</span></code></pre></div>
-<p><strong>Для Raspberry Pi 3</strong><br />
-<strong>На версии 10.1 глючит ввод с клавиатуры</strong><br />
-Настройка разрешения экрана<br />
-/boot/config.txt</p>
+<h2 id="для-raspberry-pi-3">Для Raspberry Pi 3</h2>
+<p>На версии 10.1 глючит ввод с клавиатуры</p>
+<h3 id="настройка-разрешения-экрана">Настройка разрешения экрана</h3>
+<p>/boot/config.txt</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a># последняя единица чтобы убрать рамки</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>hdmi_cvt=1920 1080 60 3 0 0 1</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a># игнорировать разрешение монитора</span>
@@ -533,8 +538,8 @@
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>hdmi_mode=87</span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a># игнорировать отсутствие монитора</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>hdmi_force_hotplug=1</span></code></pre></div>
-<p><strong>Для Raspberry Pi 4</strong><br />
-В образ arm64.img, в раздел /boot положить файлы из <a href="https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip">архива</a>, иначе не будет изображения<br />
+<h2 id="для-raspberry-pi-4">Для Raspberry Pi 4</h2>
+<p>В образ arm64.img, в раздел /boot положить файлы из <a href="https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip">архива</a>, иначе не будет изображения<br />
 Для возможности изменять частоту процессора выставить в EFI “CPU Clock” = Custom and “CPU Clock Rate” = 600</p>
 <p>
     <div class="meta">
