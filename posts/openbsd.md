@@ -3,15 +3,15 @@ title: OpenBSD
 published: 19.02.2026
 tags: bsd
 ---
-Интерактивное создание пользователя
+### Интерактивное создание пользователя
 ```sh
 adduser
 ```
-Редактирование /etc/passwd
+### Редактирование /etc/passwd
 ```sh
 vipw
 ```
-Синхронизация времени  
+### Синхронизация времени  
 Синхронизировать с локальным сервером времени  
 /etc/rc.local
 ```default
@@ -20,26 +20,26 @@ rdate server
 ```sh
 rcctl disable ntpd
 ```
-Русский язык  
+### Русский язык  
 ~/.profile
 ```sh
 export LANG="ru_RU.UTF-8"
 ```
-Настройка X11  
+### Настройка X11  
 ```sh
 rcctl enable xenodm
 ```
-Разрешаем локальный беспарольный вход  
+### Разрешаем локальный беспарольный вход  
 /etc/X11/xenodm/Xresources
 ```default
 xlogin*allowNullPasswd: true
 ```
-Русская раскладка  
+### Русская раскладка  
 ~/.xsession
 ```sh
 setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 ```
-Монтирование сетевой файловой системы sshfs  
+### Монтирование сетевой файловой системы sshfs  
 Устанавливаем sshfs-fuse
 ```sh
 pkg_add sshfs-fuse
@@ -48,7 +48,7 @@ pkg_add sshfs-fuse
 ```sh
 /usr/local/bin/sshfs -o ro,allow_other,IdentityFile=/home/Artem/.ssh/id_ed25519 ssh@server:/data /mnt
 ```
-Запрещаем удалённый вход по паролю
+### Запрещаем удалённый вход по паролю
 ```diff
 --- /tmp/sshd_config	Sat Feb 21 19:20:06 2026
 +++ /etc/ssh/sshd_config	Sat Feb 21 19:20:37 2026
@@ -69,12 +69,12 @@ pkg_add sshfs-fuse
  #AllowAgentForwarding yes
  #AllowTcpForwarding yes
 ```
-Настройка doas  
+### Настройка doas  
 /etc/doas.conf
 ```default
 permit nopass :wheel
 ```
-Отключение рандомизаций
+### Отключение рандомизаций
 ```diff
 --- /tmp/rc	Fri Feb 20 11:07:05 2026
 +++ /etc/rc	Fri Feb 20 11:00:41 2026
@@ -91,13 +91,14 @@ permit nopass :wheel
 ```sh
 rcctl disable library_aslr
 ```
-Включить динамическое изменение частоты процессора
+### Включить динамическое изменение частоты процессора
 ```sh
 rcctl enable apmd
 rcctl set apmd flags -A
 ```
 
-**Для Rock Pi 4**  
+## Для Rock Pi 4
+### Установка
 В отличие от других BSD, у OpenBSD нет готового предустановленного образа. Требуется установка подобная установке на обычный ПК. В [официальной документации](https://ftp.openbsd.org/pub/OpenBSD/7.8/arm64/INSTALL.arm64) всё описано. Если кратко, то нужно подготовить SD карту с установочным образом для данного одноплатника
 ```sh
 wget https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img
@@ -113,6 +114,7 @@ echo "set tty fb0" > /etc/boot.conf
 ```
 После чего можно отключать USB-TTL адаптер и подключать монитор и клавиатуру.
 
+### Поддержка звука
 OpenBSD [поддерживает звук](https://man.openbsd.org/escodec) данного одноплатника, однако чтобы система увидела звуковую карту, надо пропатчить загрузчик
 ```sh
 # зависимости для сборки u-boot
@@ -124,7 +126,7 @@ cd /usr/ports/sysutils/u-boot
 make
 dd if=/usr/ports/pobj/u-boot-aarch64-2021.10/u-boot-2021.10/build/rock-pi-4-rk3399/u-boot.itb of=/dev/sd0c seek=16384
 ```
-Уменьшить износ SD  
+### Уменьшить износ SD  
 /etc/fstab
 ```diff
 --- /tmp/fstab	Sat Feb 21 19:23:08 2026

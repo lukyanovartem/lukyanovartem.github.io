@@ -3,19 +3,19 @@ title: NetBSD
 published: 08.01.2026
 tags: bsd
 ---
-Создание пользователя
+### Создание пользователя
 ```sh
 useradd -m -G wheel Artem
 ```
-Редактирование /etc/passwd
+### Редактирование /etc/passwd
 ```sh
 vipw
 ```
-Настройка времени
+### Настройка времени
 ```sh
 ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 ```
-Синхронизация времени  
+### Синхронизация времени  
 Выключать ntpd после первичной синхронизации
 ```diff
 --- /tmp/rc.conf	2026-02-08 20:41:34.639499149 +0300
@@ -50,7 +50,7 @@ ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 -pool 2.netbsd.pool.ntp.org iburst
 +#pool 2.netbsd.pool.ntp.org iburst
 ```
-Имя хоста
+### Имя хоста
 ```diff
 --- /tmp/dhcpcd.conf	2026-01-25 10:57:09.781276564 +0300
 +++ /etc/dhcpcd.conf	2026-01-17 12:23:12.225890653 +0300
@@ -77,22 +77,22 @@ ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
  savecore=NO
  sshd=YES
 ```
-Русский язык  
+### Русский язык  
 ~/.profile
 ```sh
 export LANG="ru_RU.UTF-8"
 ```
-Настройка для установки пакетов  
+### Настройка для установки пакетов  
 ~/.profile
 ```sh
 export PKG_PATH="https://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/$$$$(uname -p)/$$$$(uname -r|cut -f '1 2' -d.|cut -f 1 -d_)/All"
 ```
-Настройка X11  
+### Настройка X11  
 /etc/rc.conf
 ```default
 xdm=YES
 ```
-Разрешаем локальный беспарольный вход  
+### Разрешаем локальный беспарольный вход  
 /etc/X11/xdm/Xresources
 ```default
 xlogin*allowNullPasswd: true
@@ -110,24 +110,25 @@ xlogin*allowNullPasswd: true
  # account
  #account 	required	pam_krb5.so
 ```
-Русская раскладка  
+### Русская раскладка  
 ~/.xsession
 ```sh
 # xrandr из-за ошибки BadRROutput
 xrandr && setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 ```
-Исправление ошибки "No entry for terminal type" при удалённом входе. На других машинах  
+### Исправление ошибки "No entry for terminal type" при удалённом входе
+На других машинах  
 ~/.ssh/config
 ```default
 host myname
    SetEnv TERM=xterm
 ```
-Монтирование сетевой файловой системы sshfs  
+### Монтирование сетевой файловой системы sshfs  
 /etc/fstab
 ```default
 ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_ed25519,-t=-1
 ```
-Запрещаем удалённый вход по паролю
+### Запрещаем удалённый вход по паролю
 ```diff
 --- /tmp/sshd_config	2026-01-25 11:04:17.729054414 +0300
 +++ /etc/ssh/sshd_config	2026-01-17 12:46:13.649271081 +0300
@@ -150,7 +151,7 @@ ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Ar
  #AllowAgentForwarding yes
  #AllowTcpForwarding yes
 ```
-Включить динамическое изменение частоты процессора
+### Включить динамическое изменение частоты процессора
 ```sh
 pkgin install estd
 cp /usr/pkg/share/examples/rc.d/estd /etc/rc.d/
@@ -161,9 +162,10 @@ chmod +x /etc/rc.d/estd
 estd=YES
 ```
 
-**Для Raspberry Pi 3**  
-**На версии 10.1 глючит ввод с клавиатуры**  
-Настройка разрешения экрана  
+## Для Raspberry Pi 3
+На версии 10.1 глючит ввод с клавиатуры
+
+### Настройка разрешения экрана  
 /boot/config.txt
 ```default
 # последняя единица чтобы убрать рамки
@@ -175,6 +177,6 @@ hdmi_mode=87
 # игнорировать отсутствие монитора
 hdmi_force_hotplug=1
 ```
-**Для Raspberry Pi 4**  
+## Для Raspberry Pi 4
 В образ arm64.img, в раздел /boot положить файлы из [архива](https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip), иначе не будет изображения  
 Для возможности изменять частоту процессора выставить в EFI "CPU Clock" = Custom and "CPU Clock Rate" = 600

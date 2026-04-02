@@ -3,19 +3,19 @@ title: FreeBSD
 published: 03.02.2026
 tags: bsd
 ---
-Интерактивное создание пользователя
+### Интерактивное создание пользователя
 ```sh
 adduser
 ```
-Редактирование /etc/passwd
+### Редактирование /etc/passwd
 ```sh
 vipw
 ```
-Настройка времени
+### Настройка времени
 ```sh
 tzsetup Europe/Moscow
 ```
-Синхронизация времени  
+### Синхронизация времени  
 Выключать ntpd после первичной синхронизации и синхронизировать при сильной разнице дат
 ```sh
 sysrc ntpd_enable="YES"
@@ -39,11 +39,11 @@ sysrc ntpd_flags="-q"
  #
  # If you want to pick yourself which country's public NTP server
 ```
-Имя хоста
+### Имя хоста
 ```sh
 sysrc hostname="myhost"
 ```
-Русский язык
+### Русский язык
 ```diff
 --- /tmp/login.conf	2026-02-03 17:50:43.699057000 +0300
 +++ /etc/login.conf	2026-02-03 17:51:22.556223000 +0300
@@ -61,7 +61,7 @@ sysrc hostname="myhost"
 ```sh
 cap_mkdb /etc/login.conf
 ```
-Монтирование сетевой файловой системы sshfs  
+### Монтирование сетевой файловой системы sshfs  
 Устанавливаем fusefs-sshfs
 ```sh
 pkg install -y fusefs-sshfs
@@ -74,7 +74,7 @@ fusefs_load="YES"
 ```default
 ssh@server:/data /mnt fusefs noauto,ro,mountprog=/usr/local/bin/sshfs,allow_other,IdentityFile=/home/Artem/.ssh/id_ed25519 0 0
 ```
-Запрещаем удалённый вход по паролю
+### Запрещаем удалённый вход по паролю
 ```diff
 --- /tmp/sshd_config	2026-02-03 17:57:55.388157000 +0300
 +++ /etc/ssh/sshd_config	2026-02-03 17:56:18.635920000 +0300
@@ -88,15 +88,16 @@ ssh@server:/data /mnt fusefs noauto,ro,mountprog=/usr/local/bin/sshfs,allow_othe
  # Kerberos options
  #KerberosAuthentication no
 ```
-Список установленных вручную пакетов
+### Список установленных вручную пакетов
 ```
 pkg prime-list
 ```
-Отключить дампы ядра
+### Отключить дампы ядра
 ```sh
 sysrc dumpdev="NO"
 ```
-**Для Raspberry Pi 3**  
+## Для Raspberry Pi 3
+### Поддержка звука
 Поддержки звука ещё нет в 15 релизе. Пока можно пропатчить и пересобрать ядро
 ```sh
 git clone https://git.FreeBSD.org/src.git -b release/15.0.0 /usr/src
@@ -106,7 +107,7 @@ git diff HEAD..78c5026ae13b -- sys/arm/broadcom/bcm2835/bcm2835_audio.c | git ap
 git cherry-pick aa6b871ea77e
 make -j4 kernel
 ```
-Уменьшить износ SD  
+### Уменьшить износ SD  
 /etc/fstab
 ```diff
 --- /tmp/fstab	2026-02-03 18:47:47.025358000 +0300
@@ -119,7 +120,7 @@ make -j4 kernel
  tmpfs			/tmp		tmpfs	rw,mode=1777	0	0
  /dev/label/growfs_swap	none		swap	sw		0	0
 ```
-Настройка разрешения экрана
+### Настройка разрешения экрана
 ```diff
 --- /tmp/config.txt	2026-02-03 21:59:35.820476000 +0300
 +++ /boot/msdos/config.txt	2026-02-03 21:55:24.000000000 +0300
@@ -140,7 +141,7 @@ make -j4 kernel
  hdmi_safe=1
  armstub=armstub8-gic.bin
 ```
-Сделать HDMI основной консолью
+### Сделать HDMI основной консолью
 ```diff
 --- /tmp/loader.conf	2026-02-04 10:30:23.292759000 +0300
 +++ /boot/loader.conf	2026-02-04 10:27:17.990643000 +0300

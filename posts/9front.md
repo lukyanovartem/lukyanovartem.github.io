@@ -3,7 +3,7 @@ title: 9Front
 published: 24.03.2026
 tags: plan9
 ---
-Создание нового пользователя
+### Создание нового пользователя
 ```sh
 echo newuser Artem >>/srv/hjfs.cmd
 echo newuser sys +Artem >>/srv/hjfs.cmd
@@ -12,7 +12,7 @@ echo newuser sys +Artem >>/srv/hjfs.cmd
 ```sh
 /sys/lib/newuser
 ```
-Монтирование удалённой файловой системы по sshfs  
+### Монтирование удалённой файловой системы по sshfs  
 Создание ключа
 ```sh
 auth/rsagen -t 'service=ssh role=client' >key
@@ -33,18 +33,18 @@ auth/rsa2ssh key
  	echo -n accelerated > '#m/mousectl'
  	echo -n 'res 3' > '#m/mousectl'
 ```
-Виджеты  
+### Виджеты  
 /bin/riostart
 ```sh
 window 0,0,100,100 clock
 window 100,0,300,100 winwatch -e '^(winwatch|clock)'
 ```
-Переключение раскладки клавиатуры по ctrl+space  
+### Переключение раскладки клавиатуры по ctrl+space  
 /bin/riostart
 ```sh
 kbremap us ru </dev/kbdtap >/dev/kbdtap &
 ```
-Настройка времени
+### Настройка времени
 ```diff
 --- /adm/timezone/CET
 +++ /adm/timezone/local
@@ -60,7 +60,7 @@ kbremap us ru </dev/kbdtap >/dev/kbdtap &
 ```sh
 aux/timesync -n server.lan
 ```
-Удалённый терминал  
+### Удалённый терминал  
 /bin/riostart
 ```sh
 echo 'key proto=dp9ik dom=plan9 user=glenda !password=mypassword' > /mnt/factotum/ctl
@@ -70,7 +70,7 @@ aux/listen1 -t tcp!*!rcpu /rc/bin/service/tcp17019 -R &
 ```sh
 PASS=mypassword drawterm -h myname -a myname -u glenda
 ```
-Отключение вывода сообщений ядра поверх графического окружения
+### Отключение вывода сообщений ядра поверх графического окружения
 ```sh
 mkdir -p /sys/log/consoles
 ```
@@ -78,13 +78,14 @@ mkdir -p /sys/log/consoles
 ```sh
 cat /dev/kprint >>/sys/log/consoles/$$$$sysname >[2=1] &
 ```
-**Для Raspberry Pi 1**  
+## Для Raspberry Pi 1  
 Могут глючить мыши от Logitech, можно попробовать другую мышь
 
-Монтировать загрузочный раздел
+### Монтировать загрузочный раздел
 ```sh
 9fs dos
 ```
+### Поддержка звука
 Для поддержки звука надо пропатчить и пересобрать ядро. Патч проверялся на версии 9front-11554
 ```sh
 cd /sys/src/9/bcm
@@ -92,7 +93,7 @@ hget https://lukyanovartem.github.io/content/bcm-audio.diff | patch -p5
 mk 'CONF=pi'
 cp 9pi /n/dos
 ```
-Настройка разрешения экрана
+### Настройка разрешения экрана
 ```diff
 --- /tmp/config.txt
 +++ /n/dos/config.txt
@@ -110,7 +111,7 @@ cp 9pi /n/dos
 +# игнорировать отсутствие монитора
 +hdmi_force_hotplug=1
 ```
-Автозагрузка
+### Автозагрузка
 ```diff
 --- /tmp/cmdline.txt
 +++ /n/dos/cmdline.txt
