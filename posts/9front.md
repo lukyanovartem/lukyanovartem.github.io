@@ -1,5 +1,5 @@
 ---
-title: 9Front
+title: 9front
 published: 24.03.2026
 tags: plan9
 ---
