@@ -117,5 +117,5 @@ cp 9pi /n/dos
 +++ /n/dos/cmdline.txt
 @@ -1,1 +1,1 @@
 -console=0
-+console=0 user=glenda nobootprompt=local!/dev/sdM0/fs sysname=rpi
++console=0 user=glenda nobootprompt=local!/dev/sdM0/fs sysname=myname
 ```
