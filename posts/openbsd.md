@@ -48,27 +48,6 @@ pkg_add sshfs-fuse
 ```sh
 /usr/local/bin/sshfs -o ro,allow_other,IdentityFile=/home/Artem/.ssh/id_ed25519 ssh@server:/data /mnt
 ```
-### Запрещаем удалённый вход по паролю
-```diff
---- /tmp/sshd_config	Sat Feb 21 19:20:06 2026
-+++ /etc/ssh/sshd_config	Sat Feb 21 19:20:37 2026
-@@ -52,13 +52,13 @@ AuthorizedKeysFile	.ssh/authorized_keys
- #IgnoreRhosts yes
- 
- # To disable tunneled clear text passwords, change to "no" here!
--#PasswordAuthentication yes
-+PasswordAuthentication no
- #PermitEmptyPasswords no
- 
- # Change to "no" to disable keyboard-interactive authentication.  Depending on
- # the system's configuration, this may involve passwords, challenge-response,
- # one-time passwords or some combination of these and other methods.
--#KbdInteractiveAuthentication yes
-+KbdInteractiveAuthentication no
- 
- #AllowAgentForwarding yes
- #AllowTcpForwarding yes
-```
 ### Настройка doas  
 /etc/doas.conf
 ```default

@@ -128,29 +128,6 @@ host myname
 ```default
 ssh@server:/data /mnt psshfs ro,noauto,-O=BatchMode=yes,-O=IdentityFile=/home/Artem/.ssh/id_ed25519,-t=-1
 ```
-### Запрещаем удалённый вход по паролю
-```diff
---- /tmp/sshd_config	2026-01-25 11:04:17.729054414 +0300
-+++ /etc/ssh/sshd_config	2026-01-17 12:46:13.649271081 +0300
-@@ -54,7 +54,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
- #IgnoreRhosts yes
- 
- # To disable password authentication, set this and UsePAM to no
--#PasswordAuthentication yes
-+PasswordAuthentication no
- #PermitEmptyPasswords no
- 
- # Change to no to disable s/key passwords
-@@ -79,7 +79,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
- # If you just want the PAM account and session checks to run without
- # PAM authentication, then enable this but set PasswordAuthentication
- # and KbdInteractiveAuthentication to 'no'.
--UsePAM yes
-+UsePAM no
- 
- #AllowAgentForwarding yes
- #AllowTcpForwarding yes
-```
 ### Включить динамическое изменение частоты процессора
 ```sh
 pkgin install estd

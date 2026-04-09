@@ -74,20 +74,6 @@ fusefs_load="YES"
 ```default
 ssh@server:/data /mnt fusefs noauto,ro,mountprog=/usr/local/bin/sshfs,allow_other,IdentityFile=/home/Artem/.ssh/id_ed25519 0 0
 ```
-### Запрещаем удалённый вход по паролю
-```diff
---- /tmp/sshd_config	2026-02-03 17:57:55.388157000 +0300
-+++ /etc/ssh/sshd_config	2026-02-03 17:56:18.635920000 +0300
-@@ -65,7 +65,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
- # the system's configuration, this may involve passwords, challenge-response,
- # one-time passwords or some combination of these and other methods.
- # Keyboard interactive authentication is also used for PAM authentication.
--#KbdInteractiveAuthentication yes
-+KbdInteractiveAuthentication no
- 
- # Kerberos options
- #KerberosAuthentication no
-```
 ### Список установленных вручную пакетов
 ```
 pkg prime-list
