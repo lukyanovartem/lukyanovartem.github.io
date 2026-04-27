@@ -1,29 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-<title>Хранилище заметок - Убираем белый список на WWAN модемы для ThinkPad T480s</title>
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="../style.css" />
-<link rel="alternate" type="application/rss+xml" title="Ничего важного" href="./rss.xml">
-<link rel="alternate" type="application/atom+xml" title="Ничего важного" href="./atom.xml">
-<meta name="google-site-verification" content="3lYfNdcvrZ1iowArPugm56fWHm7CGZhDoNHEF-8kRIo" />
-<meta name="yandex-verification" content="e51b890bdbcf2490" />
-</head>
-<body>
-<div class="buttons">
-<a href="../" class="posts/wwan.md">Главная</a><a href="../gallery" class="posts/wwan.md">Галерея</a><a href="../archive.html" class="posts/wwan.md">Архив</a>
-</div>
-<div class="header">
-<h1>Хранилище заметок</h1>
-Ничего важного
-</div>
-<div class="content">
-<p>
-<div class="title"><h1><a href="../posts/wwan.html">Убираем белый список на WWAN модемы для ThinkPad T480s</a></h1></div>
-<div class="meta"> 9 апреля 2024</div>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Хранилище заметок - Убираем белый список на WWAN модемы для ThinkPad T480s</title>
+        <link rel="stylesheet" href="../style.css" />
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <a href="../">Хранилище заметок</a>
+            </div>
+            <nav>
+                <a href="../">Главная</a>
+                <a href="../gallery/index.html">Галерея</a>
+                <a href="../archive.html">Архив</a>
+            </nav>
+        </header>
 
-</p>
-<p><strong>Неактуально, появился порт <a href="https://libreboot.org/docs/install/t480.html">Libreboot</a></strong></p>
+        <main role="main">
+            <article>
+    <h1><a href="../posts/wwan.html">Убираем белый список на WWAN модемы для ThinkPad T480s</a></h1>
+    <section class="header">
+         9 апреля 2024
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'модем'." href="../tags/%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC.html" rel="tag">модем</a>
+        
+    </section>
+    <section>
+        <p><strong>Неактуально, появился порт <a href="https://libreboot.org/docs/install/t480.html">Libreboot</a></strong></p>
 <p>Ох уж эта сертификация на модемы, из-за которой можно установить модем только из небольшого списка одобренных. Чтобы убрать ограничение, нужно пропатчить биос. Есть <a href="https://thrimbor.github.io/2019/09/24/removing-the-m2-whitelist-on-a-thinkpad-t440p.html">неплохая статья</a>, однако с ней у меня не вышло. Во-первых бесплатный инструмент Ghidra, рассматриваемый в статье, у меня падает при анализе модуля LenovoWmaPolicyDxe. Пришлось временно воспользоваться пиратской IDA Pro 😳 Кроме того, в статье много воды и лишних телодвижений. В частности, предлагается менять каждый if, делающий проверку на id модема, вместо того, чтобы просто перепрыгнуть подпрограмму, выводящую информационное сообщение и запускающую бесконечный цикл. Да, такой патч получается неуниверсальный, привязанный к конкретной версии, но элементарно создать аналогичный для любой другой версии прошивки.</p>
 <p><span class="math inline">
 
@@ -47,7 +56,7 @@
 
 
 </span></p>
-<h1 id="настройки-wwan-модема-sierra-em7455">Настройки WWAN модема Sierra EM7455</h1>
+<h2 id="настройки-wwan-модема-sierra-em7455">Настройки WWAN модема Sierra EM7455</h2>
 <p>Включение эхо-режима</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ATE1</span></code></pre></div>
 <p>Прошивание модема</p>
@@ -75,14 +84,8 @@
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>AT!OPENLOCK=&quot;&lt;newcode&gt;&quot;</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>AT!PCFCCAUTH=0</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>AT!RESET</span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged 'модем'." href="../tags/%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC.html" rel="tag">модем</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/wwan.md"></span>
-</p>
+    </section>
+</article>
 
 <!--<div id="disqus_thread"></div>
 <script>
@@ -106,6 +109,6 @@ s.setAttribute('data-timestamp', +new Date());
 
 -->
 
-</div>
-<!--<script id="dsq-count-scr" src="//.disqus.com/count.js" async></script>-->
-</body>
+        </main>
+    </body>
+</html>

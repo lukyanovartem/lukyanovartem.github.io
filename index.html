@@ -1,30 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-<title>Хранилище заметок - Главная</title>
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="./style.css" />
-<link rel="alternate" type="application/rss+xml" title="Ничего важного" href="./rss.xml">
-<link rel="alternate" type="application/atom+xml" title="Ничего важного" href="./atom.xml">
-<meta name="google-site-verification" content="3lYfNdcvrZ1iowArPugm56fWHm7CGZhDoNHEF-8kRIo" />
-<meta name="yandex-verification" content="e51b890bdbcf2490" />
-</head>
-<body>
-<div class="buttons">
-<a href="./" class="active">Главная</a><a href="./gallery" class="index.html">Галерея</a><a href="./archive.html" class="index.html">Архив</a>
-</div>
-<div class="header">
-<h1>Хранилище заметок</h1>
-Ничего важного
-</div>
-<div class="content">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Хранилище заметок - Главная</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <a href="./">Хранилище заметок</a>
+            </div>
+            <nav>
+                <a href="./">Главная</a>
+                <a href="./gallery/index.html">Галерея</a>
+                <a href="./archive.html">Архив</a>
+            </nav>
+        </header>
 
-    <p>
-<div class="title"><h1><a href="./posts/9front.html">9front</a></h1></div>
-<div class="meta">24 марта 2026</div>
-
-</p>
-<h3 id="создание-нового-пользователя">Создание нового пользователя</h3>
+        <main role="main">
+            
+    <article>
+    <h1><a href="./posts/9front.html">9front</a></h1>
+    <section class="header">
+        24 марта 2026
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'plan9'." href="./tags/plan9.html" rel="tag">plan9</a>
+        
+    </section>
+    <section>
+        <h3 id="создание-нового-пользователя">Создание нового пользователя</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> newuser Artem <span class="op">&gt;&gt;</span>/srv/hjfs.cmd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> newuser sys +Artem <span class="op">&gt;&gt;</span>/srv/hjfs.cmd</span></code></pre></div>
 <p>Затем под созданным пользователем выполнить скрипт</p>
@@ -107,28 +116,25 @@
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,1 +1,1 @@</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">-console=0</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="va">+console=0 user=glenda nobootprompt=local!/dev/sdM0/fs sysname=myname</span></span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged 'plan9'." href="./tags/plan9.html" rel="tag">plan9</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/9front.md"></span>
-</p>
+    </section>
+</article>
 
     
-    <div class="separator">
-    <span class="alignleft"><span class="background">✂︎</span></span>
-    <span class="aligncenter"><span class="background">✂︎</span></span>
-    <span class="alignright"><span class="background">✂︎</span></span>
-    </div>
+    <footer></footer>
 
-    <p>
-<div class="title"><h1><a href="./posts/8pin.html">8-pin Linux BOM</a></h1></div>
-<div class="meta">12 марта 2026</div>
-
-</p>
-<p>Перечень компонентов для изготовления <a href="https://dmitry.gr/?proj=36.%208pinLinux&amp;r=05.Projects">8-pin Linux</a> из спичек и желудей<br />
+    <article>
+    <h1><a href="./posts/8pin.html">8-pin Linux BOM</a></h1>
+    <section class="header">
+        12 марта 2026
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'diy'." href="./tags/diy.html" rel="tag">diy</a>
+        
+    </section>
+    <section>
+        <p>Перечень компонентов для изготовления <a href="https://dmitry.gr/?proj=36.%208pinLinux&amp;r=05.Projects">8-pin Linux</a> из спичек и желудей<br />
 Эмулируется рабочая станция DECstation2100 с процессором MIPS R3000 и минимальной периферией</p>
 <ul>
 <li>микроконтроллер STM32G031J6M6</li>
@@ -140,28 +146,25 @@
 <li>адаптер USB-TTL желательно с самовосстанавливающимся предохранителем</li>
 <li>макетная плата для пайки 30x70мм</li>
 </ul>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged 'diy'." href="./tags/diy.html" rel="tag">diy</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/8pin.md"></span>
-</p>
+    </section>
+</article>
 
     
-    <div class="separator">
-    <span class="alignleft"><span class="background">✂︎</span></span>
-    <span class="aligncenter"><span class="background">✂︎</span></span>
-    <span class="alignright"><span class="background">✂︎</span></span>
-    </div>
+    <footer></footer>
 
-    <p>
-<div class="title"><h1><a href="./posts/openbsd.html">OpenBSD</a></h1></div>
-<div class="meta">19 февраля 2026</div>
-
-</p>
-<h3 id="интерактивное-создание-пользователя">Интерактивное создание пользователя</h3>
+    <article>
+    <h1><a href="./posts/openbsd.html">OpenBSD</a></h1>
+    <section class="header">
+        19 февраля 2026
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'bsd'." href="./tags/bsd.html" rel="tag">bsd</a>
+        
+    </section>
+    <section>
+        <h3 id="интерактивное-создание-пользователя">Интерактивное создание пользователя</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span></span></code></pre></div>
 <h3 id="редактирование-etcpasswd">Редактирование /etc/passwd</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vipw</span></span></code></pre></div>
@@ -235,28 +238,25 @@
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a> 7cfd13b5a74b3fca.b none swap sw</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">-7cfd13b5a74b3fca.a / ffs rw,wxallowed 1 1</span></span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="va">+7cfd13b5a74b3fca.a / ffs rw,wxallowed,noatime 1 1</span></span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged 'bsd'." href="./tags/bsd.html" rel="tag">bsd</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/openbsd.md"></span>
-</p>
+    </section>
+</article>
 
     
-    <div class="separator">
-    <span class="alignleft"><span class="background">✂︎</span></span>
-    <span class="aligncenter"><span class="background">✂︎</span></span>
-    <span class="alignright"><span class="background">✂︎</span></span>
-    </div>
+    <footer></footer>
 
-    <p>
-<div class="title"><h1><a href="./posts/freebsd.html">FreeBSD</a></h1></div>
-<div class="meta"> 3 февраля 2026</div>
-
-</p>
-<h3 id="интерактивное-создание-пользователя">Интерактивное создание пользователя</h3>
+    <article>
+    <h1><a href="./posts/freebsd.html">FreeBSD</a></h1>
+    <section class="header">
+         3 февраля 2026
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'bsd'." href="./tags/bsd.html" rel="tag">bsd</a>
+        
+    </section>
+    <section>
+        <h3 id="интерактивное-создание-пользователя">Интерактивное создание пользователя</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span></span></code></pre></div>
 <h3 id="редактирование-etcpasswd">Редактирование /etc/passwd</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vipw</span></span></code></pre></div>
@@ -360,28 +360,25 @@
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a> # Disable the beastie menu and color</span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a> beastie_disable=&quot;YES&quot;</span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a> loader_color=&quot;NO&quot;</span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged 'bsd'." href="./tags/bsd.html" rel="tag">bsd</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/freebsd.md"></span>
-</p>
+    </section>
+</article>
 
     
-    <div class="separator">
-    <span class="alignleft"><span class="background">✂︎</span></span>
-    <span class="aligncenter"><span class="background">✂︎</span></span>
-    <span class="alignright"><span class="background">✂︎</span></span>
-    </div>
+    <footer></footer>
 
-    <p>
-<div class="title"><h1><a href="./posts/netbsd.html">NetBSD</a></h1></div>
-<div class="meta"> 8 января 2026</div>
-
-</p>
-<h3 id="создание-пользователя">Создание пользователя</h3>
+    <article>
+    <h1><a href="./posts/netbsd.html">NetBSD</a></h1>
+    <section class="header">
+         8 января 2026
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'bsd'." href="./tags/bsd.html" rel="tag">bsd</a>
+        
+    </section>
+    <section>
+        <h3 id="создание-пользователя">Создание пользователя</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">useradd</span> <span class="at">-m</span> <span class="at">-G</span> wheel Artem</span></code></pre></div>
 <h3 id="редактирование-etcpasswd">Редактирование /etc/passwd</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vipw</span></span></code></pre></div>
@@ -497,28 +494,25 @@
 <h2 id="для-raspberry-pi-4">Для Raspberry Pi 4</h2>
 <p>В образ arm64.img, в раздел /boot положить файлы из <a href="https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip">архива</a>, иначе не будет изображения<br />
 Для возможности изменять частоту процессора выставить в EFI “CPU Clock” = Custom and “CPU Clock Rate” = 600</p>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged 'bsd'." href="./tags/bsd.html" rel="tag">bsd</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/netbsd.md"></span>
-</p>
+    </section>
+</article>
 
     
-    <div class="separator">
-    <span class="alignleft"><span class="background">✂︎</span></span>
-    <span class="aligncenter"><span class="background">✂︎</span></span>
-    <span class="alignright"><span class="background">✂︎</span></span>
-    </div>
+    <footer></footer>
 
-    <p>
-<div class="title"><h1><a href="./posts/nixos.html">Шпаргалка по NixOS</a></h1></div>
-<div class="meta"> 7 мая 2025</div>
-
-</p>
-<p>Работа офлайн<br />
+    <article>
+    <h1><a href="./posts/nixos.html">Шпаргалка по NixOS</a></h1>
+    <section class="header">
+         7 мая 2025
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'linux'." href="./tags/linux.html" rel="tag">linux</a>
+        
+    </section>
+    <section>
+        <p>Работа офлайн<br />
 <a href="https://github.com/lukyanovartem/scripts/tree/master/moonix">Скрипт</a> скачивает все зависимости для сборки пакетов с открытым исходным кодом</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> build .#<span class="op">&lt;</span>пакет<span class="op">&gt;</span> --offline</span></code></pre></div>
 <p>Деплой</p>
@@ -539,56 +533,50 @@
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> flake metadata nixpkgs</span></code></pre></div>
 <p>Использование локальной инфраструктуры для сборки</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> build .#<span class="op">&lt;</span>имя пакета<span class="op">&gt;</span> --builders <span class="st">'ssh-ng://&lt;адрес машины&gt;'</span> <span class="at">--option</span> builders-use-substitutes true <span class="at">-j0</span></span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged 'linux'." href="./tags/linux.html" rel="tag">linux</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/nixos.md"></span>
-</p>
+    </section>
+</article>
 
     
-    <div class="separator">
-    <span class="alignleft"><span class="background">✂︎</span></span>
-    <span class="aligncenter"><span class="background">✂︎</span></span>
-    <span class="alignright"><span class="background">✂︎</span></span>
-    </div>
+    <footer></footer>
 
-    <p>
-<div class="title"><h1><a href="./posts/sd.html">Запуск Stable Diffusion на слабом железе</a></h1></div>
-<div class="meta">25 апреля 2025</div>
-
-</p>
-<p>Удалось запустить Stable Diffusion на слабой машине с интегрированной карточкой Intel UHD Graphics 620.<br />
+    <article>
+    <h1><a href="./posts/sd.html">Запуск Stable Diffusion на слабом железе</a></h1>
+    <section class="header">
+        25 апреля 2025
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'ai'." href="./tags/ai.html" rel="tag">ai</a>
+        
+    </section>
+    <section>
+        <p>Удалось запустить Stable Diffusion на слабой машине с интегрированной карточкой Intel UHD Graphics 620.<br />
 Для запуска использовал софт <a href="https://github.com/leejet/stable-diffusion.cpp" class="uri">https://github.com/leejet/stable-diffusion.cpp</a> (нужно собирать с поддержкой Vulkan).<br />
 И модель <a href="https://huggingface.co/stabilityai/sdxl-turbo/blob/main/sd_xl_turbo_1.0_fp16.safetensors" class="uri">https://huggingface.co/stabilityai/sdxl-turbo/blob/main/sd_xl_turbo_1.0_fp16.safetensors</a><br />
 Параметры для запуска описаны в <a href="https://huggingface.co/stabilityai/sdxl-turbo">README</a> модели. Единственное отличие в том, что вместо <code>guidance_scale=0.0</code> нужно использовать <code>cfg-scale 1</code>.<br />
 Другая моделька <a href="https://huggingface.co/RunDiffusion/Juggernaut-X-Hyper/blob/main/JuggernautXRundiffusion_Hyper.safetensors" class="uri">https://huggingface.co/RunDiffusion/Juggernaut-X-Hyper/blob/main/JuggernautXRundiffusion_Hyper.safetensors</a><br />
 Для борбы с нехваткой памяти следует использовать TAESD <a href="https://huggingface.co/madebyollin/taesdxl/blob/main/diffusion_pytorch_model.safetensors" class="uri">https://huggingface.co/madebyollin/taesdxl/blob/main/diffusion_pytorch_model.safetensors</a> и параметр <code>clip-on-cpu</code>.<br />
 Поскольку изображение получается размера 512x512, можно использовать апскейлер <a href="https://civitai.com/models/147821/realesrganx4plus-anime-6b" class="uri">https://civitai.com/models/147821/realesrganx4plus-anime-6b</a> или <a href="https://civitai.com/models/147817/realesrganx4plus" class="uri">https://civitai.com/models/147817/realesrganx4plus</a> для увеличения разрешения в 4 раза.</p>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged 'ai'." href="./tags/ai.html" rel="tag">ai</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/sd.md"></span>
-</p>
+    </section>
+</article>
 
     
-    <div class="separator">
-    <span class="alignleft"><span class="background">✂︎</span></span>
-    <span class="aligncenter"><span class="background">✂︎</span></span>
-    <span class="alignright"><span class="background">✂︎</span></span>
-    </div>
+    <footer></footer>
 
-    <p>
-<div class="title"><h1><a href="./posts/revanced.html">Настройки YouTube ReVanced</a></h1></div>
-<div class="meta">11 апреля 2025</div>
-
-</p>
-<h1 id="настройки">Настройки</h1>
+    <article>
+    <h1><a href="./posts/revanced.html">Настройки YouTube ReVanced</a></h1>
+    <section class="header">
+        11 апреля 2025
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'youtube'." href="./tags/youtube.html" rel="tag">youtube</a>
+        
+    </section>
+    <section>
+        <h1 id="настройки">Настройки</h1>
 <h2 id="revanced">ReVanced</h2>
 <h3 id="плеер">Плеер</h3>
 <ul class="task-list">
@@ -624,28 +612,25 @@
 </ul></li>
 <li><label><input type="checkbox" />Картинка в картинке</label></li>
 </ul>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged 'youtube'." href="./tags/youtube.html" rel="tag">youtube</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/revanced.md"></span>
-</p>
+    </section>
+</article>
 
     
-    <div class="separator">
-    <span class="alignleft"><span class="background">✂︎</span></span>
-    <span class="aligncenter"><span class="background">✂︎</span></span>
-    <span class="alignright"><span class="background">✂︎</span></span>
-    </div>
+    <footer></footer>
 
-    <p>
-<div class="title"><h1><a href="./posts/adguard.html">Настройки AdGuard Home</a></h1></div>
-<div class="meta">28 февраля 2025</div>
-
-</p>
-<h1 id="настройки">Настройки</h1>
+    <article>
+    <h1><a href="./posts/adguard.html">Настройки AdGuard Home</a></h1>
+    <section class="header">
+        28 февраля 2025
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'dns'." href="./tags/dns.html" rel="tag">dns</a>
+        
+    </section>
+    <section>
+        <h1 id="настройки">Настройки</h1>
 <h2 id="настройки-dns">Настройки DNS</h2>
 <h3 id="upstream-dns-серверы">Upstream DNS-серверы</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a># внешние dns сервера для определённых доменов</span>
@@ -665,28 +650,25 @@
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>||coslogdydy.in^$client=yaos</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a># отключение QUIC</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>#||*^$dnstype=HTTPS</span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged 'dns'." href="./tags/dns.html" rel="tag">dns</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/adguard.md"></span>
-</p>
+    </section>
+</article>
 
     
-    <div class="separator">
-    <span class="alignleft"><span class="background">✂︎</span></span>
-    <span class="aligncenter"><span class="background">✂︎</span></span>
-    <span class="alignright"><span class="background">✂︎</span></span>
-    </div>
+    <footer></footer>
 
-    <p>
-<div class="title"><h1><a href="./posts/wwan.html">Убираем белый список на WWAN модемы для ThinkPad T480s</a></h1></div>
-<div class="meta"> 9 апреля 2024</div>
-
-</p>
-<p><strong>Неактуально, появился порт <a href="https://libreboot.org/docs/install/t480.html">Libreboot</a></strong></p>
+    <article>
+    <h1><a href="./posts/wwan.html">Убираем белый список на WWAN модемы для ThinkPad T480s</a></h1>
+    <section class="header">
+         9 апреля 2024
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'модем'." href="./tags/%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC.html" rel="tag">модем</a>
+        
+    </section>
+    <section>
+        <p><strong>Неактуально, появился порт <a href="https://libreboot.org/docs/install/t480.html">Libreboot</a></strong></p>
 <p>Ох уж эта сертификация на модемы, из-за которой можно установить модем только из небольшого списка одобренных. Чтобы убрать ограничение, нужно пропатчить биос. Есть <a href="https://thrimbor.github.io/2019/09/24/removing-the-m2-whitelist-on-a-thinkpad-t440p.html">неплохая статья</a>, однако с ней у меня не вышло. Во-первых бесплатный инструмент Ghidra, рассматриваемый в статье, у меня падает при анализе модуля LenovoWmaPolicyDxe. Пришлось временно воспользоваться пиратской IDA Pro 😳 Кроме того, в статье много воды и лишних телодвижений. В частности, предлагается менять каждый if, делающий проверку на id модема, вместо того, чтобы просто перепрыгнуть подпрограмму, выводящую информационное сообщение и запускающую бесконечный цикл. Да, такой патч получается неуниверсальный, привязанный к конкретной версии, но элементарно создать аналогичный для любой другой версии прошивки.</p>
 <p><span class="math inline">
 
@@ -710,7 +692,7 @@
 
 
 </span></p>
-<h1 id="настройки-wwan-модема-sierra-em7455">Настройки WWAN модема Sierra EM7455</h1>
+<h2 id="настройки-wwan-модема-sierra-em7455">Настройки WWAN модема Sierra EM7455</h2>
 <p>Включение эхо-режима</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ATE1</span></code></pre></div>
 <p>Прошивание модема</p>
@@ -738,26 +720,17 @@
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>AT!OPENLOCK=&quot;&lt;newcode&gt;&quot;</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>AT!PCFCCAUTH=0</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>AT!RESET</span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged 'модем'." href="./tags/%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC.html" rel="tag">модем</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/wwan.md"></span>
-</p>
+    </section>
+</article>
 
     
-<br />
-<div class="arrow-left">
+<footer>
 
-<div class="arrow-right">
 
-<a href="./2/index.html">Предыдущие записи</a> ▶︎
+<a href="./2/index.html">Предыдущие записи</a>
 
-</div>
-</div>
+</footer>
 
-</div>
-<!--<script id="dsq-count-scr" src="//.disqus.com/count.js" async></script>-->
-</body>
+        </main>
+    </body>
+</html>

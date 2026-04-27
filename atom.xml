@@ -15,12 +15,19 @@
     <id>https://lukyanovartem.github.io/posts/9front.html</id>
     <published>24.03.2026</published>
     <updated>2026-03-24T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/9front.html">9front</a></h1></div>
-<div class="meta">24 марта 2026</div>
-
-</p>
-<h3 id="создание-нового-пользователя">Создание нового пользователя</h3>
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/9front.html">9front</a></h1>
+    <section class="header">
+        24 марта 2026
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;plan9&#39;." href="/tags/plan9.html" rel="tag">plan9</a>
+        
+    </section>
+    <section>
+        <h3 id="создание-нового-пользователя">Создание нового пользователя</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> newuser Artem <span class="op">&gt;&gt;</span>/srv/hjfs.cmd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> newuser sys +Artem <span class="op">&gt;&gt;</span>/srv/hjfs.cmd</span></code></pre></div>
 <p>Затем под созданным пользователем выполнить скрипт</p>
@@ -103,14 +110,8 @@
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,1 +1,1 @@</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">-console=0</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="va">+console=0 user=glenda nobootprompt=local!/dev/sdM0/fs sysname=myname</span></span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;plan9&#39;." href="/tags/plan9.html" rel="tag">plan9</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/9front.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -119,12 +120,19 @@
     <id>https://lukyanovartem.github.io/posts/8pin.html</id>
     <published>12.03.2026</published>
     <updated>2026-03-12T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/8pin.html">8-pin Linux BOM</a></h1></div>
-<div class="meta">12 марта 2026</div>
-
-</p>
-<p>Перечень компонентов для изготовления <a href="https://dmitry.gr/?proj=36.%208pinLinux&amp;r=05.Projects">8-pin Linux</a> из спичек и желудей<br />
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/8pin.html">8-pin Linux BOM</a></h1>
+    <section class="header">
+        12 марта 2026
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;diy&#39;." href="/tags/diy.html" rel="tag">diy</a>
+        
+    </section>
+    <section>
+        <p>Перечень компонентов для изготовления <a href="https://dmitry.gr/?proj=36.%208pinLinux&amp;r=05.Projects">8-pin Linux</a> из спичек и желудей<br />
 Эмулируется рабочая станция DECstation2100 с процессором MIPS R3000 и минимальной периферией</p>
 <ul>
 <li>микроконтроллер STM32G031J6M6</li>
@@ -136,14 +144,8 @@
 <li>адаптер USB-TTL желательно с самовосстанавливающимся предохранителем</li>
 <li>макетная плата для пайки 30x70мм</li>
 </ul>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;diy&#39;." href="/tags/diy.html" rel="tag">diy</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/8pin.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -152,12 +154,19 @@
     <id>https://lukyanovartem.github.io/posts/openbsd.html</id>
     <published>19.02.2026</published>
     <updated>2026-02-19T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/openbsd.html">OpenBSD</a></h1></div>
-<div class="meta">19 февраля 2026</div>
-
-</p>
-<h3 id="интерактивное-создание-пользователя">Интерактивное создание пользователя</h3>
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/openbsd.html">OpenBSD</a></h1>
+    <section class="header">
+        19 февраля 2026
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;bsd&#39;." href="/tags/bsd.html" rel="tag">bsd</a>
+        
+    </section>
+    <section>
+        <h3 id="интерактивное-создание-пользователя">Интерактивное создание пользователя</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span></span></code></pre></div>
 <h3 id="редактирование-etcpasswd">Редактирование /etc/passwd</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vipw</span></span></code></pre></div>
@@ -231,14 +240,8 @@
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a> 7cfd13b5a74b3fca.b none swap sw</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">-7cfd13b5a74b3fca.a / ffs rw,wxallowed 1 1</span></span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="va">+7cfd13b5a74b3fca.a / ffs rw,wxallowed,noatime 1 1</span></span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;bsd&#39;." href="/tags/bsd.html" rel="tag">bsd</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/openbsd.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -247,12 +250,19 @@
     <id>https://lukyanovartem.github.io/posts/freebsd.html</id>
     <published>03.02.2026</published>
     <updated>2026-02-03T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/freebsd.html">FreeBSD</a></h1></div>
-<div class="meta"> 3 февраля 2026</div>
-
-</p>
-<h3 id="интерактивное-создание-пользователя">Интерактивное создание пользователя</h3>
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/freebsd.html">FreeBSD</a></h1>
+    <section class="header">
+         3 февраля 2026
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;bsd&#39;." href="/tags/bsd.html" rel="tag">bsd</a>
+        
+    </section>
+    <section>
+        <h3 id="интерактивное-создание-пользователя">Интерактивное создание пользователя</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span></span></code></pre></div>
 <h3 id="редактирование-etcpasswd">Редактирование /etc/passwd</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vipw</span></span></code></pre></div>
@@ -356,14 +366,8 @@
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a> # Disable the beastie menu and color</span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a> beastie_disable=&quot;YES&quot;</span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a> loader_color=&quot;NO&quot;</span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;bsd&#39;." href="/tags/bsd.html" rel="tag">bsd</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/freebsd.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -372,12 +376,19 @@
     <id>https://lukyanovartem.github.io/posts/netbsd.html</id>
     <published>08.01.2026</published>
     <updated>2026-01-08T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/netbsd.html">NetBSD</a></h1></div>
-<div class="meta"> 8 января 2026</div>
-
-</p>
-<h3 id="создание-пользователя">Создание пользователя</h3>
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/netbsd.html">NetBSD</a></h1>
+    <section class="header">
+         8 января 2026
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;bsd&#39;." href="/tags/bsd.html" rel="tag">bsd</a>
+        
+    </section>
+    <section>
+        <h3 id="создание-пользователя">Создание пользователя</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">useradd</span> <span class="at">-m</span> <span class="at">-G</span> wheel Artem</span></code></pre></div>
 <h3 id="редактирование-etcpasswd">Редактирование /etc/passwd</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vipw</span></span></code></pre></div>
@@ -493,14 +504,8 @@
 <h2 id="для-raspberry-pi-4">Для Raspberry Pi 4</h2>
 <p>В образ arm64.img, в раздел /boot положить файлы из <a href="https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip">архива</a>, иначе не будет изображения<br />
 Для возможности изменять частоту процессора выставить в EFI “CPU Clock” = Custom and “CPU Clock Rate” = 600</p>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;bsd&#39;." href="/tags/bsd.html" rel="tag">bsd</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/netbsd.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -509,12 +514,19 @@
     <id>https://lukyanovartem.github.io/posts/nixos.html</id>
     <published>07.05.2025</published>
     <updated>2025-05-07T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/nixos.html">Шпаргалка по NixOS</a></h1></div>
-<div class="meta"> 7 мая 2025</div>
-
-</p>
-<p>Работа офлайн<br />
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/nixos.html">Шпаргалка по NixOS</a></h1>
+    <section class="header">
+         7 мая 2025
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;linux&#39;." href="/tags/linux.html" rel="tag">linux</a>
+        
+    </section>
+    <section>
+        <p>Работа офлайн<br />
 <a href="https://github.com/lukyanovartem/scripts/tree/master/moonix">Скрипт</a> скачивает все зависимости для сборки пакетов с открытым исходным кодом</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> build .#<span class="op">&lt;</span>пакет<span class="op">&gt;</span> --offline</span></code></pre></div>
 <p>Деплой</p>
@@ -535,14 +547,8 @@
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> flake metadata nixpkgs</span></code></pre></div>
 <p>Использование локальной инфраструктуры для сборки</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> build .#<span class="op">&lt;</span>имя пакета<span class="op">&gt;</span> --builders <span class="st">&#39;ssh-ng://&lt;адрес машины&gt;&#39;</span> <span class="at">--option</span> builders-use-substitutes true <span class="at">-j0</span></span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;linux&#39;." href="/tags/linux.html" rel="tag">linux</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/nixos.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -551,26 +557,27 @@
     <id>https://lukyanovartem.github.io/posts/sd.html</id>
     <published>25.04.2025</published>
     <updated>2025-04-25T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/sd.html">Запуск Stable Diffusion на слабом железе</a></h1></div>
-<div class="meta">25 апреля 2025</div>
-
-</p>
-<p>Удалось запустить Stable Diffusion на слабой машине с интегрированной карточкой Intel UHD Graphics 620.<br />
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/sd.html">Запуск Stable Diffusion на слабом железе</a></h1>
+    <section class="header">
+        25 апреля 2025
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;ai&#39;." href="/tags/ai.html" rel="tag">ai</a>
+        
+    </section>
+    <section>
+        <p>Удалось запустить Stable Diffusion на слабой машине с интегрированной карточкой Intel UHD Graphics 620.<br />
 Для запуска использовал софт <a href="https://github.com/leejet/stable-diffusion.cpp" class="uri">https://github.com/leejet/stable-diffusion.cpp</a> (нужно собирать с поддержкой Vulkan).<br />
 И модель <a href="https://huggingface.co/stabilityai/sdxl-turbo/blob/main/sd_xl_turbo_1.0_fp16.safetensors" class="uri">https://huggingface.co/stabilityai/sdxl-turbo/blob/main/sd_xl_turbo_1.0_fp16.safetensors</a><br />
 Параметры для запуска описаны в <a href="https://huggingface.co/stabilityai/sdxl-turbo">README</a> модели. Единственное отличие в том, что вместо <code>guidance_scale=0.0</code> нужно использовать <code>cfg-scale 1</code>.<br />
 Другая моделька <a href="https://huggingface.co/RunDiffusion/Juggernaut-X-Hyper/blob/main/JuggernautXRundiffusion_Hyper.safetensors" class="uri">https://huggingface.co/RunDiffusion/Juggernaut-X-Hyper/blob/main/JuggernautXRundiffusion_Hyper.safetensors</a><br />
 Для борбы с нехваткой памяти следует использовать TAESD <a href="https://huggingface.co/madebyollin/taesdxl/blob/main/diffusion_pytorch_model.safetensors" class="uri">https://huggingface.co/madebyollin/taesdxl/blob/main/diffusion_pytorch_model.safetensors</a> и параметр <code>clip-on-cpu</code>.<br />
 Поскольку изображение получается размера 512x512, можно использовать апскейлер <a href="https://civitai.com/models/147821/realesrganx4plus-anime-6b" class="uri">https://civitai.com/models/147821/realesrganx4plus-anime-6b</a> или <a href="https://civitai.com/models/147817/realesrganx4plus" class="uri">https://civitai.com/models/147817/realesrganx4plus</a> для увеличения разрешения в 4 раза.</p>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;ai&#39;." href="/tags/ai.html" rel="tag">ai</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/sd.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -579,12 +586,19 @@
     <id>https://lukyanovartem.github.io/posts/revanced.html</id>
     <published>11.04.2025</published>
     <updated>2025-04-11T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/revanced.html">Настройки YouTube ReVanced</a></h1></div>
-<div class="meta">11 апреля 2025</div>
-
-</p>
-<h1 id="настройки">Настройки</h1>
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/revanced.html">Настройки YouTube ReVanced</a></h1>
+    <section class="header">
+        11 апреля 2025
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;youtube&#39;." href="/tags/youtube.html" rel="tag">youtube</a>
+        
+    </section>
+    <section>
+        <h1 id="настройки">Настройки</h1>
 <h2 id="revanced">ReVanced</h2>
 <h3 id="плеер">Плеер</h3>
 <ul class="task-list">
@@ -620,14 +634,8 @@
 </ul></li>
 <li><label><input type="checkbox" />Картинка в картинке</label></li>
 </ul>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;youtube&#39;." href="/tags/youtube.html" rel="tag">youtube</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/revanced.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -636,12 +644,19 @@
     <id>https://lukyanovartem.github.io/posts/adguard.html</id>
     <published>28.02.2025</published>
     <updated>2025-02-28T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/adguard.html">Настройки AdGuard Home</a></h1></div>
-<div class="meta">28 февраля 2025</div>
-
-</p>
-<h1 id="настройки">Настройки</h1>
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/adguard.html">Настройки AdGuard Home</a></h1>
+    <section class="header">
+        28 февраля 2025
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;dns&#39;." href="/tags/dns.html" rel="tag">dns</a>
+        
+    </section>
+    <section>
+        <h1 id="настройки">Настройки</h1>
 <h2 id="настройки-dns">Настройки DNS</h2>
 <h3 id="upstream-dns-серверы">Upstream DNS-серверы</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a># внешние dns сервера для определённых доменов</span>
@@ -661,14 +676,8 @@
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>||coslogdydy.in^$client=yaos</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a># отключение QUIC</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>#||*^$dnstype=HTTPS</span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;dns&#39;." href="/tags/dns.html" rel="tag">dns</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/adguard.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -677,12 +686,19 @@
     <id>https://lukyanovartem.github.io/posts/wwan.html</id>
     <published>09.04.2024</published>
     <updated>2024-04-09T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/wwan.html">Убираем белый список на WWAN модемы для ThinkPad T480s</a></h1></div>
-<div class="meta"> 9 апреля 2024</div>
-
-</p>
-<p><strong>Неактуально, появился порт <a href="https://libreboot.org/docs/install/t480.html">Libreboot</a></strong></p>
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/wwan.html">Убираем белый список на WWAN модемы для ThinkPad T480s</a></h1>
+    <section class="header">
+         9 апреля 2024
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;модем&#39;." href="/tags/%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC.html" rel="tag">модем</a>
+        
+    </section>
+    <section>
+        <p><strong>Неактуально, появился порт <a href="https://libreboot.org/docs/install/t480.html">Libreboot</a></strong></p>
 <p>Ох уж эта сертификация на модемы, из-за которой можно установить модем только из небольшого списка одобренных. Чтобы убрать ограничение, нужно пропатчить биос. Есть <a href="https://thrimbor.github.io/2019/09/24/removing-the-m2-whitelist-on-a-thinkpad-t440p.html">неплохая статья</a>, однако с ней у меня не вышло. Во-первых бесплатный инструмент Ghidra, рассматриваемый в статье, у меня падает при анализе модуля LenovoWmaPolicyDxe. Пришлось временно воспользоваться пиратской IDA Pro 😳 Кроме того, в статье много воды и лишних телодвижений. В частности, предлагается менять каждый if, делающий проверку на id модема, вместо того, чтобы просто перепрыгнуть подпрограмму, выводящую информационное сообщение и запускающую бесконечный цикл. Да, такой патч получается неуниверсальный, привязанный к конкретной версии, но элементарно создать аналогичный для любой другой версии прошивки.</p>
 <p><span class="math inline">
 
@@ -706,7 +722,7 @@
 
 
 </span></p>
-<h1 id="настройки-wwan-модема-sierra-em7455">Настройки WWAN модема Sierra EM7455</h1>
+<h2 id="настройки-wwan-модема-sierra-em7455">Настройки WWAN модема Sierra EM7455</h2>
 <p>Включение эхо-режима</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ATE1</span></code></pre></div>
 <p>Прошивание модема</p>
@@ -734,14 +750,8 @@
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>AT!OPENLOCK=&quot;&lt;newcode&gt;&quot;</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>AT!PCFCCAUTH=0</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>AT!RESET</span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;модем&#39;." href="/tags/%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC.html" rel="tag">модем</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/wwan.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -750,12 +760,19 @@
     <id>https://lukyanovartem.github.io/posts/tomato.html</id>
     <published>11.05.2023</published>
     <updated>2023-05-11T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/tomato.html">Глупые IT названия</a></h1></div>
-<div class="meta">11 мая 2023</div>
-
-</p>
-<p>Бриллиантовый монстр и пляжная черепашка поедают галету с помидорами 🥴</p>
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/tomato.html">Глупые IT названия</a></h1>
+    <section class="header">
+        11 мая 2023
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;бред&#39;." href="/tags/%D0%B1%D1%80%D0%B5%D0%B4.html" rel="tag">бред</a>
+        
+    </section>
+    <section>
+        <p>Бриллиантовый монстр и пляжная черепашка поедают галету с помидорами 🥴</p>
 <ul>
 <li>Материнская плата: ZIDA Tomato Board</li>
 <li>Звуковая карта: Turtle Beach</li>
@@ -791,14 +808,8 @@ The first of these Silicon Graphics systems was the 4D/60 ‘Professional IRIS�
 </summary>
 The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA/interrupt controller and a custom Ethernet IC called BABE (“Bus Adapter Between Ethernet”)
 </details>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;бред&#39;." href="/tags/%D0%B1%D1%80%D0%B5%D0%B4.html" rel="tag">бред</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/tomato.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -807,12 +818,19 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <id>https://lukyanovartem.github.io/posts/server.html</id>
     <published>17.09.2021</published>
     <updated>2021-09-17T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/server.html">Домашний сервер</a></h1></div>
-<div class="meta">17 сентября 2021</div>
-
-</p>
-<p><strong>Неактуально, используется другая сборка</strong></p>
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/server.html">Домашний сервер</a></h1>
+    <section class="header">
+        17 сентября 2021
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;сервер&#39;." href="/tags/%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80.html" rel="tag">сервер</a>
+        
+    </section>
+    <section>
+        <p><strong>Неактуально, используется другая сборка</strong></p>
 <p>Понадобилось собрать домашний сервер для различных гедонистических целей. Как можно заметить на фото ниже, данный сервер и сопутствующие причиндалы уютно разместились на шкафу:</p>
 <p><span class="math inline">
 
@@ -837,14 +855,8 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 <p>Далее, поскольку сервер служит и роутером, понадобилось установить Wi-Fi адаптеры. Для сети стандарта 802.11n выбор пал на дешёвый USB-свисток с Ali на чипе AR9271. Для более современной сети, выбрал QCA6174 формата M.2.
 Но просто установить адаптер оказалось недостаточным, пришлось ещё обойти некие региональные ограничения для работы адаптера в режиме токи в диапазоне пятигигагерцовых сетей. К счастью, для драйвера ath10k у проекта OpenWRT оказался патч снимающий данные региональные ограничения.</p>
 <p>Небольшой вишенкой на торте стала HDMI-затычка с Ali, эмулирующая присутствие монитора. Что позволяет передавать картинку от графического сервера без использования программных костылей. Пусть лучше будет костыль аппаратный 🙂</p>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;сервер&#39;." href="/tags/%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80.html" rel="tag">сервер</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/server.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -853,12 +865,19 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <id>https://lukyanovartem.github.io/posts/retropc.html</id>
     <published>19.07.2021</published>
     <updated>2021-07-19T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/retropc.html">Дачный ретрокомп</a></h1></div>
-<div class="meta">19 июля 2021</div>
-
-</p>
-<p>Так получилось, что моим первым компьютером стал системный блок с Pentium II. Это была интересная эпоха - процессор в виде картриджа и щелевой разъём на материнке под него, культовые видеоускорители 3dfx, аудиокарты с таблично-волновым синтезом, материнские платы уже с разъёмом AGP, но всё ещё не избавившиеся от ISA слотов.<br />
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/retropc.html">Дачный ретрокомп</a></h1>
+    <section class="header">
+        19 июля 2021
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;ретро&#39;." href="/tags/%D1%80%D0%B5%D1%82%D1%80%D0%BE.html" rel="tag">ретро</a>
+        
+    </section>
+    <section>
+        <p>Так получилось, что моим первым компьютером стал системный блок с Pentium II. Это была интересная эпоха - процессор в виде картриджа и щелевой разъём на материнке под него, культовые видеоускорители 3dfx, аудиокарты с таблично-волновым синтезом, материнские платы уже с разъёмом AGP, но всё ещё не избавившиеся от ISA слотов.<br />
 Я испытываю сильную ностальгию по тем временам. Однако, я не стал воспроизводить в точности конфигурацию того компьютера, а собрал нечто по его мотивам. Так, под нож пошли форм-фактор AT, разъём клавиатуры DIN5, COM-мышка. Вместо этого была собрана система стандарта ATX, с PS/2 мышью, клавой и USB портами.<br />
 Для проверки софта и игр под данную платформу рекомендую эмулятор 86Box, однако для его запуска потребуется достаточно мощный комп.</p>
 <p><span class="math inline">
@@ -898,14 +917,8 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 <li>CD-RW дисковод<br />
 Подойдёт старенький пишущий дисковод для шины IDE</li>
 </ul>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;ретро&#39;." href="/tags/%D1%80%D0%B5%D1%82%D1%80%D0%BE.html" rel="tag">ретро</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/retropc.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -914,12 +927,19 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <id>https://lukyanovartem.github.io/posts/books.html</id>
     <published>18.01.2021</published>
     <updated>2021-01-18T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/books.html">Книги которые взорвали мозг</a></h1></div>
-<div class="meta">18 января 2021</div>
-
-</p>
-<ul>
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/books.html">Книги которые взорвали мозг</a></h1>
+    <section class="header">
+        18 января 2021
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;бред&#39;." href="/tags/%D0%B1%D1%80%D0%B5%D0%B4.html" rel="tag">бред</a>
+        
+    </section>
+    <section>
+        <ul>
 <li>Чайна Мьевиль «Вокзал потерянных снов»</li>
 <li>Говард Лакврафт «Сомнамбулический поиск неведомого Кадата»</li>
 <li>Майкл Суэнвик «Дочь железного дракона»</li>
@@ -929,14 +949,8 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 <li>Элиезер Юдковский «Гарри Поттер и методы рационального мышления»</li>
 <li>Эдвин Э. Эбботт «Флатландия»</li>
 </ul>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;бред&#39;." href="/tags/%D0%B1%D1%80%D0%B5%D0%B4.html" rel="tag">бред</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/books.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -945,12 +959,19 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <id>https://lukyanovartem.github.io/posts/germany.html</id>
     <published>16.11.2019</published>
     <updated>2019-11-16T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/germany.html">Германия</a></h1></div>
-<div class="meta">16 ноября 2019</div>
-
-</p>
-<p>Съездил в Берлин. Фотоотчет присутствует.</p>
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/germany.html">Германия</a></h1>
+    <section class="header">
+        16 ноября 2019
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;путешествия&#39;." href="/tags/%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F.html" rel="tag">путешествия</a>
+        
+    </section>
+    <section>
+        <p>Съездил в Берлин. Фотоотчет присутствует.</p>
 <p><span class="math inline">
 
 <a href="/gallery/germany/IMG_20191109_204239.jpg.html"><img src="/gallery/germany/IMG_20191109_204239.thumb.jpg"/></a>
@@ -978,14 +999,8 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 
 
 </span></p>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;путешествия&#39;." href="/tags/%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F.html" rel="tag">путешествия</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/germany.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -994,12 +1009,19 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <id>https://lukyanovartem.github.io/posts/ngle.html</id>
     <published>01.01.2015</published>
     <updated>2015-01-01T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/ngle.html">NGLE</a></h1></div>
-<div class="meta"> 1 января 2015</div>
-
-</p>
-<p>Удалось отреверсить бинарь, отвечающий за ускорение графики, а именно копирование области (скроллинг) на старых машинах HP PA-RISC навроде HP 9000/712 и 715 и их графических картах именуемых HP Artist. Производитель поставлял этот бинарь в старых релизах X11, в вендорном варианте под названием Xhp. Исходники были открыты, за исключением бинаря. Позже функционал был предоставлен в ассемблерном варианте в рамках проекта MkLinux. Проприетарастия как она есть</p>
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/ngle.html">NGLE</a></h1>
+    <section class="header">
+         1 января 2015
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;ретро&#39;." href="/tags/%D1%80%D0%B5%D1%82%D1%80%D0%BE.html" rel="tag">ретро</a>
+        
+    </section>
+    <section>
+        <p>Удалось отреверсить бинарь, отвечающий за ускорение графики, а именно копирование области (скроллинг) на старых машинах HP PA-RISC навроде HP 9000/712 и 715 и их графических картах именуемых HP Artist. Производитель поставлял этот бинарь в старых релизах X11, в вендорном варианте под названием Xhp. Исходники были открыты, за исключением бинаря. Позже функционал был предоставлен в ассемблерном варианте в рамках проекта MkLinux. Проприетарастия как она есть</p>
 <p>Листинг с добавленными комментариями<br />
 Функция ngleDepth24_CopyAreaFromToScreen аналогична, за исключением инициализации регистра reg10: write4(-0x445f6000,reg10)</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>.import ngleScreenPrivIndex<span class="op">,</span>data</span>
@@ -1177,14 +1199,8 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 </tr>
 </tbody>
 </table>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;ретро&#39;." href="/tags/%D1%80%D0%B5%D1%82%D1%80%D0%BE.html" rel="tag">ретро</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/ngle.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -1193,12 +1209,19 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <id>https://lukyanovartem.github.io/posts/croatia.html</id>
     <published>22.07.2008</published>
     <updated>2008-07-22T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/croatia.html">Хорватия</a></h1></div>
-<div class="meta">22 июля 2008</div>
-
-</p>
-<p><span class="math inline">
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/croatia.html">Хорватия</a></h1>
+    <section class="header">
+        22 июля 2008
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;путешествия&#39;." href="/tags/%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F.html" rel="tag">путешествия</a>
+        
+    </section>
+    <section>
+        <p><span class="math inline">
 
 <a href="/gallery/croatia/IMG_20210308_0001.jpg.html"><img src="/gallery/croatia/IMG_20210308_0001.thumb.jpg"/></a>
 <link rel="prefetch" href="/gallery/croatia/IMG_20210308_0001.jpg">
@@ -1225,14 +1248,8 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 
 
 </span></p>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;путешествия&#39;." href="/tags/%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F.html" rel="tag">путешествия</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/croatia.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -1241,12 +1258,19 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <id>https://lukyanovartem.github.io/posts/greece.html</id>
     <published>01.06.2007</published>
     <updated>2007-06-01T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/greece.html">Греция</a></h1></div>
-<div class="meta"> 1 июня 2007</div>
-
-</p>
-<p><span class="math inline">
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/greece.html">Греция</a></h1>
+    <section class="header">
+         1 июня 2007
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;путешествия&#39;." href="/tags/%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F.html" rel="tag">путешествия</a>
+        
+    </section>
+    <section>
+        <p><span class="math inline">
 
 <a href="/gallery/greece/IMG_20210308_0001.jpg.html"><img src="/gallery/greece/IMG_20210308_0001.thumb.jpg"/></a>
 <link rel="prefetch" href="/gallery/greece/IMG_20210308_0001.jpg">
@@ -1268,14 +1292,8 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 
 
 </span></p>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;путешествия&#39;." href="/tags/%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F.html" rel="tag">путешествия</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/greece.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -1284,12 +1302,19 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <id>https://lukyanovartem.github.io/posts/karelia.html</id>
     <published>01.06.2005</published>
     <updated>2005-06-01T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/karelia.html">Карелия</a></h1></div>
-<div class="meta"> 1 июня 2005</div>
-
-</p>
-<p><span class="math inline">
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/karelia.html">Карелия</a></h1>
+    <section class="header">
+         1 июня 2005
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;путешествия&#39;." href="/tags/%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F.html" rel="tag">путешествия</a>
+        
+    </section>
+    <section>
+        <p><span class="math inline">
 
 <a href="/gallery/karelia/IMG_20210308_0001.jpg.html"><img src="/gallery/karelia/IMG_20210308_0001.thumb.jpg"/></a>
 <link rel="prefetch" href="/gallery/karelia/IMG_20210308_0001.jpg">
@@ -1331,14 +1356,8 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 
 
 </span></p>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;путешествия&#39;." href="/tags/%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F.html" rel="tag">путешествия</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/karelia.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -1347,12 +1366,19 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <id>https://lukyanovartem.github.io/posts/england.html</id>
     <published>01.06.2003</published>
     <updated>2003-06-01T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/england.html">Англия</a></h1></div>
-<div class="meta"> 1 июня 2003</div>
-
-</p>
-<p><span class="math inline">
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/england.html">Англия</a></h1>
+    <section class="header">
+         1 июня 2003
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;путешествия&#39;." href="/tags/%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F.html" rel="tag">путешествия</a>
+        
+    </section>
+    <section>
+        <p><span class="math inline">
 
 <a href="/gallery/england/IMG_20210308_0001.jpg.html"><img src="/gallery/england/IMG_20210308_0001.thumb.jpg"/></a>
 <link rel="prefetch" href="/gallery/england/IMG_20210308_0001.jpg">
@@ -1379,14 +1405,8 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 
 
 </span></p>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;путешествия&#39;." href="/tags/%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F.html" rel="tag">путешествия</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/england.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 <entry>
@@ -1395,12 +1415,19 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     <id>https://lukyanovartem.github.io/posts/latvia.html</id>
     <published>01.06.2001</published>
     <updated>2001-06-01T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>
-<div class="title"><h1><a href="/posts/latvia.html">Латвия</a></h1></div>
-<div class="meta"> 1 июня 2001</div>
-
-</p>
-<p><span class="math inline">
+    <summary type="html"><![CDATA[<article>
+    <h1><a href="/posts/latvia.html">Латвия</a></h1>
+    <section class="header">
+         1 июня 2001
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged &#39;путешествия&#39;." href="/tags/%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F.html" rel="tag">путешествия</a>
+        
+    </section>
+    <section>
+        <p><span class="math inline">
 
 <a href="/gallery/latvia/IMG_20210308_0001.jpg.html"><img src="/gallery/latvia/IMG_20210308_0001.thumb.jpg"/></a>
 <link rel="prefetch" href="/gallery/latvia/IMG_20210308_0001.jpg">
@@ -1427,14 +1454,8 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
 
 
 </span></p>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged &#39;путешествия&#39;." href="/tags/%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D1%8F.html" rel="tag">путешествия</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/latvia.md"></span>
-</p>
+    </section>
+</article>
 ]]></summary>
 </entry>
 

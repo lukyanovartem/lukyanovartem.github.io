@@ -1,29 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-<title>Хранилище заметок - Шпаргалка по NixOS</title>
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="../style.css" />
-<link rel="alternate" type="application/rss+xml" title="Ничего важного" href="./rss.xml">
-<link rel="alternate" type="application/atom+xml" title="Ничего важного" href="./atom.xml">
-<meta name="google-site-verification" content="3lYfNdcvrZ1iowArPugm56fWHm7CGZhDoNHEF-8kRIo" />
-<meta name="yandex-verification" content="e51b890bdbcf2490" />
-</head>
-<body>
-<div class="buttons">
-<a href="../" class="posts/nixos.md">Главная</a><a href="../gallery" class="posts/nixos.md">Галерея</a><a href="../archive.html" class="posts/nixos.md">Архив</a>
-</div>
-<div class="header">
-<h1>Хранилище заметок</h1>
-Ничего важного
-</div>
-<div class="content">
-<p>
-<div class="title"><h1><a href="../posts/nixos.html">Шпаргалка по NixOS</a></h1></div>
-<div class="meta"> 7 мая 2025</div>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Хранилище заметок - Шпаргалка по NixOS</title>
+        <link rel="stylesheet" href="../style.css" />
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <a href="../">Хранилище заметок</a>
+            </div>
+            <nav>
+                <a href="../">Главная</a>
+                <a href="../gallery/index.html">Галерея</a>
+                <a href="../archive.html">Архив</a>
+            </nav>
+        </header>
 
-</p>
-<p>Работа офлайн<br />
+        <main role="main">
+            <article>
+    <h1><a href="../posts/nixos.html">Шпаргалка по NixOS</a></h1>
+    <section class="header">
+         7 мая 2025
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'linux'." href="../tags/linux.html" rel="tag">linux</a>
+        
+    </section>
+    <section>
+        <p>Работа офлайн<br />
 <a href="https://github.com/lukyanovartem/scripts/tree/master/moonix">Скрипт</a> скачивает все зависимости для сборки пакетов с открытым исходным кодом</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> build .#<span class="op">&lt;</span>пакет<span class="op">&gt;</span> --offline</span></code></pre></div>
 <p>Деплой</p>
@@ -44,14 +53,8 @@
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> flake metadata nixpkgs</span></code></pre></div>
 <p>Использование локальной инфраструктуры для сборки</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> build .#<span class="op">&lt;</span>имя пакета<span class="op">&gt;</span> --builders <span class="st">'ssh-ng://&lt;адрес машины&gt;'</span> <span class="at">--option</span> builders-use-substitutes true <span class="at">-j0</span></span></code></pre></div>
-<p>
-    <div class="meta">
-    
-      категории <a title="All pages tagged 'linux'." href="../tags/linux.html" rel="tag">linux</a>
-    
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="posts/nixos.md"></span>
-</p>
+    </section>
+</article>
 
 <!--<div id="disqus_thread"></div>
 <script>
@@ -75,6 +78,6 @@ s.setAttribute('data-timestamp', +new Date());
 
 -->
 
-</div>
-<!--<script id="dsq-count-scr" src="//.disqus.com/count.js" async></script>-->
-</body>
+        </main>
+    </body>
+</html>
