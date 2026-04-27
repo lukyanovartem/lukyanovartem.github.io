@@ -1,18 +1,17 @@
-<p>
-<div class="title"><h1><a href="$url$">$title$</a></h1></div>
-<div class="meta">$date$</div>
-$if(author)$
-    написал $author$
-$endif$
-</p>
-$body$
-<p>
-    <div class="meta">
-    $if(iftags)$
-      категории $tags$
-    $else$
-      без категорий
-    $endif$
-    </div>
-    <span class="disqus-comment-count" data-disqus-identifier="$path$"></span>
-</p>
+<article>
+    <h1><a href="$url$">$title$</a></h1>
+    <section class="header">
+        $date$
+        $if(author)$
+            написал $author$
+        $endif$
+    </section>
+    <section class="header">
+        $if(iftags)$
+          $tags$
+        $endif$
+    </section>
+    <section>
+        $body$
+    </section>
+</article>
