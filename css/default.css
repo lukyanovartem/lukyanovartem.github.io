@@ -153,11 +153,7 @@ article .header {
   }
 }
 
-pre {
-  font-size: 62.5%;
-}
-
-.sourceCode {
+.sourceCode, code {
   font-size: 1.3rem;
 }
 
