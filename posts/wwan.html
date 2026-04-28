@@ -34,28 +34,6 @@
     <section>
         <p><strong>Неактуально, появился порт <a href="https://libreboot.org/docs/install/t480.html">Libreboot</a></strong></p>
 <p>Ох уж эта сертификация на модемы, из-за которой можно установить модем только из небольшого списка одобренных. Чтобы убрать ограничение, нужно пропатчить биос. Есть <a href="https://thrimbor.github.io/2019/09/24/removing-the-m2-whitelist-on-a-thinkpad-t440p.html">неплохая статья</a>, однако с ней у меня не вышло. Во-первых бесплатный инструмент Ghidra, рассматриваемый в статье, у меня падает при анализе модуля LenovoWmaPolicyDxe. Пришлось временно воспользоваться пиратской IDA Pro 😳 Кроме того, в статье много воды и лишних телодвижений. В частности, предлагается менять каждый if, делающий проверку на id модема, вместо того, чтобы просто перепрыгнуть подпрограмму, выводящую информационное сообщение и запускающую бесконечный цикл. Да, такой патч получается неуниверсальный, привязанный к конкретной версии, но элементарно создать аналогичный для любой другой версии прошивки.</p>
-<p><span class="math inline">
-
-<a href="../gallery/wwan/IMG_20240408_143442.jpg.html"><img src="../gallery/wwan/IMG_20240408_143442.thumb.jpg" /></a>
-<link rel="prefetch" href="../gallery/wwan/IMG_20240408_143442.jpg">
-
-
-
-<a href="../gallery/wwan/IMG_20240408_143955.jpg.html"><img src="../gallery/wwan/IMG_20240408_143955.thumb.jpg" /></a>
-<link rel="prefetch" href="../gallery/wwan/IMG_20240408_143955.jpg">
-
-
-
-<a href="../gallery/wwan/IMG_20240408_154057.jpg.html"><img src="../gallery/wwan/IMG_20240408_154057.thumb.jpg" /></a>
-<link rel="prefetch" href="../gallery/wwan/IMG_20240408_154057.jpg">
-
-
-
-<a href="../gallery/wwan/IMG_20240408_194337.jpg.html"><img src="../gallery/wwan/IMG_20240408_194337.thumb.jpg" /></a>
-<link rel="prefetch" href="../gallery/wwan/IMG_20240408_194337.jpg">
-
-
-</span></p>
 <h2 id="настройки-wwan-модема-sierra-em7455">Настройки WWAN модема Sierra EM7455</h2>
 <p>Включение эхо-режима</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ATE1</span></code></pre></div>

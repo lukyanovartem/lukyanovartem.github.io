@@ -696,28 +696,6 @@
     <section>
         <p><strong>Неактуально, появился порт <a href="https://libreboot.org/docs/install/t480.html">Libreboot</a></strong></p>
 <p>Ох уж эта сертификация на модемы, из-за которой можно установить модем только из небольшого списка одобренных. Чтобы убрать ограничение, нужно пропатчить биос. Есть <a href="https://thrimbor.github.io/2019/09/24/removing-the-m2-whitelist-on-a-thinkpad-t440p.html">неплохая статья</a>, однако с ней у меня не вышло. Во-первых бесплатный инструмент Ghidra, рассматриваемый в статье, у меня падает при анализе модуля LenovoWmaPolicyDxe. Пришлось временно воспользоваться пиратской IDA Pro 😳 Кроме того, в статье много воды и лишних телодвижений. В частности, предлагается менять каждый if, делающий проверку на id модема, вместо того, чтобы просто перепрыгнуть подпрограмму, выводящую информационное сообщение и запускающую бесконечный цикл. Да, такой патч получается неуниверсальный, привязанный к конкретной версии, но элементарно создать аналогичный для любой другой версии прошивки.</p>
-<p><span class="math inline">
-
-<a href="/gallery/wwan/IMG_20240408_143442.jpg.html"><img src="/gallery/wwan/IMG_20240408_143442.thumb.jpg"/></a>
-<link rel="prefetch" href="/gallery/wwan/IMG_20240408_143442.jpg">
-
-
-
-<a href="/gallery/wwan/IMG_20240408_143955.jpg.html"><img src="/gallery/wwan/IMG_20240408_143955.thumb.jpg"/></a>
-<link rel="prefetch" href="/gallery/wwan/IMG_20240408_143955.jpg">
-
-
-
-<a href="/gallery/wwan/IMG_20240408_154057.jpg.html"><img src="/gallery/wwan/IMG_20240408_154057.thumb.jpg"/></a>
-<link rel="prefetch" href="/gallery/wwan/IMG_20240408_154057.jpg">
-
-
-
-<a href="/gallery/wwan/IMG_20240408_194337.jpg.html"><img src="/gallery/wwan/IMG_20240408_194337.thumb.jpg"/></a>
-<link rel="prefetch" href="/gallery/wwan/IMG_20240408_194337.jpg">
-
-
-</span></p>
 <h2 id="настройки-wwan-модема-sierra-em7455">Настройки WWAN модема Sierra EM7455</h2>
 <p>Включение эхо-режима</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ATE1</span></code></pre></div>
@@ -827,14 +805,7 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
     </section>
     <section>
         <p><strong>Неактуально, используется другая сборка</strong></p>
-<p>Понадобилось собрать домашний сервер для различных гедонистических целей. Как можно заметить на фото ниже, данный сервер и сопутствующие причиндалы уютно разместились на шкафу:</p>
-<p><span class="math inline">
-
-<a href="/gallery/server/photo1681667759.jpeg.html"><img src="/gallery/server/photo1681667759.thumb.jpeg"/></a>
-<link rel="prefetch" href="/gallery/server/photo1681667759.jpeg">
-
-
-</span></p>
+<p>Понадобилось собрать домашний сервер для различных целей.</p>
 <p>В качестве компонентов были выбраны следующие железки:</p>
 <ul>
 <li>Платформа ASRock DeskMini X300</li>
@@ -876,18 +847,6 @@ The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA
         <p>Так получилось, что моим первым компьютером стал системный блок с Pentium II. Это была интересная эпоха - процессор в виде картриджа и щелевой разъём на материнке под него, культовые видеоускорители 3dfx, аудиокарты с таблично-волновым синтезом, материнские платы уже с разъёмом AGP, но всё ещё не избавившиеся от ISA слотов.<br />
 Я испытываю сильную ностальгию по тем временам. Однако, я не стал воспроизводить в точности конфигурацию того компьютера, а собрал нечто по его мотивам. Так, под нож пошли форм-фактор AT, разъём клавиатуры DIN5, COM-мышка. Вместо этого была собрана система стандарта ATX, с PS/2 мышью, клавой и USB портами.<br />
 Для проверки софта и игр под данную платформу рекомендую эмулятор 86Box, однако для его запуска потребуется достаточно мощный комп.</p>
-<p><span class="math inline">
-
-<a href="/gallery/retropc/IMG_20230429_132633.jpg.html"><img src="/gallery/retropc/IMG_20230429_132633.thumb.jpg"/></a>
-<link rel="prefetch" href="/gallery/retropc/IMG_20230429_132633.jpg">
-
-
-
-<a href="/gallery/retropc/IMG_20230430_090319.jpg.html"><img src="/gallery/retropc/IMG_20230430_090319.thumb.jpg"/></a>
-<link rel="prefetch" href="/gallery/retropc/IMG_20230430_090319.jpg">
-
-
-</span></p>
 <p>Итак, что можно собрать:</p>
 <ul>
 <li>Процессор<br />
