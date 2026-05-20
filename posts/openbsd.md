@@ -75,6 +75,15 @@ rcctl disable library_aslr
 rcctl enable apmd
 rcctl set apmd flags -A
 ```
+### Обновление на следующий релиз
+```
+sysupgrade
+```
+После перезагрузки сидим N-ое время вслепую без консоли, ждём пока система обновится. Потом делаем
+```
+sysmerge
+pkg_add -u
+```
 
 ## Для Rock Pi 4
 ### Установка
