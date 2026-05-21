@@ -1,5 +1,5 @@
 ---
-title: 8-pin Linux BOM
+title: 8-pin Linux
 published: 12.03.2026
 tags: diy
 ---
