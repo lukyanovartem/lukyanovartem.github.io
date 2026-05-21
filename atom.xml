@@ -221,7 +221,7 @@
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> set apmd flags <span class="at">-A</span></span></code></pre></div>
 <h3 id="обновление-на-следующий-релиз">Обновление на следующий релиз</h3>
 <pre><code>sysupgrade</code></pre>
-<p>После перезагрузки сидим N-ое время вслепую без консоли, ждём пока система обновится. Потом делаем</p>
+<p>После чего случится перезагрузка и система уйдёт обновляться в автоматическом режиме. Затем делаем</p>
 <pre><code>sysmerge
 pkg_add -u</code></pre>
 <h2 id="для-rock-pi-4">Для Rock Pi 4</h2>
