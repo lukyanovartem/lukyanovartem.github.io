@@ -138,18 +138,27 @@
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x /etc/rc.d/estd</span></code></pre></div>
 <p>/etc/rc.conf</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>estd=YES</span></code></pre></div>
+<h3 id="управление-пакетами">Управление пакетами</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkgin</span> search</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkgin</span> install</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pkgin</span> remove</span></code></pre></div>
+<p>Список вручную установленных пакетов</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkgin</span> show-keep</span></code></pre></div>
+<p>Удаление неиспользуемых пакетов</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkgin</span> autoremove</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkgin</span> clean</span></code></pre></div>
 <h2 id="для-raspberry-pi-3">Для Raspberry Pi 3</h2>
 <p>На версии 10.1 глючит ввод с клавиатуры</p>
 <h3 id="настройка-разрешения-экрана">Настройка разрешения экрана</h3>
 <p>/boot/config.txt</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a># последняя единица чтобы убрать рамки</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>hdmi_cvt=1920 1080 60 3 0 0 1</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a># игнорировать разрешение монитора</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>hdmi_ignore_edid=0xa5000080</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>hdmi_group=2</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>hdmi_mode=87</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a># игнорировать отсутствие монитора</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>hdmi_force_hotplug=1</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a># последняя единица чтобы убрать рамки</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>hdmi_cvt=1920 1080 60 3 0 0 1</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a># игнорировать разрешение монитора</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>hdmi_ignore_edid=0xa5000080</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>hdmi_group=2</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>hdmi_mode=87</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a># игнорировать отсутствие монитора</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>hdmi_force_hotplug=1</span></code></pre></div>
 <h2 id="для-raspberry-pi-4">Для Raspberry Pi 4</h2>
 <p>В образ arm64.img, в раздел /boot положить файлы из <a href="https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip">архива</a>, иначе не будет изображения<br />
 Для возможности изменять частоту процессора выставить в EFI “CPU Clock” = Custom and “CPU Clock Rate” = 600</p>
