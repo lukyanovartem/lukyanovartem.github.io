@@ -84,6 +84,20 @@ sysupgrade
 sysmerge
 pkg_add -u
 ```
+### Управление пакетами
+```sh
+pkg_info -aQ
+pkg_add
+pkg_delete
+```
+Список вручную установленных пакетов
+```sh
+pkg_info -m
+```
+Удаление неиспользуемых пакетов
+```sh
+pkg_delete -a
+```
 
 ## Для Rock Pi 4
 ### Установка

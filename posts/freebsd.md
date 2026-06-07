@@ -61,6 +61,52 @@ sysrc hostname="myhost"
 ```sh
 cap_mkdb /etc/login.conf
 ```
+### Настройка X11
+Устанавливаем пакеты
+```sh
+pkg install -y xdm xorg
+```
+```diff
+--- /tmp/ttys	2026-06-07 18:08:20.462776000 +0300
++++ /etc/ttys	2026-02-04 19:15:01.863939000 +0300
+@@ -34,7 +34,7 @@ ttyv7	"/usr/libexec/getty Pc"		xterm	onifexists secure
+ ttyv5	"/usr/libexec/getty Pc"		xterm	onifexists secure
+ ttyv6	"/usr/libexec/getty Pc"		xterm	onifexists secure
+ ttyv7	"/usr/libexec/getty Pc"		xterm	onifexists secure
+-ttyv8	"/usr/local/bin/xdm -nodaemon"	xterm	off secure
++ttyv8	"/usr/local/bin/xdm -nodaemon"	xterm	on secure
+ # Serial terminals
+ # The 'dialup' keyword identifies dialin lines to login, fingerd etc.
+ ttyu0	"/usr/libexec/getty 3wire"	vt100	onifconsole secure
+```
+Добавляем кнопку закрытия окна в twm  
+~/.twmrc
+```default
+RightTitleButton "xlogo11" = f.delete
+```
+### Разрешаем локальный беспарольный вход  
+/usr/local/etc/X11/xdm/Xresources
+```default
+xlogin*allowNullPasswd: true
+```
+```diff
+--- /tmp/xdm	2026-06-07 18:03:58.833322000 +0300
++++ /etc/pam.d/xdm	2026-02-04 19:12:30.589647000 +0300
+@@ -6,7 +6,7 @@
+ # auth
+ #auth		sufficient	pam_krb5.so		no_warn try_first_pass
+ #auth		sufficient	pam_ssh.so		no_warn try_first_pass
+-auth		required	pam_unix.so		no_warn try_first_pass
++auth		required	pam_unix.so		no_warn try_first_pass nullok
+
+ # account
+ account		required	pam_nologin.so
+```
+### Русская раскладка  
+~/.xsession
+```sh
+/usr/local/bin/setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
+```
 ### Монтирование сетевой файловой системы sshfs  
 Устанавливаем fusefs-sshfs
 ```sh
@@ -74,14 +120,26 @@ fusefs_load="YES"
 ```default
 ssh@server:/data /mnt fusefs noauto,ro,mountprog=/usr/local/bin/sshfs,allow_other,IdentityFile=/home/Artem/.ssh/id_ed25519 0 0
 ```
-### Список установленных вручную пакетов
-```
-pkg prime-list
-```
 ### Отключить дампы ядра
 ```sh
 sysrc dumpdev="NO"
 ```
+### Управление пакетами
+```sh
+pkg search
+pkg install
+pkg delete
+```
+Список вручную установленных пакетов
+```sh
+pkg prime-list
+```
+Удаление неиспользуемых пакетов
+```sh
+pkg autoremove
+pkg clean
+```
+
 ## Для Raspberry Pi 3
 ### Поддержка звука
 Поддержки звука ещё нет в 15 релизе. Пока можно пропатчить и пересобрать ядро

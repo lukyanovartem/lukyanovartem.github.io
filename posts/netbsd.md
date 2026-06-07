@@ -138,6 +138,21 @@ chmod +x /etc/rc.d/estd
 ```default
 estd=YES
 ```
+### Управление пакетами
+```sh
+pkgin search
+pkgin install
+pkgin remove
+```
+Список вручную установленных пакетов
+```sh
+pkgin show-keep
+```
+Удаление неиспользуемых пакетов
+```sh
+pkgin autoremove
+pkgin clean
+```
 
 ## Для Raspberry Pi 3
 На версии 10.1 глючит ввод с клавиатуры
