@@ -43,3 +43,7 @@ nix flake metadata nixpkgs
 ```sh
 nix build .#<имя пакета> --builders 'ssh-ng://<адрес машины>' --option builders-use-substitutes true -j0
 ```
+Копирование пакета на удалённую машину
+```sh
+nix copy --to ssh://<адрес машины> nixpkgs#<название пакета>
+```
