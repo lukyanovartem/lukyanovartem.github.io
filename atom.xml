@@ -220,48 +220,50 @@
 <div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> enable apmd</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> set apmd flags <span class="at">-A</span></span></code></pre></div>
 <h3 id="обновление-на-следующий-релиз">Обновление на следующий релиз</h3>
-<pre><code>sysupgrade</code></pre>
-<p>После чего случится перезагрузка и система уйдёт обновляться в автоматическом режиме. Затем делаем</p>
-<pre><code>sysmerge
-pkg_add -u</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sysupgrade</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span><span class="fu">sh</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">После</span> чего случится перезагрузка и система уйдёт обновляться в автоматическом режиме. Затем делаем</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span>sh</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ex">sysmerge</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> <span class="at">-u</span></span></code></pre></div>
 <h3 id="управление-пакетами">Управление пакетами</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_info</span> <span class="at">-aQ</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_delete</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_info</span> <span class="at">-aQ</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_delete</span></span></code></pre></div>
 <p>Список вручную установленных пакетов</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_info</span> <span class="at">-m</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_info</span> <span class="at">-m</span></span></code></pre></div>
 <p>Удаление неиспользуемых пакетов</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_delete</span> <span class="at">-a</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_delete</span> <span class="at">-a</span></span></code></pre></div>
 <h2 id="для-rock-pi-4">Для Rock Pi 4</h2>
 <h3 id="установка">Установка</h3>
 <p>В отличие от других BSD, у OpenBSD нет готового предустановленного образа. Требуется установка подобная установке на обычный ПК. В <a href="https://ftp.openbsd.org/pub/OpenBSD/7.8/arm64/INSTALL.arm64">официальной документации</a> всё описано. Если кратко, то нужно подготовить SD карту с установочным образом для данного одноплатника</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/packages/aarch64/u-boot-aarch64-2021.10p11.tgz</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzf u-boot-aarch64-2021.10p11.tgz</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=miniroot78.img of=/dev/sdX bs=1M</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/idbloader.img of=/dev/sdX seek=64</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/u-boot.itb of=/dev/sdXc seek=16384</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/packages/aarch64/u-boot-aarch64-2021.10p11.tgz</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzf u-boot-aarch64-2021.10p11.tgz</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=miniroot78.img of=/dev/sdX bs=1M</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/idbloader.img of=/dev/sdX seek=64</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/u-boot.itb of=/dev/sdXc seek=16384</span></code></pre></div>
 <p>Также miniroot образ не поддерживает графическую консоль, поэтому к <a href="https://docs.radxa.com/en/rock4/rock4d/system-config/uart_debug">соответствующим пинам</a> одноплатника нужно подключить USB-TTL адаптер на время установки. Miniroot образ загружается в память, так что можно спокойно устанавливать OpenBSD на ту же самую карту, откуда загрузился установщик. Для корректной работы системы обязательно создание раздела подкачки. После установки делаем</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;set tty fb0&quot;</span> <span class="op">&gt;</span> /etc/boot.conf</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;set tty fb0&quot;</span> <span class="op">&gt;</span> /etc/boot.conf</span></code></pre></div>
 <p>После чего можно отключать USB-TTL адаптер и подключать монитор и клавиатуру.</p>
 <h3 id="поддержка-звука">Поддержка звука</h3>
 <p>OpenBSD <a href="https://man.openbsd.org/escodec">поддерживает звук</a> данного одноплатника, однако чтобы система увидела звуковую карту, надо пропатчить загрузчик</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># зависимости для сборки u-boot</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> aarch64-none-elf-gcc py3-elftools arm-trusted-firmware bison dtc swig py3-setuptools pythran gmake</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ftp</span> <span class="at">-o</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio https://github.com/torvalds/linux/commit/65bd2b8bdb3bddc37bea695789713916327e1c1f.patch</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;s#b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi#arch/arm/dts/rk3399-rock-pi-4.dtsi#&#39;</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/ports/sysutils/u-boot</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># нужно убрать все лишние платформы и платы в Makefile-ах перед сборкой</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=/usr/ports/pobj/u-boot-aarch64-2021.10/u-boot-2021.10/build/rock-pi-4-rk3399/u-boot.itb of=/dev/sd0c seek=16384</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># зависимости для сборки u-boot</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> aarch64-none-elf-gcc py3-elftools arm-trusted-firmware bison dtc swig py3-setuptools pythran gmake</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ftp</span> <span class="at">-o</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio https://github.com/torvalds/linux/commit/65bd2b8bdb3bddc37bea695789713916327e1c1f.patch</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;s#b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi#arch/arm/dts/rk3399-rock-pi-4.dtsi#&#39;</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/ports/sysutils/u-boot</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># нужно убрать все лишние платформы и платы в Makefile-ах перед сборкой</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=/usr/ports/pobj/u-boot-aarch64-2021.10/u-boot-2021.10/build/rock-pi-4-rk3399/u-boot.itb of=/dev/sd0c seek=16384</span></code></pre></div>
 <h3 id="уменьшить-износ-sd">Уменьшить износ SD</h3>
 <p>/etc/fstab</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/fstab	Sat Feb 21 19:23:08 2026</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/fstab	Sat Feb 21 19:23:20 2026</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,2 +1,2 @@</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a> 7cfd13b5a74b3fca.b none swap sw</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="st">-7cfd13b5a74b3fca.a / ffs rw,wxallowed 1 1</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="va">+7cfd13b5a74b3fca.a / ffs rw,wxallowed,noatime 1 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/fstab	Sat Feb 21 19:23:08 2026</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/fstab	Sat Feb 21 19:23:20 2026</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,2 +1,2 @@</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a> 7cfd13b5a74b3fca.b none swap sw</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="st">-7cfd13b5a74b3fca.a / ffs rw,wxallowed 1 1</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="va">+7cfd13b5a74b3fca.a / ffs rw,wxallowed,noatime 1 1</span></span></code></pre></div>
     </section>
 </article>
 ]]></summary>
@@ -343,9 +345,28 @@ pkg_add -u</code></pre>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a> # Serial terminals</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a> # The &#39;dialup&#39; keyword identifies dialin lines to login, fingerd etc.</span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a> ttyu0	&quot;/usr/libexec/getty 3wire&quot;	vt100	onifconsole secure</span></code></pre></div>
-<p>Добавляем кнопку закрытия окна в twm<br />
-~/.twmrc</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>RightTitleButton &quot;xlogo11&quot; = f.delete</span></code></pre></div>
+<h3 id="настройка-twm">Настройка TWM</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/.twmrc	2026-06-17 00:38:26.020987000 +0300</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /home/Artem/.twmrc	2026-06-17 00:32:56.062698000 +0300</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -11,12 +11,13 @@ DecorateTransients</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a> NoGrabServer</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a> RestartPreviousState</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a> DecorateTransients</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="st">-TitleFont &quot;-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*&quot;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="st">-ResizeFont &quot;-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*&quot;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="st">-MenuFont &quot;-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*&quot;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="st">-IconFont &quot;-adobe-helvetica-bold-r-normal--*-100-*-*-*-*-*-*&quot;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="st">-IconManagerFont &quot;-adobe-helvetica-bold-r-normal--*-100-*-*-*&quot;</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="va">+TitleFont &quot;-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1&quot;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="va">+ResizeFont &quot;-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1&quot;</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="va">+MenuFont &quot;-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1&quot;</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="va">+IconFont &quot;-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1&quot;</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="va">+IconManagerFont &quot;-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1&quot;</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a> #ClientBorderWidth</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="va">+RightTitleButton &quot;xlogo11&quot; = f.delete</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a> Color</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a> {</span></code></pre></div>
 <h3 id="разрешаем-локальный-беспарольный-вход">Разрешаем локальный беспарольный вход</h3>
 <p>/usr/local/etc/X11/xdm/Xresources</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>xlogin*allowNullPasswd: true</span></code></pre></div>
@@ -381,57 +402,58 @@ pkg_add -u</code></pre>
 <p>Удаление неиспользуемых пакетов</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg</span> autoremove</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg</span> clean</span></code></pre></div>
+<h3 id="обновление-на-новый-релиз">Обновление на новый релиз</h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">freebsd-update</span> <span class="at">-r</span> 15.1-RELEASE upgrade</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">freebsd-update</span> install</span></code></pre></div>
 <h2 id="для-raspberry-pi-3">Для Raspberry Pi 3</h2>
 <h3 id="поддержка-звука">Поддержка звука</h3>
-<p>Поддержки звука ещё нет в 15 релизе. Пока можно пропатчить и пересобрать ядро</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://git.FreeBSD.org/src.git <span class="at">-b</span> release/15.0.0 /usr/src</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/src</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> cherry-pick 1d100747d747 70e73c43a472 df764dd133ec 8b43286fc3ba</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff HEAD..78c5026ae13b <span class="at">--</span> sys/arm/broadcom/bcm2835/bcm2835_audio.c <span class="kw">|</span> <span class="fu">git</span> apply <span class="kw">&amp;&amp;</span> <span class="fu">git</span> commit <span class="at">-am</span> <span class="st">&quot;.&quot;</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> cherry-pick aa6b871ea77e</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> <span class="at">-j4</span> kernel</span></code></pre></div>
+<p>Поддержки звука ещё нет в 15.1 релизе. Пока можно пропатчить и пересобрать ядро</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://git.FreeBSD.org/src.git <span class="at">-b</span> release/15.1.0 /usr/src</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/src</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> cherry-pick 1d100747d747 70e73c43a472 df764dd133ec 8b43286fc3ba aa6b871ea77e</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> <span class="at">-j4</span> kernel</span></code></pre></div>
 <h3 id="уменьшить-износ-sd">Уменьшить износ SD</h3>
 <p>/etc/fstab</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/fstab	2026-02-03 18:47:47.025358000 +0300</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/fstab	2026-02-03 18:44:33.816719000 +0300</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,5 +1,5 @@</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a> # Custom /etc/fstab for FreeBSD embedded images</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="st">-/dev/ufs/rootfs		/		ufs	rw		1	1</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="va">+/dev/ufs/rootfs		/		ufs	rw,noatime		1	1</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a> /dev/msdosfs/EFI		/boot/efi	msdosfs	rw,noatime	0	0</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a> tmpfs			/tmp		tmpfs	rw,mode=1777	0	0</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a> /dev/label/growfs_swap	none		swap	sw		0	0</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/fstab	2026-02-03 18:47:47.025358000 +0300</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/fstab	2026-02-03 18:44:33.816719000 +0300</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,5 +1,5 @@</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a> # Custom /etc/fstab for FreeBSD embedded images</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="st">-/dev/ufs/rootfs		/		ufs	rw		1	1</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="va">+/dev/ufs/rootfs		/		ufs	rw,noatime		1	1</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a> /dev/msdosfs/EFI		/boot/efi	msdosfs	rw,noatime	0	0</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a> tmpfs			/tmp		tmpfs	rw,mode=1777	0	0</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a> /dev/label/growfs_swap	none		swap	sw		0	0</span></code></pre></div>
 <h3 id="настройка-разрешения-экрана">Настройка разрешения экрана</h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/config.txt	2026-02-03 21:59:35.820476000 +0300</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /boot/msdos/config.txt	2026-02-03 21:55:24.000000000 +0300</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -6,6 +6,15 @@ kernel=u-boot.bin</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a> device_tree_address=0x4000</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a> kernel=u-boot.bin</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="va">+# последняя единица чтобы убрать рамки</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_cvt=1920 1080 60 3 0 0 1</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="va">+# игнорировать разрешение монитора</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_ignore_edid=0xa5000080</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_group=2</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_mode=87</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="va">+# игнорировать отсутствие монитора</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_force_hotplug=1</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="va">+</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a> [pi4]</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a> hdmi_safe=1</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a> armstub=armstub8-gic.bin</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/config.txt	2026-02-03 21:59:35.820476000 +0300</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /boot/msdos/config.txt	2026-02-03 21:55:24.000000000 +0300</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -6,6 +6,15 @@ kernel=u-boot.bin</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a> device_tree_address=0x4000</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a> kernel=u-boot.bin</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="va">+# последняя единица чтобы убрать рамки</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_cvt=1920 1080 60 3 0 0 1</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="va">+# игнорировать разрешение монитора</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_ignore_edid=0xa5000080</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_group=2</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_mode=87</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="va">+# игнорировать отсутствие монитора</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_force_hotplug=1</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="va">+</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a> [pi4]</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a> hdmi_safe=1</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a> armstub=armstub8-gic.bin</span></code></pre></div>
 <h3 id="сделать-hdmi-основной-консолью">Сделать HDMI основной консолью</h3>
-<div class="sourceCode" id="cb25"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/loader.conf	2026-02-04 10:30:23.292759000 +0300</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /boot/loader.conf	2026-02-04 10:27:17.990643000 +0300</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -3,7 +3,7 @@ boot_multicons=&quot;YES&quot;</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a> umodem_load=&quot;YES&quot;</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a> # Multiple console (serial+efi gop) enabled.</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a> boot_multicons=&quot;YES&quot;</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="st">-boot_serial=&quot;YES&quot;</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="va">+boot_serial=&quot;NO&quot;</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a> # Disable the beastie menu and color</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a> beastie_disable=&quot;YES&quot;</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a> loader_color=&quot;NO&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/loader.conf	2026-02-04 10:30:23.292759000 +0300</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /boot/loader.conf	2026-02-04 10:27:17.990643000 +0300</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -3,7 +3,7 @@ boot_multicons=&quot;YES&quot;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a> umodem_load=&quot;YES&quot;</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a> # Multiple console (serial+efi gop) enabled.</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a> boot_multicons=&quot;YES&quot;</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="st">-boot_serial=&quot;YES&quot;</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="va">+boot_serial=&quot;NO&quot;</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a> # Disable the beastie menu and color</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a> beastie_disable=&quot;YES&quot;</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a> loader_color=&quot;NO&quot;</span></code></pre></div>
     </section>
 </article>
 ]]></summary>
