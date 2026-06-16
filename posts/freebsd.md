@@ -79,11 +79,31 @@ pkg install -y xdm xorg
  # The 'dialup' keyword identifies dialin lines to login, fingerd etc.
  ttyu0	"/usr/libexec/getty 3wire"	vt100	onifconsole secure
 ```
-Добавляем кнопку закрытия окна в twm  
-~/.twmrc
-```default
-RightTitleButton "xlogo11" = f.delete
+### Настройка TWM
+```diff
+--- /tmp/.twmrc	2026-06-17 00:38:26.020987000 +0300
++++ /home/Artem/.twmrc	2026-06-17 00:32:56.062698000 +0300
+@@ -11,12 +11,13 @@ DecorateTransients
+ NoGrabServer
+ RestartPreviousState
+ DecorateTransients
+-TitleFont "-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
+-ResizeFont "-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
+-MenuFont "-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
+-IconFont "-adobe-helvetica-bold-r-normal--*-100-*-*-*-*-*-*"
+-IconManagerFont "-adobe-helvetica-bold-r-normal--*-100-*-*-*"
++TitleFont "-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1"
++ResizeFont "-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1"
++MenuFont "-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1"
++IconFont "-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1"
++IconManagerFont "-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1"
+ #ClientBorderWidth
++RightTitleButton "xlogo11" = f.delete
+
+ Color
+ {
 ```
+
 ### Разрешаем локальный беспарольный вход  
 /usr/local/etc/X11/xdm/Xresources
 ```default
@@ -139,16 +159,19 @@ pkg prime-list
 pkg autoremove
 pkg clean
 ```
+### Обновление на новый релиз
+```sh
+freebsd-update -r 15.1-RELEASE upgrade
+freebsd-update install
+```
 
 ## Для Raspberry Pi 3
 ### Поддержка звука
-Поддержки звука ещё нет в 15 релизе. Пока можно пропатчить и пересобрать ядро
+Поддержки звука ещё нет в 15.1 релизе. Пока можно пропатчить и пересобрать ядро
 ```sh
-git clone https://git.FreeBSD.org/src.git -b release/15.0.0 /usr/src
+git clone https://git.FreeBSD.org/src.git -b release/15.1.0 /usr/src
 cd /usr/src
-git cherry-pick 1d100747d747 70e73c43a472 df764dd133ec 8b43286fc3ba
-git diff HEAD..78c5026ae13b -- sys/arm/broadcom/bcm2835/bcm2835_audio.c | git apply && git commit -am "."
-git cherry-pick aa6b871ea77e
+git cherry-pick 1d100747d747 70e73c43a472 df764dd133ec 8b43286fc3ba aa6b871ea77e
 make -j4 kernel
 ```
 ### Уменьшить износ SD  
