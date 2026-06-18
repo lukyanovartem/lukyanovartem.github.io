@@ -345,7 +345,7 @@ Key F8		A	M	CirculateDown
 *FvwmIdentFont -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
 
 ########################### Pager #########################################
-*FvwmPagerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmPagerFont "xft:Helvetica:Bold:size=10"
 *FvwmPagerBack darkblue
 *FvwmPagerFore white
 *FvwmPagerHilight #2d2d2d
