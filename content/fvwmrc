@@ -13,11 +13,11 @@ EdgeScroll 100 100
 ClickTime 750
 
 # make sure these fonts exist on your system:
-Style "*" Font "xft:Times:Bold:size=14:antialias=True"
-Style "*" IconFont "xft:Helvetica:Bold:size=10:antialias=True"
+Style "*" Font "xft:Times:Bold:size=14"
+Style "*" IconFont "xft:Helvetica:Bold:size=10"
 
 Style "*" HilightFore #bebebe, HilightBack blue
-MenuStyle #4d4d4d #bebebe #e7e7e7 "xft:Times:Bold:size=12:antialias=True" fvwm
+MenuStyle #4d4d4d #bebebe #e7e7e7 "xft:Times:Bold:size=12" fvwm
 
 DeskTopSize 3x3
 
@@ -342,10 +342,10 @@ Key F8		A	M	CirculateDown
 # Just choose colors and a fonts
 *FvwmIdentBack MidnightBlue
 *FvwmIdentFore Yellow
-*FvwmIdentFont "xft:Helvetica:Medium:size=12:antialias=True"
+*FvwmIdentFont -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
 
 ########################### Pager #########################################
-*FvwmPagerFont "xft:Helvetica:Bold:size=10:antialias=True"
+*FvwmPagerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmPagerBack darkblue
 *FvwmPagerFore white
 *FvwmPagerHilight #2d2d2d
@@ -359,7 +359,7 @@ Key F8		A	M	CirculateDown
 ##########################FvwmWinList##################################
 *FvwmWinListBack #908090
 *FvwmWinListFore Black
-*FvwmWinListFont "xft:Helvetica:Bold:size=10:antialias=True"
+*FvwmWinListFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
 *FvwmWinListAction Click1 Iconify -1,Focus
 *FvwmWinListAction Click2 Iconify
 *FvwmWinListAction Click3 Module "FvwmIdent" FvwmIdent
@@ -387,7 +387,7 @@ Key F8		A	M	CirculateDown
 #*FvwmIconBoxFore       blue
 *FvwmIconBoxGeometry    5x1+0+0
 *FvwmIconBoxMaxIconSize 64x38
-*FvwmIconBoxFont        "xft:Helvetica:Medium:size=12:antialias=True"
+*FvwmIconBoxFont        -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
 *FvwmIconBoxSortIcons   IconName
 *FvwmIconBoxPadding     4
 *FvwmIconBoxLines       10
