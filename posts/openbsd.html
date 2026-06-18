@@ -46,86 +46,84 @@
 /etc/rc.local</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rdate server</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> disable ntpd</span></code></pre></div>
-<h3 id="русский-язык">Русский язык</h3>
-<p>~/.profile</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LANG</span><span class="op">=</span><span class="st">&quot;ru_RU.UTF-8&quot;</span></span></code></pre></div>
 <h3 id="настройка-x11">Настройка X11</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> enable xenodm</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> enable xenodm</span></code></pre></div>
 <h3 id="разрешаем-локальный-беспарольный-вход">Разрешаем локальный беспарольный вход</h3>
 <p>/etc/X11/xenodm/Xresources</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>xlogin*allowNullPasswd: true</span></code></pre></div>
-<h3 id="русская-раскладка">Русская раскладка</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>xlogin*allowNullPasswd: true</span></code></pre></div>
+<h3 id="русская-раскладка-и-язык">Русская раскладка и язык</h3>
 <p>~/.xsession</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">'us,ru'</span> <span class="at">-option</span> <span class="st">'grp:caps_toggle,grp_led:caps'</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">'us,ru'</span> <span class="at">-option</span> <span class="st">'grp:caps_toggle,grp_led:caps'</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LC_CTYPE</span><span class="op">=</span><span class="st">&quot;en_EN.UTF-8&quot;</span></span></code></pre></div>
 <h3 id="монтирование-сетевой-файловой-системы-sshfs">Монтирование сетевой файловой системы sshfs</h3>
 <p>Устанавливаем sshfs-fuse</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> sshfs-fuse</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> sshfs-fuse</span></code></pre></div>
 <p>/etc/rc.local</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/bin/sshfs</span> <span class="at">-o</span> ro,allow_other,IdentityFile=/home/Artem/.ssh/id_ed25519 ssh@server:/data /mnt</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/bin/sshfs</span> <span class="at">-o</span> ro,allow_other,IdentityFile=/home/Artem/.ssh/id_ed25519 ssh@server:/data /mnt</span></code></pre></div>
 <h3 id="настройка-doas">Настройка doas</h3>
 <p>/etc/doas.conf</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>permit nopass :wheel</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>permit nopass :wheel</span></code></pre></div>
 <h3 id="отключение-рандомизаций">Отключение рандомизаций</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/rc	Fri Feb 20 11:07:05 2026</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/rc	Fri Feb 20 11:00:41 2026</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -677,7 +677,7 @@ echo '.'</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a> # Re-link the kernel, placing the objects in a random order.</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a> # Replace current with relinked kernel and inform root about it.</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="st">-/usr/libexec/reorder_kernel &amp;</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="va">+#/usr/libexec/reorder_kernel &amp;</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a> date</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a> exit 0</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> disable library_aslr</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/rc	Fri Feb 20 11:07:05 2026</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/rc	Fri Feb 20 11:00:41 2026</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -677,7 +677,7 @@ echo '.'</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a> # Re-link the kernel, placing the objects in a random order.</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a> # Replace current with relinked kernel and inform root about it.</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="st">-/usr/libexec/reorder_kernel &amp;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="va">+#/usr/libexec/reorder_kernel &amp;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a> date</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a> exit 0</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> disable library_aslr</span></code></pre></div>
 <h3 id="включить-динамическое-изменение-частоты-процессора">Включить динамическое изменение частоты процессора</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> enable apmd</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> set apmd flags <span class="at">-A</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> enable apmd</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> set apmd flags <span class="at">-A</span></span></code></pre></div>
 <h3 id="обновление-на-следующий-релиз">Обновление на следующий релиз</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sysupgrade</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span><span class="fu">sh</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">После</span> чего случится перезагрузка и система уйдёт обновляться в автоматическом режиме. Затем делаем</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span>sh</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ex">sysmerge</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> <span class="at">-u</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sysupgrade</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span><span class="fu">sh</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">После</span> чего случится перезагрузка и система уйдёт обновляться в автоматическом режиме. Затем делаем</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span>sh</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ex">sysmerge</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> <span class="at">-u</span></span></code></pre></div>
 <h3 id="управление-пакетами">Управление пакетами</h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_info</span> <span class="at">-aQ</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_delete</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_info</span> <span class="at">-aQ</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_delete</span></span></code></pre></div>
 <p>Список вручную установленных пакетов</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_info</span> <span class="at">-m</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_info</span> <span class="at">-m</span></span></code></pre></div>
 <p>Удаление неиспользуемых пакетов</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_delete</span> <span class="at">-a</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_delete</span> <span class="at">-a</span></span></code></pre></div>
 <h2 id="для-rock-pi-4">Для Rock Pi 4</h2>
 <h3 id="установка">Установка</h3>
 <p>В отличие от других BSD, у OpenBSD нет готового предустановленного образа. Требуется установка подобная установке на обычный ПК. В <a href="https://ftp.openbsd.org/pub/OpenBSD/7.8/arm64/INSTALL.arm64">официальной документации</a> всё описано. Если кратко, то нужно подготовить SD карту с установочным образом для данного одноплатника</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/packages/aarch64/u-boot-aarch64-2021.10p11.tgz</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzf u-boot-aarch64-2021.10p11.tgz</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=miniroot78.img of=/dev/sdX bs=1M</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/idbloader.img of=/dev/sdX seek=64</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/u-boot.itb of=/dev/sdXc seek=16384</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cdn.openbsd.org/pub/OpenBSD/7.8/packages/aarch64/u-boot-aarch64-2021.10p11.tgz</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzf u-boot-aarch64-2021.10p11.tgz</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=miniroot78.img of=/dev/sdX bs=1M</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/idbloader.img of=/dev/sdX seek=64</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=share/u-boot/rock-pi-4-rk3399/u-boot.itb of=/dev/sdXc seek=16384</span></code></pre></div>
 <p>Также miniroot образ не поддерживает графическую консоль, поэтому к <a href="https://docs.radxa.com/en/rock4/rock4d/system-config/uart_debug">соответствующим пинам</a> одноплатника нужно подключить USB-TTL адаптер на время установки. Miniroot образ загружается в память, так что можно спокойно устанавливать OpenBSD на ту же самую карту, откуда загрузился установщик. Для корректной работы системы обязательно создание раздела подкачки. После установки делаем</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;set tty fb0&quot;</span> <span class="op">&gt;</span> /etc/boot.conf</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;set tty fb0&quot;</span> <span class="op">&gt;</span> /etc/boot.conf</span></code></pre></div>
 <p>После чего можно отключать USB-TTL адаптер и подключать монитор и клавиатуру.</p>
 <h3 id="поддержка-звука">Поддержка звука</h3>
 <p>OpenBSD <a href="https://man.openbsd.org/escodec">поддерживает звук</a> данного одноплатника, однако чтобы система увидела звуковую карту, надо пропатчить загрузчик</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># зависимости для сборки u-boot</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> aarch64-none-elf-gcc py3-elftools arm-trusted-firmware bison dtc swig py3-setuptools pythran gmake</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ftp</span> <span class="at">-o</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio https://github.com/torvalds/linux/commit/65bd2b8bdb3bddc37bea695789713916327e1c1f.patch</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s#b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi#arch/arm/dts/rk3399-rock-pi-4.dtsi#'</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/ports/sysutils/u-boot</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># нужно убрать все лишние платформы и платы в Makefile-ах перед сборкой</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=/usr/ports/pobj/u-boot-aarch64-2021.10/u-boot-2021.10/build/rock-pi-4-rk3399/u-boot.itb of=/dev/sd0c seek=16384</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># зависимости для сборки u-boot</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> aarch64-none-elf-gcc py3-elftools arm-trusted-firmware bison dtc swig py3-setuptools pythran gmake</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ftp</span> <span class="at">-o</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio https://github.com/torvalds/linux/commit/65bd2b8bdb3bddc37bea695789713916327e1c1f.patch</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s#b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi#arch/arm/dts/rk3399-rock-pi-4.dtsi#'</span> /usr/ports/sysutils/u-boot/aarch64/patches/patch-rockpiaudio</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/ports/sysutils/u-boot</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># нужно убрать все лишние платформы и платы в Makefile-ах перед сборкой</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dd</span> if=/usr/ports/pobj/u-boot-aarch64-2021.10/u-boot-2021.10/build/rock-pi-4-rk3399/u-boot.itb of=/dev/sd0c seek=16384</span></code></pre></div>
 <h3 id="уменьшить-износ-sd">Уменьшить износ SD</h3>
 <p>/etc/fstab</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/fstab	Sat Feb 21 19:23:08 2026</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/fstab	Sat Feb 21 19:23:20 2026</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,2 +1,2 @@</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a> 7cfd13b5a74b3fca.b none swap sw</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="st">-7cfd13b5a74b3fca.a / ffs rw,wxallowed 1 1</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="va">+7cfd13b5a74b3fca.a / ffs rw,wxallowed,noatime 1 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/fstab	Sat Feb 21 19:23:08 2026</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /etc/fstab	Sat Feb 21 19:23:20 2026</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -1,2 +1,2 @@</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a> 7cfd13b5a74b3fca.b none swap sw</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="st">-7cfd13b5a74b3fca.a / ffs rw,wxallowed 1 1</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="va">+7cfd13b5a74b3fca.a / ffs rw,wxallowed,noatime 1 1</span></span></code></pre></div>
     </section>
 </article>
 
