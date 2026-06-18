@@ -29,6 +29,13 @@ export LANG="ru_RU.UTF-8"
 ```sh
 rcctl enable xenodm
 ```
+### Настройка FVWM
+С OpenBSD поставляется старая версия fvwm 2.2.5. Для нормальной работы с русскими шрифтами нужно установить версию из портов
+```sh
+pkg_add fvwm2
+```
+Далее нужно скачать [адаптированный конфиг](https://lukyanovartem.github.io/content/fvwmrc) и сохранить по пути `.fvwm/config`
+
 ### Разрешаем локальный беспарольный вход  
 /etc/X11/xenodm/Xresources
 ```default
