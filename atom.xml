@@ -186,7 +186,7 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> disable ntpd</span></code></pre></div>
 <h3 id="русский-язык">Русский язык</h3>
 <p>~/.profile</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LANG</span><span class="op">=</span><span class="st">&quot;ru_RU.UTF-8&quot;</span> <span class="va">LC_CTYPE</span><span class="op">=</span><span class="st">&quot;ru_RU.UTF-8&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LANG</span><span class="op">=</span><span class="st">&quot;ru_RU.UTF-8&quot;</span></span></code></pre></div>
 <h3 id="настройка-x11">Настройка X11</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rcctl</span> enable xenodm</span></code></pre></div>
 <h3 id="разрешаем-локальный-беспарольный-вход">Разрешаем локальный беспарольный вход</h3>
