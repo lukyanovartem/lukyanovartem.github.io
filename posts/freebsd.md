@@ -81,8 +81,8 @@ pkg install -y xdm xorg
 ```
 ### Настройка TWM
 ```diff
---- /tmp/.twmrc	2026-06-17 00:38:26.020987000 +0300
-+++ /home/Artem/.twmrc	2026-06-17 00:32:56.062698000 +0300
+--- /usr/local/share/X11/twm/system.twmrc	2025-12-25 11:58:09.000000000 +0300
++++ /home/Artem/.twmrc	2026-06-18 18:16:43.920846000 +0300
 @@ -11,12 +11,13 @@ DecorateTransients
  NoGrabServer
  RestartPreviousState
@@ -92,11 +92,11 @@ pkg install -y xdm xorg
 -MenuFont "-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
 -IconFont "-adobe-helvetica-bold-r-normal--*-100-*-*-*-*-*-*"
 -IconManagerFont "-adobe-helvetica-bold-r-normal--*-100-*-*-*"
-+TitleFont "-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1"
-+ResizeFont "-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1"
-+MenuFont "-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1"
-+IconFont "-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1"
-+IconManagerFont "-misc-fixed-medium-r-normal-*-18-*-*-*-*-*-iso10646-1"
++TitleFont "-misc-fixed-bold-r-normal--*-140-*-*-*-*-iso10646-1"
++ResizeFont "-misc-fixed-bold-r-normal--*-140-*-*-*-*-iso10646-1"
++MenuFont "-misc-fixed-bold-r-normal--*-140-*-*-*-*-iso10646-1"
++IconFont "-misc-fixed-bold-r-normal--*-120-*-*-*-*-iso10646-1"
++IconManagerFont "-misc-fixed-bold-r-normal--*-120-*-*-*-*-iso10646-1"
  #ClientBorderWidth
 +RightTitleButton "xlogo11" = f.delete
 
