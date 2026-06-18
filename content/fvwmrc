@@ -85,8 +85,10 @@ Mouse 2	FST	A	Menu Window-Ops2 Nop
 Mouse 3	TSIF	A	RaiseLower
 
 ######################## Initialization Functions ############################
-#+			  "I" exec /usr/X11R6/bin/xsetroot -solid black
-
+DestroyFunc StartFunction
+AddToFunc StartFunction
++			  "I" Module Test (Init)  FvwmPager 0 0
++			  "I" Module FvwmPager 0 0
 #+			  "I" exec /usr/X11R6/bin/xsetroot -solid black
 
 
@@ -518,8 +520,3 @@ Key F8		A	M	CirculateDown
 # to change banner pixmap
 #*FvwmBannerPixmap fvwm3.xpm
 #*FvwmBannerTimeout 2
-
-DestroyFunc StartFunction
-AddToFunc StartFunction
-+ "I" Module Test (Init)  FvwmPager 0 0
-+ "I" Module FvwmPager 0 0
