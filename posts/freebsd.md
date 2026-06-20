@@ -165,6 +165,10 @@ freebsd-update -r 15.1-RELEASE upgrade
 freebsd-update install
 rm -r /var/db/freebsd-update/*
 ```
+После обновления на мажорный релиз
+```sh
+pkg-static upgrade -f
+```
 
 ## Для Raspberry Pi 3
 ### Поддержка звука
