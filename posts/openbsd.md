@@ -44,7 +44,7 @@ xlogin*allowNullPasswd: true
 ### Русская раскладка  
 ~/.xsession
 ```sh
-. ~/profile
+. ~/.profile
 setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 ```
 ### Монтирование сетевой файловой системы sshfs  
