@@ -1,5 +1,5 @@
 ---
-title: Убираем белый список на WWAN модемы для ThinkPad T480s 
+title: Модем на ThinkPad T480s 
 published: 09.04.2024
 tags: модем
 ---
