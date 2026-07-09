@@ -34,7 +34,7 @@ rcctl enable xenodm
 ```sh
 pkg_add fvwm2
 ```
-Далее нужно скачать [адаптированный конфиг](https://lukyanovartem.github.io/content/fvwmrc) и сохранить по пути `.fvwm/config`
+Далее нужно скачать [адаптированный конфиг](/content/fvwmrc) и сохранить по пути `.fvwm/config`
 
 ### Разрешаем локальный беспарольный вход  
 /etc/X11/xenodm/Xresources
