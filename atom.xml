@@ -199,7 +199,7 @@
 <h3 id="русская-раскладка">Русская раскладка</h3>
 <p>~/.xsession</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span> ~/.profile</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">&#39;us,ru&#39;</span> <span class="at">-option</span> <span class="st">&#39;grp:caps_toggle,grp_led:caps&#39;</span></span></code></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">&#39;us,ru&#39;</span> <span class="at">-option</span> <span class="st">&#39;grp:alt_shift_toggle,grp_led:caps&#39;</span></span></code></pre></div>
 <h3 id="монтирование-сетевой-файловой-системы-sshfs">Монтирование сетевой файловой системы sshfs</h3>
 <p>Устанавливаем sshfs-fuse</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg_add</span> sshfs-fuse</span></code></pre></div>
@@ -388,7 +388,7 @@
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a> account		required	pam_nologin.so</span></code></pre></div>
 <h3 id="русская-раскладка">Русская раскладка</h3>
 <p>~/.xsession</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/bin/setxkbmap</span> <span class="at">-layout</span> <span class="st">&#39;us,ru&#39;</span> <span class="at">-option</span> <span class="st">&#39;grp:caps_toggle,grp_led:caps&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/bin/setxkbmap</span> <span class="at">-layout</span> <span class="st">&#39;us,ru&#39;</span> <span class="at">-option</span> <span class="st">&#39;grp:alt_shift_toggle,grp_led:caps&#39;</span></span></code></pre></div>
 <h3 id="монтирование-сетевой-файловой-системы-sshfs">Монтирование сетевой файловой системы sshfs</h3>
 <p>Устанавливаем fusefs-sshfs</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg</span> install <span class="at">-y</span> fusefs-sshfs</span></code></pre></div>
@@ -573,7 +573,7 @@
 <h3 id="русская-раскладка">Русская раскладка</h3>
 <p>~/.xsession</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># xrandr из-за ошибки BadRROutput</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">xrandr</span> <span class="kw">&amp;&amp;</span> <span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">&#39;us,ru&#39;</span> <span class="at">-option</span> <span class="st">&#39;grp:caps_toggle,grp_led:caps&#39;</span></span></code></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">xrandr</span> <span class="kw">&amp;&amp;</span> <span class="ex">setxkbmap</span> <span class="at">-layout</span> <span class="st">&#39;us,ru&#39;</span> <span class="at">-option</span> <span class="st">&#39;grp:alt_shift_toggle,grp_led:caps&#39;</span></span></code></pre></div>
 <h3 id="исправление-ошибки-no-entry-for-terminal-type-при-удалённом-входе">Исправление ошибки “No entry for terminal type” при удалённом входе</h3>
 <p>На других машинах<br />
 ~/.ssh/config</p>
