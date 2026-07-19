@@ -45,7 +45,7 @@ xlogin*allowNullPasswd: true
 ~/.xsession
 ```sh
 . ~/.profile
-setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
+setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:caps'
 ```
 ### Монтирование сетевой файловой системы sshfs  
 Устанавливаем sshfs-fuse

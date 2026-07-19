@@ -125,7 +125,7 @@ xlogin*allowNullPasswd: true
 ### Русская раскладка  
 ~/.xsession
 ```sh
-/usr/local/bin/setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
+/usr/local/bin/setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:caps'
 ```
 ### Монтирование сетевой файловой системы sshfs  
 Устанавливаем fusefs-sshfs

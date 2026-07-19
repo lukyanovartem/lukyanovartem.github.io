@@ -114,7 +114,7 @@ xlogin*allowNullPasswd: true
 ~/.xsession
 ```sh
 # xrandr из-за ошибки BadRROutput
-xrandr && setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
+xrandr && setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:caps'
 ```
 ### Исправление ошибки "No entry for terminal type" при удалённом входе
 На других машинах  
