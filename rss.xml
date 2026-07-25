@@ -52,9 +52,9 @@
 <p>/bin/riostart</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 0,0,100,100 clock</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">window</span> 100,0,300,100 winwatch <span class="at">-e</span> <span class="st">&#39;^(winwatch|clock)&#39;</span></span></code></pre></div>
-<h3 id="переключение-раскладки-клавиатуры-по-ctrlspace">Переключение раскладки клавиатуры по ctrl+space</h3>
+<h3 id="переключение-раскладки-клавиатуры-по-altshift">Переключение раскладки клавиатуры по alt+shift</h3>
 <p>/bin/riostart</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kbremap</span> us ru <span class="op">&lt;</span>/dev/kbdtap <span class="op">&gt;</span>/dev/kbdtap <span class="kw">&amp;</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kbremap</span> <span class="at">-m</span> 1 <span class="at">-k</span> 56 us ru <span class="op">&lt;</span>/dev/kbdtap <span class="op">&gt;</span>/dev/kbdtap <span class="kw">&amp;</span></span></code></pre></div>
 <h3 id="настройка-времени">Настройка времени</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /adm/timezone/CET</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /adm/timezone/local</span></span>
