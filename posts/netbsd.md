@@ -172,3 +172,29 @@ hdmi_force_hotplug=1
 ## Для Raspberry Pi 4
 В образ arm64.img, в раздел /boot положить файлы из [архива](https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip), иначе не будет изображения  
 Для возможности изменять частоту процессора выставить в EFI "CPU Clock" = Custom and "CPU Clock Rate" = 600
+
+### Обновление на следующий релиз (только для UEFI)
+```sh
+pkgin install sysupgrade
+```
+```diff
+--- /tmp/sysupgrade.conf	2026-08-02 10:22:57.389116750 +0300
++++ /usr/pkg/etc/sysupgrade.conf	2026-08-02 10:23:09.772007935 +0300
+@@ -41,4 +41,4 @@ POSTINSTALL_AUTOFIX="obsolete"
+
+ # Archive file extension of the sets. For now it can be either 'tgz' or
+ # 'tar.xz'.
+-#ARCHIVE_EXTENSION=tar.xz
++ARCHIVE_EXTENSION=tar.xz
+```
+При обновления на мажорный релиз сначала обновляем ядро и его модули
+```sh
+sysupgrade fetch https://cdn.NetBSD.org/pub/NetBSD/NetBSD-11.0/evbarm-aarch64
+sysupgrade kernel
+sysupgrade modules
+reboot
+```
+```sh
+sysupgrade auto https://cdn.NetBSD.org/pub/NetBSD/NetBSD-11.0/evbarm-aarch64
+pkgin upgrade
+```
