@@ -608,6 +608,23 @@
 <h2 id="для-raspberry-pi-4">Для Raspberry Pi 4</h2>
 <p>В образ arm64.img, в раздел /boot положить файлы из <a href="https://github.com/pftf/RPi4/releases/download/v1.42/RPi4_UEFI_Firmware_v1.42.zip">архива</a>, иначе не будет изображения<br />
 Для возможности изменять частоту процессора выставить в EFI “CPU Clock” = Custom and “CPU Clock Rate” = 600</p>
+<h3 id="обновление-на-следующий-релиз-только-для-uefi">Обновление на следующий релиз (только для UEFI)</h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkgin</span> install sysupgrade</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- /tmp/sysupgrade.conf	2026-08-02 10:22:57.389116750 +0300</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ /usr/pkg/etc/sysupgrade.conf	2026-08-02 10:23:09.772007935 +0300</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -41,4 +41,4 @@ POSTINSTALL_AUTOFIX=&quot;obsolete&quot;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a> # Archive file extension of the sets. For now it can be either &#39;tgz&#39; or</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a> # &#39;tar.xz&#39;.</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="st">-#ARCHIVE_EXTENSION=tar.xz</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="va">+ARCHIVE_EXTENSION=tar.xz</span></span></code></pre></div>
+<p>При обновления на мажорный релиз сначала обновляем ядро и его модули</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sysupgrade</span> fetch https://cdn.NetBSD.org/pub/NetBSD/NetBSD-11.0/evbarm-aarch64</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sysupgrade</span> kernel</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sysupgrade</span> modules</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="ex">reboot</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sysupgrade</span> auto https://cdn.NetBSD.org/pub/NetBSD/NetBSD-11.0/evbarm-aarch64</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkgin</span> upgrade</span></code></pre></div>
     </section>
 </article>
 ]]></description>
