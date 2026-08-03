@@ -7,6 +7,7 @@ tags: plan9
 ```sh
 echo newuser Artem >>/srv/hjfs.cmd
 echo newuser sys +Artem >>/srv/hjfs.cmd
+echo newuser adm +Artem >>/srv/hjfs.cmd
 ```
 Затем под созданным пользователем выполнить скрипт
 ```sh
@@ -77,6 +78,13 @@ mkdir -p /sys/log/consoles
 /bin/riostart
 ```sh
 cat /dev/kprint >>/sys/log/consoles/$$$$sysname >[2=1] &
+```
+### Обновление системы
+```
+sysupdate
+cd /sys/src
+mk install
+mk nuke
 ```
 ## Для Raspberry Pi 1  
 Могут глючить мыши от Logitech, можно попробовать другую мышь
