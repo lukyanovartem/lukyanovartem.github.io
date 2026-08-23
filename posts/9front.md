@@ -94,10 +94,10 @@ mk nuke
 9fs dos
 ```
 ### Поддержка звука
-Для поддержки звука надо пропатчить и пересобрать ядро. Патч проверялся на версии 9front-11554
+Для поддержки звука надо пропатчить и пересобрать ядро. [Патч](/content/bcm-audio.diff) проверялся на версии 9front-11554
 ```sh
 cd /sys/src/9/bcm
-hget https://lukyanovartem.github.io/content/bcm-audio.diff | patch -p5
+patch -p5 < bcm-audio.diff
 mk 'CONF=pi'
 cp 9pi /n/dos
 ```
