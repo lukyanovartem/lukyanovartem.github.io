@@ -100,7 +100,7 @@ mk nuke</code></pre>
 <h3 id="монтировать-загрузочный-раздел">Монтировать загрузочный раздел</h3>
 <div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">9fs</span> dos</span></code></pre></div>
 <h3 id="поддержка-звука">Поддержка звука</h3>
-<p>Для поддержки звука надо пропатчить и пересобрать ядро. <a href="./content/bcm-audio.diff">Патч</a> проверялся на версии 9front-11554</p>
+<p>Для поддержки звука надо пропатчить и пересобрать ядро. <a href="./content/bcm-audio.diff">Патч</a> проверялся на версии 9front-11952</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /sys/src/9/bcm</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">patch</span> <span class="at">-p5</span> <span class="op">&lt;</span> bcm-audio.diff</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mk</span> <span class="st">'CONF=pi'</span></span>
