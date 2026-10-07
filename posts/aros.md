@@ -94,6 +94,7 @@ Lab netapps
     Search RAM:User-Startup.txt "(0)"
 
     If Not warn
+	; Синхронизация с локальным сервером времени
         SYS:Extras/Networking/Utils/PiNTP/PiNTP -s 1.2.3.4
 
         Skip done
