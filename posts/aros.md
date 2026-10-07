@@ -3,6 +3,20 @@ title: AROS
 published: 06.10.2026
 tags: amiga
 ---
+### Имя хоста
+```diff
+--- SYS:System/Network/arostcp/db/general.config	2026-10-06 08:29:42.000000000 +0300
++++ SYS:Storage/NetConfig/general.config	2026-10-07 17:31:42.673861667 +0300
+@@ -5,7 +5,7 @@ USELOOPBACK=YES
+ DEBUGSANA=NO
+ USENS=SECOND
+ GATEWAY=NO
+-HOSTNAME=arosbox.arosnet
++HOSTNAME=rpi3plus
+ LOG FILTERFILE=5
+ GUI PANEL=MUI
+ OPENGUI=YES
+```
 ### Настройка сети
 Как альтернатива настройке через графическую утилиту Network Preferences
 ```sh
