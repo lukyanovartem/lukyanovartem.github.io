@@ -47,7 +47,7 @@
 Нужно выбрать шрифты семейств <code>Open Sans</code> или <code>Spectral</code> в качестве основных, и <code>xen</code> в качестве системного шрифта<br />
 Дополнительно нужно аналогичным образом поменять шрифты в настройках <code>Zune</code></p>
 <h3 id="настройка-сети">Настройка сети</h3>
-<p>Как альтернатива настройке через графическую утилиту Network Preferences</p>
+<p>Как альтернатива настройке через графический интерфейс</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> SYS:System/Network/arostcp</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">makedir</span> SYS:Storage/NetConfig</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">copy</span> db SYS:Storage/NetConfig ALL</span>
@@ -69,7 +69,7 @@
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="va">+NAMESERVER 1.2.3.4</span></span></code></pre></div>
 <h2 id="для-raspberry-pi-3-model-b">Для Raspberry Pi 3 Model B+</h2>
 <h3 id="поддержка-сети">Поддержка сети</h3>
-<p>Драйвер <code>usblan78xx.device</code> не отображается в сетевых устройствах в Network Preferences. Необходимо добавить вручную. Либо как альтернатива настроить через файл интерфейсов AROSTCP</p>
+<p>Драйвер <code>usblan78xx.device</code> не отображается в сетевых устройствах в настройках сети. Необходимо добавить вручную. Либо как альтернатива настроить через файл интерфейсов AROSTCP</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- SYS:System/Network/arostcp/db/interfaces	2026-10-06 18:52:39.620727017 +0300</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ SYS:Storage/NetConfig/interfaces	2026-10-06 08:29:42.000000000 +0300</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -117,6 +117,5 @@</span></span>
