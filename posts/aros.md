@@ -9,6 +9,8 @@ tags: amiga
 cd SYS:System/Network/arostcp
 makedir SYS:Storage/NetConfig
 copy db SYS:Storage/NetConfig ALL
+makedir ENV:AROSTCP
+makedir ENVARC:AROSTCP
 SetEnv SAVE AROSTCP/Config SYS:Storage/NetConfig
 ```
 DNS не прилетает по DHCP, нужно настроить вручную
