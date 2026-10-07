@@ -24,6 +24,98 @@
         <main role="main">
             
     <article>
+    <h1><a href="./posts/aros.html">AROS</a></h1>
+    <section class="header">
+         6 октября 2026
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'amiga'." href="./tags/amiga.html" rel="tag">amiga</a>
+        
+    </section>
+    <section class="header">
+        <span class="disqus-comment-count" data-disqus-identifier="posts/aros.md"></span>
+    </section>
+    <section>
+        <h3 id="настройка-сети">Настройка сети</h3>
+<p>Как альтернатива настройке через графическую утилиту Network Preferences</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> SYS:System/Network/arostcp</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">makedir</span> SYS:Storage/NetConfig</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">copy</span> db SYS:Storage/NetConfig ALL</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">SetEnv</span> SAVE AROSTCP/Config SYS:Storage/NetConfig</span></code></pre></div>
+<p>DNS не прилетает по DHCP, нужно настроить вручную</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- SYS:System/Network/arostcp/db/netdb-myhost	2026-10-06 18:56:54.404488603 +0300</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ SYS:Storage/NetConfig/netdb-myhost	2026-10-06 08:29:42.000000000 +0300</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -4,6 +4,6 @@</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> ; name we can disregard the HOST and DOMAIN entry.</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> HOST 192.168.0.188 arosbox.arosnet arosbox</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> ; Domain names</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">-DOMAIN arosnet 192.168.0.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">+;DOMAIN arosnet 192.168.0.</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a> ; Name servers</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">-NAMESERVER 192.168.0.1</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="va">+NAMESERVER 1.2.3.4</span></span></code></pre></div>
+<h2 id="для-raspberry-pi-3-model-b">Для Raspberry Pi 3 Model B+</h2>
+<h3 id="поддержка-сети">Поддержка сети</h3>
+<p>Драйвер <code>usblan78xx.device</code> не отображается в сетевых устройствах в Network Preferences. Необходимо добавить вручную. Либо как альтернатива настроить через файл интерфейсов AROSTCP</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- SYS:System/Network/arostcp/db/interfaces	2026-10-06 18:52:39.620727017 +0300</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ SYS:Storage/NetConfig/interfaces	2026-10-06 08:29:42.000000000 +0300</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -117,6 +117,5 @@</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a> # .. Linux-hosted AROS (using the TUN/TAP driver)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a> #</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a> #eth0 DEV=DEVS:networks/tap.device UNIT=0 IP=192.168.0.188 UP</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">-eth0 DEV=DEVS:networks/usblan78xx.device UNIT=0 IP=DHCP UP</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a> #</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a> # EOF</span></code></pre></div>
+<p>Для автозапуска сети<br />
+S:User-Startup</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Set</span> count 0</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Lab</span> loop</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Set</span> count <span class="kw">`</span><span class="ex">Eval</span> <span class="va">$</span>count + 1<span class="kw">`</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">PsdDevLister</span> <span class="op">&gt;</span>RAM:devlist.txt</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Search</span> RAM:devlist.txt <span class="st">&quot;lan78xx.class&quot;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">If</span> Not warn</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="ex">SetEnv</span> SAVE AROSTCP/Config SYS:Storage/NetConfig</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="ex">Execute</span> SYS:System/Network/AROSTCP/S/startnet</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="ex">Skip</span> done</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="ex">EndIf</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">If</span> <span class="va">$</span>count Ge 10 Val</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="ex">Skip</span> done</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="ex">EndIf</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Wait</span> 1</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Skip</span> loop Back</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="ex">Lab</span> done</span></code></pre></div>
+<h3 id="настройка-разрешения-экрана">Настройка разрешения экрана</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- config.txt.orig	2026-10-06 16:09:48.780558428 +0300</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ SYS:config.txt	2026-10-06 16:10:13.845250413 +0300</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -6,6 +6,16 @@ gpu_mem=256</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a> enable_uart=1</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a> framebuffer_depth=32</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a> framebuffer_ignore_alpha=1</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="va">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_cvt=1920 1080 60 3 0 0 1</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_ignore_edid=0xa5000080</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_group=2</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_mode=87</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="va">+hdmi_force_hotplug=1</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="va">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a> [pi5]</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a> enable_rp1_uart=1</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a> pciex4_reset=0</span></code></pre></div>
+    </section>
+</article>
+
+    
+    <footer></footer>
+
+    <article>
     <h1><a href="./posts/9front.html">9front</a></h1>
     <section class="header">
         24 марта 2026
@@ -807,57 +899,6 @@ mk nuke</code></pre>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>||coslogdydy.in^$client=yaos</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a># отключение QUIC</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>#||*^$dnstype=HTTPS</span></code></pre></div>
-    </section>
-</article>
-
-    
-    <footer></footer>
-
-    <article>
-    <h1><a href="./posts/wwan.html">Модем на ThinkPad T480s</a></h1>
-    <section class="header">
-         9 апреля 2024
-        
-    </section>
-    <section class="header">
-        
-          <a title="All pages tagged 'модем'." href="./tags/%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC.html" rel="tag">модем</a>
-        
-    </section>
-    <section class="header">
-        <span class="disqus-comment-count" data-disqus-identifier="posts/wwan.md"></span>
-    </section>
-    <section>
-        <p><strong>Неактуально, появился порт <a href="https://libreboot.org/docs/install/t480.html">Libreboot</a></strong></p>
-<p>Ох уж эта сертификация на модемы, из-за которой можно установить модем только из небольшого списка одобренных. Чтобы убрать ограничение, нужно пропатчить биос. Есть <a href="https://thrimbor.github.io/2019/09/24/removing-the-m2-whitelist-on-a-thinkpad-t440p.html">неплохая статья</a>, однако с ней у меня не вышло. Во-первых бесплатный инструмент Ghidra, рассматриваемый в статье, у меня падает при анализе модуля LenovoWmaPolicyDxe. Пришлось временно воспользоваться пиратской IDA Pro 😳 Кроме того, в статье много воды и лишних телодвижений. В частности, предлагается менять каждый if, делающий проверку на id модема, вместо того, чтобы просто перепрыгнуть подпрограмму, выводящую информационное сообщение и запускающую бесконечный цикл. Да, такой патч получается неуниверсальный, привязанный к конкретной версии, но элементарно создать аналогичный для любой другой версии прошивки.</p>
-<h2 id="настройки-wwan-модема-sierra-em7455">Настройки WWAN модема Sierra EM7455</h2>
-<p>Включение эхо-режима</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ATE1</span></code></pre></div>
-<p>Прошивание модема</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>AT!ENTERCND=&quot;A710&quot;</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a># Очистить все изменения и откатиться к заводским настройкам Lenovo/Sierra</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>AT!RMARESET=1</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>AT!IMAGE=0</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>AT!RESET</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qmi-firmware-update</span> <span class="at">--reset</span> <span class="at">-d</span> <span class="st">&quot;1199:9079&quot;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qmi-firmware-update</span> <span class="at">--update-download</span> <span class="at">-d</span> <span class="st">&quot;1199:9079&quot;</span> SWI9X30C_02.33.03.00.cwe SWI9X30C_02.33.03.00_GENERIC_002.072_001.nvu</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">qmicli</span> <span class="at">-d</span> /dev/cdc-wdm0 <span class="at">--dms-set-firmware-preference</span><span class="op">=</span>02.33.03.00,002.072_001,GENERIC</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>AT!ENTERCND=&quot;A710&quot;</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>AT!USBVID=1199</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>AT!USBPID=9071,9070</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>AT!USBPRODUCT=&quot;EM7455&quot;</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>AT!PRIID?</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a># Carrier PRI: 9999999_9904609_SWI9X30C_02.24.05.06_00_GENERIC_002.026_000</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>AT!PRIID=&quot;9904609&quot;,&quot;002.026&quot;,&quot;Generic-Laptop&quot;</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a># Заставить модем работать в USB2 режиме для совместимости с современными M.2 интерфейсами</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>AT!USBSPEED=0</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>AT!RESET</span></code></pre></div>
-<p>Отключение необходимости запуска скрипта по разблокировке модема</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>AT!OPENLOCK?</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sierrakeygen.py -l &lt;code&gt; -d MDM9x30</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>AT!OPENLOCK=&quot;&lt;newcode&gt;&quot;</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>AT!PCFCCAUTH=0</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>AT!RESET</span></code></pre></div>
     </section>
 </article>
 
