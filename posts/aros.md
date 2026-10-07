@@ -66,15 +66,35 @@ S:User-Startup
 ```sh
 Set count 0
 
-Lab loop
+Lab startnet
     Set count `Eval $$$$count + 1`
 
-    PsdDevLister >RAM:devlist.txt
-    Search RAM:devlist.txt "lan78xx.class"
+    PsdDevLister >RAM:User-Startup.txt
+    Search RAM:User-Startup.txt "lan78xx.class"
 
     If Not warn
         SetEnv SAVE AROSTCP/Config SYS:Storage/NetConfig
         Execute SYS:System/Network/AROSTCP/S/startnet
+
+        Skip netapps
+    EndIf
+    If $$$$count Ge 10 Val
+        Skip done
+    EndIf
+
+    Wait 1
+    Skip startnet Back
+
+Set count 0
+
+Lab netapps
+    Set count `Eval $$$$count + 1`
+
+    Route get default >RAM:User-Startup.txt
+    Search RAM:User-Startup.txt "(0)"
+
+    If Not warn
+        SYS:Extras/Networking/Utils/PiNTP/PiNTP -s 1.2.3.4
 
         Skip done
     EndIf
@@ -83,7 +103,7 @@ Lab loop
     EndIf
 
     Wait 1
-    Skip loop Back
+    Skip netapps Back
 
 Lab done
 ```
