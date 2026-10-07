@@ -17,12 +17,18 @@ tags: amiga
  GUI PANEL=MUI
  OPENGUI=YES
 ```
+### Русский язык
+В настройках локали поддерживается русский язык, однако в настройках выбора шрифтов по умолчанию выбраны шрифты без поддержки кириллицы  
+Нужно выбрать шрифты семейств `Open Sans` или `Spectral` в качестве основных, и `xen` в качестве системного шрифта  
+Дополнительно нужно аналогичным образом поменять шрифты в настройках `Zune`
+
 ### Настройка сети
 Как альтернатива настройке через графическую утилиту Network Preferences
 ```sh
 cd SYS:System/Network/arostcp
 makedir SYS:Storage/NetConfig
 copy db SYS:Storage/NetConfig ALL
+
 makedir ENV:AROSTCP
 makedir ENVARC:AROSTCP
 SetEnv SAVE AROSTCP/Config SYS:Storage/NetConfig
@@ -90,10 +96,13 @@ Lab done
  framebuffer_depth=32
  framebuffer_ignore_alpha=1
 +
++# последняя единица чтобы убрать рамки
 +hdmi_cvt=1920 1080 60 3 0 0 1
++# игнорировать разрешение монитора
 +hdmi_ignore_edid=0xa5000080
 +hdmi_group=2
 +hdmi_mode=87
++# игнорировать отсутствие монитора
 +hdmi_force_hotplug=1
 +
  [pi5]
