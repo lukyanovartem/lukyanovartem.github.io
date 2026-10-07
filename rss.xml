@@ -31,7 +31,9 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> SYS:System/Network/arostcp</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">makedir</span> SYS:Storage/NetConfig</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">copy</span> db SYS:Storage/NetConfig ALL</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">SetEnv</span> SAVE AROSTCP/Config SYS:Storage/NetConfig</span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">makedir</span> ENV:AROSTCP</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">makedir</span> ENVARC:AROSTCP</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">SetEnv</span> SAVE AROSTCP/Config SYS:Storage/NetConfig</span></code></pre></div>
 <p>DNS не прилетает по DHCP, нужно настроить вручную</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- SYS:System/Network/arostcp/db/netdb-myhost	2026-10-06 18:56:54.404488603 +0300</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ SYS:Storage/NetConfig/netdb-myhost	2026-10-06 08:29:42.000000000 +0300</span></span>
