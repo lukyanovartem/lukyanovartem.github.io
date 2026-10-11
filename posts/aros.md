@@ -45,6 +45,20 @@ DNS не прилетает по DHCP, нужно настроить вручн�
 -NAMESERVER 192.168.0.1
 +NAMESERVER 1.2.3.4
 ```
+### SSH сервер  
+```sh
+cd SYS:BebboSSH
+copy sshd_config.example sshd_config
+bebbosshkeygen -f ssh_host_ed25519_key
+
+makedir ENVARC:.ssh
+edit ENVARC:.ssh/authorized_keys
+```
+S:User-Startup
+```sh
+stack 262144
+RUN >NIL: SYS:BebboSSH/bebbosshd
+```
 ## Для Raspberry Pi 3 Model B+  
 ### Поддержка сети
 Драйвер `usblan78xx.device` не отображается в сетевых устройствах в настройках сети. Необходимо прописать вручную. Либо, опять же, настроить через файл
