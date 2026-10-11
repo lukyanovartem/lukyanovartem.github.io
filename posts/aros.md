@@ -26,24 +26,12 @@ tags: amiga
 cd SYS:System/Network/arostcp
 makedir SYS:Storage/NetConfig
 copy db SYS:Storage/NetConfig ALL
+delete SYS:Storage/NetConfig/netdb-myhost
+touch SYS:Storage/NetConfig/netdb-myhost
 
 makedir ENV:AROSTCP
 makedir ENVARC:AROSTCP
 SetEnv SAVE AROSTCP/Config SYS:Storage/NetConfig
-```
-DNS не прилетает по DHCP, нужно настроить вручную
-```diff
---- SYS:System/Network/arostcp/db/netdb-myhost	2026-10-06 18:56:54.404488603 +0300
-+++ SYS:Storage/NetConfig/netdb-myhost	2026-10-06 08:29:42.000000000 +0300
-@@ -4,6 +4,6 @@
- ; name we can disregard the HOST and DOMAIN entry.
- HOST 192.168.0.188 arosbox.arosnet arosbox
- ; Domain names
--DOMAIN arosnet 192.168.0.
-+;DOMAIN arosnet 192.168.0.
- ; Name servers
--NAMESERVER 192.168.0.1
-+NAMESERVER 1.2.3.4
 ```
 ### SSH сервер  
 ```sh
