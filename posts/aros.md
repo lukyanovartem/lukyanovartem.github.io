@@ -3,39 +3,11 @@ title: AROS
 published: 06.10.2026
 tags: amiga
 ---
-### Имя хоста
-```diff
---- SYS:System/Network/arostcp/db/general.config	2026-10-06 08:29:42.000000000 +0300
-+++ SYS:Storage/NetConfig/general.config	2026-10-07 17:31:42.673861667 +0300
-@@ -5,7 +5,7 @@ USELOOPBACK=YES
- DEBUGSANA=NO
- USENS=SECOND
- GATEWAY=NO
--HOSTNAME=arosbox.arosnet
-+HOSTNAME=rpi3plus
- LOG FILTERFILE=5
- GUI PANEL=MUI
- OPENGUI=YES
-```
 ### Русский язык
 В настройках локали поддерживается русский язык, однако в настройках выбора шрифтов по умолчанию выбраны шрифты без поддержки кириллицы. Нужно выбрать шрифты семейств `Open Sans` или `Spectral` в качестве основных, и `xen` в качестве системного. Дополнительно нужно аналогичным образом поменять шрифты в настройках `Zune`
 
-### Настройка сети
-В качестве альтернативы настройке через графический интерфейс
-```sh
-cd SYS:System/Network/arostcp
-makedir SYS:Storage/NetConfig
-copy db SYS:Storage/NetConfig ALL
-delete SYS:Storage/NetConfig/netdb-myhost
-touch SYS:Storage/NetConfig/netdb-myhost
-
-makedir ENV:AROSTCP
-makedir ENVARC:AROSTCP
-SetEnv SAVE AROSTCP/Config SYS:Storage/NetConfig
-```
 ### SSH сервер  
 ```sh
-cd SYS:BebboSSH
 copy sshd_config.example sshd_config
 bebbosshkeygen -f ssh_host_ed25519_key
 
@@ -45,57 +17,25 @@ edit ENVARC:.ssh/authorized_keys
 S:User-Startup
 ```sh
 stack 262144
-RUN >NIL: SYS:BebboSSH/bebbosshd
+RUN >NIL: bebbosshd
 ```
 ## Для Raspberry Pi 3 Model B+  
 ### Поддержка сети
-Драйвер `usblan78xx.device` не отображается в сетевых устройствах в настройках сети. Необходимо прописать вручную. Либо, опять же, настроить через файл
-```diff
---- SYS:System/Network/arostcp/db/interfaces	2026-10-06 18:52:39.620727017 +0300
-+++ SYS:Storage/NetConfig/interfaces	2026-10-06 08:29:42.000000000 +0300
-@@ -117,6 +117,5 @@
- # .. Linux-hosted AROS (using the TUN/TAP driver)
- #
- #eth0 DEV=DEVS:networks/tap.device UNIT=0 IP=192.168.0.188 UP
--eth0 DEV=DEVS:networks/usblan78xx.device UNIT=0 IP=DHCP UP
- #
- # EOF
-```
-Для автозапуска сети  
+Драйвер `usblan78xx.device` не отображается в сетевых устройствах в настройках сети. Необходимо прописать вручную
+
+### Синхронизация с локальным сервером времени
 S:User-Startup
 ```sh
 Set count 0
 
-Lab startnet
-    Set count `Eval $$$$count + 1`
-
-    PsdDevLister >RAM:User-Startup.txt
-    Search RAM:User-Startup.txt "lan78xx.class"
-
-    If Not warn
-        SetEnv SAVE AROSTCP/Config SYS:Storage/NetConfig
-        Execute SYS:System/Network/AROSTCP/S/startnet
-
-        Skip netapps
-    EndIf
-    If $$$$count Ge 10 Val
-        Skip done
-    EndIf
-
-    Wait 1
-    Skip startnet Back
-
-Set count 0
-
-Lab netapps
+Lab loop
     Set count `Eval $$$$count + 1`
 
     Route get default >RAM:User-Startup.txt
     Search RAM:User-Startup.txt "(0)"
 
     If Not warn
-	; Синхронизация с локальным сервером времени
-        SYS:Extras/Networking/Utils/PiNTP/PiNTP -s 1.2.3.4
+        PiNTP -s 1.2.3.4
 
         Skip done
     EndIf
@@ -104,7 +44,7 @@ Lab netapps
     EndIf
 
     Wait 1
-    Skip netapps Back
+    Skip loop Back
 
 Lab done
 ```
