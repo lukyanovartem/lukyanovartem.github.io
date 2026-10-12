@@ -37,6 +37,8 @@
 <p>S:User-Startup</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">stack</span> 262144</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> <span class="op">&gt;</span>NIL: bebbosshd</span></code></pre></div>
+<h3 id="обновление-системы">Обновление системы</h3>
+<p>Перед обновлением не забыть перезаписать папку <code>SYS:Prefs/Env-Archive</code> поверх дистрибутивной</p>
 <h2 id="для-raspberry-pi-3-model-b">Для Raspberry Pi 3 Model B+</h2>
 <h3 id="поддержка-сети">Поддержка сети</h3>
 <p>Драйвер <code>usblan78xx.device</code> не отображается в сетевых устройствах в настройках сети. Необходимо прописать вручную</p>
