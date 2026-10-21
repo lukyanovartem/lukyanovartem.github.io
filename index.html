@@ -712,50 +712,6 @@ mk nuke</code></pre>
     <footer></footer>
 
     <article>
-    <h1><a href="./posts/nixos.html">Шпаргалка по NixOS</a></h1>
-    <section class="header">
-         7 мая 2025
-        
-    </section>
-    <section class="header">
-        
-          <a title="All pages tagged 'linux'." href="./tags/linux.html" rel="tag">linux</a>
-        
-    </section>
-    <section class="header">
-        <span class="disqus-comment-count" data-disqus-identifier="posts/nixos.md"></span>
-    </section>
-    <section>
-        <p>Работа офлайн<br />
-<a href="https://github.com/lukyanovartem/scripts/tree/master/moonix">Скрипт</a> скачивает все зависимости для сборки пакетов с открытым исходным кодом</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> build .#<span class="op">&lt;</span>пакет<span class="op">&gt;</span> --offline</span></code></pre></div>
-<p>Деплой</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nixos-rebuild</span> switch <span class="at">--target-host</span> <span class="op">&lt;</span>адрес машины<span class="op">&gt;</span> --sudo</span></code></pre></div>
-<p>Работа с nix store</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nix-collect-garbage <span class="at">-d</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nix-store <span class="at">--optimise</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nix-store <span class="at">--verify</span> <span class="at">--check-contents</span> <span class="at">--repair</span></span></code></pre></div>
-<p>Обновление flakes</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> flake update <span class="op">&lt;</span>flake<span class="op">&gt;</span> --flake <span class="op">&lt;</span>путь до конфигурации nixos<span class="op">&gt;</span></span></code></pre></div>
-<p>Использование системного nixpkgs в flakes репозитории</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> flake lock <span class="at">--override-input</span> nixpkgs flake:nixpkgs</span></code></pre></div>
-<p>nix-output-monitor</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>команда<span class="op">&gt;</span> --log-format <span class="ex">internal-json</span> <span class="at">-v</span> <span class="kw">|&amp;</span> <span class="ex">nom</span> <span class="at">--json</span></span></code></pre></div>
-<p>Тестирование конфигурации</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nixos-rebuild test</span></code></pre></div>
-<p>Путь до исходников в установленной системе</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> flake metadata nixpkgs</span></code></pre></div>
-<p>Использование локальной инфраструктуры для сборки</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> build .#<span class="op">&lt;</span>имя пакета<span class="op">&gt;</span> --builders <span class="st">'ssh-ng://&lt;адрес машины&gt;'</span> <span class="at">--option</span> builders-use-substitutes true <span class="at">-j0</span></span></code></pre></div>
-<p>Копирование пакета на удалённую машину</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> copy <span class="at">--to</span> ssh://<span class="op">&lt;</span>адрес машины<span class="op">&gt;</span> nixpkgs#<span class="op">&lt;</span>название пакета<span class="op">&gt;</span></span></code></pre></div>
-    </section>
-</article>
-
-    
-    <footer></footer>
-
-    <article>
     <h1><a href="./posts/sd.html">Запуск Stable Diffusion на слабом железе</a></h1>
     <section class="header">
         25 апреля 2025
@@ -882,6 +838,55 @@ The first of these Silicon Graphics systems was the 4D/60 ‘Professional IRIS�
 </summary>
 The Sun386i workstation motherboard includes the CPU, 80387 FPU, 82380 timer/DMA/interrupt controller and a custom Ethernet IC called BABE (“Bus Adapter Between Ethernet”)
 </details>
+    </section>
+</article>
+
+    
+    <footer></footer>
+
+    <article>
+    <h1><a href="./posts/retropc.html">Дачный ретрокомп</a></h1>
+    <section class="header">
+        19 июля 2021
+        
+    </section>
+    <section class="header">
+        
+          <a title="All pages tagged 'ретро'." href="./tags/%D1%80%D0%B5%D1%82%D1%80%D0%BE.html" rel="tag">ретро</a>
+        
+    </section>
+    <section class="header">
+        <span class="disqus-comment-count" data-disqus-identifier="posts/retropc.md"></span>
+    </section>
+    <section>
+        <p>Так получилось, что моим первым компьютером стал системный блок с Pentium II. Это была интересная эпоха - процессор в виде картриджа и щелевой разъём на материнке под него, культовые видеоускорители 3dfx, аудиокарты с таблично-волновым синтезом, материнские платы уже с разъёмом AGP, но всё ещё не избавившиеся от ISA слотов.<br />
+Я испытываю сильную ностальгию по тем временам. Однако, я не стал воспроизводить в точности конфигурацию того компьютера, а собрал нечто по его мотивам. Так, под нож пошли форм-фактор AT, разъём клавиатуры DIN5, COM-мышка. Вместо этого была собрана система стандарта ATX, с PS/2 мышью, клавой и USB портами.<br />
+Для проверки софта и игр под данную платформу рекомендую эмулятор 86Box, однако для его запуска потребуется достаточно мощный комп.</p>
+<p>Итак, что можно собрать:</p>
+<ul>
+<li>Процессор<br />
+Если важна универсальность, то берём Pentium II с разблокированным множителем, что позволит менять частоту процессора. Определить разблокирован ли множитель можно по номеру на картридже. Вторая цифра означает последнюю цифру года, третья и чётвёртая - неделю изготовления. Процессор должен быть изготовлен до 34 недели 98 года<br />
+Если нужна максимальная скорость, то можно брать слотовый Pentium III с частотой 500-600 МГц. Процессоры 800 МГц и выше редки и дороги</li>
+<li>Материнская плата<br />
+Можно приобрести плату стандарта ATX на культовом чипсете 440BX, с набортными USB и PS/2. Желательно с Plug &amp; Play BIOS’ом, чтобы можно было выставлять настройки процессора программно, без джамперов<br />
+В случае выбора данного чипсета стоит с вниманием отнестись к подбору процессора, видеокарты и памяти. Так, штатная частота системной шины у данного чипсета - 100 МГц. В случае разгона по шине лучше выбирать видеокарту от Nvidia, т.к. AMD не все переваривают последующее за разгоном повышение частоты AGP. Память плотностью 256 Мб на планку должна быть двухсторонней</li>
+<li>Оперативная память<br />
+Для девяностовосьмёрки нет необходимости брать больше 512 Мб</li>
+<li>Видеокарта<br />
+Любая AGP карта с 3.3 В разъёмом, либо универсальная</li>
+<li>SATA контроллер<br />
+Полезная опция. Дешевые варианты это Silicon Image 3112/3512. TRIM работать не будет, в остальном неплохая вещь</li>
+<li>SSD диск<br />
+Под 98 винду можно смело брать на 120 Гб, если больше - могут быть проблемы, а меньше теперь, как правило, и не продают</li>
+<li>Сетевая карта<br />
+Беспроводной адаптер TP-LINK TL-WN651G стандарта 802.11g имеет драйвера под Windows 98, и даже работает</li>
+<li>Звуковая карта<br />
+Любая для слота ISA, неважно Plug &amp; Play или нет, но лучше чтобы настройки выставлялись программно, а не перемычками. Если хочется приятного звука в DOS играх, то можно взять карту AWE64</li>
+<li>USB 2.0 контроллер<br />
+Есть смысл поставить для увеличения количества USB слотов и повышения скорости передачи данных, поскольку на материнках той эпохи был лишь медленный USB 1.1. Хорошо будет работать карта на чипе NEC D720100AGM</li>
+<li>CD-RW дисковод<br />
+Подойдёт старенький пишущий дисковод для шины IDE</li>
+</ul>
     </section>
 </article>
 

@@ -721,54 +721,6 @@ mk nuke</code></pre>
     <dc:creator></dc:creator>
 </item>
 <item>
-    <title>Шпаргалка по NixOS</title>
-    <link>https://lukyanovartem.github.io/posts/nixos.html</link>
-    <description><![CDATA[<article>
-    <h1><a href="/posts/nixos.html">Шпаргалка по NixOS</a></h1>
-    <section class="header">
-         7 мая 2025
-        
-    </section>
-    <section class="header">
-        
-          <a title="All pages tagged &#39;linux&#39;." href="/tags/linux.html" rel="tag">linux</a>
-        
-    </section>
-    <section class="header">
-        <span class="disqus-comment-count" data-disqus-identifier="posts/nixos.md"></span>
-    </section>
-    <section>
-        <p>Работа офлайн<br />
-<a href="https://github.com/lukyanovartem/scripts/tree/master/moonix">Скрипт</a> скачивает все зависимости для сборки пакетов с открытым исходным кодом</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> build .#<span class="op">&lt;</span>пакет<span class="op">&gt;</span> --offline</span></code></pre></div>
-<p>Деплой</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nixos-rebuild</span> switch <span class="at">--target-host</span> <span class="op">&lt;</span>адрес машины<span class="op">&gt;</span> --sudo</span></code></pre></div>
-<p>Работа с nix store</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nix-collect-garbage <span class="at">-d</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nix-store <span class="at">--optimise</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nix-store <span class="at">--verify</span> <span class="at">--check-contents</span> <span class="at">--repair</span></span></code></pre></div>
-<p>Обновление flakes</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> flake update <span class="op">&lt;</span>flake<span class="op">&gt;</span> --flake <span class="op">&lt;</span>путь до конфигурации nixos<span class="op">&gt;</span></span></code></pre></div>
-<p>Использование системного nixpkgs в flakes репозитории</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> flake lock <span class="at">--override-input</span> nixpkgs flake:nixpkgs</span></code></pre></div>
-<p>nix-output-monitor</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>команда<span class="op">&gt;</span> --log-format <span class="ex">internal-json</span> <span class="at">-v</span> <span class="kw">|&amp;</span> <span class="ex">nom</span> <span class="at">--json</span></span></code></pre></div>
-<p>Тестирование конфигурации</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nixos-rebuild test</span></code></pre></div>
-<p>Путь до исходников в установленной системе</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> flake metadata nixpkgs</span></code></pre></div>
-<p>Использование локальной инфраструктуры для сборки</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> build .#<span class="op">&lt;</span>имя пакета<span class="op">&gt;</span> --builders <span class="st">&#39;ssh-ng://&lt;адрес машины&gt;&#39;</span> <span class="at">--option</span> builders-use-substitutes true <span class="at">-j0</span></span></code></pre></div>
-<p>Копирование пакета на удалённую машину</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nix</span> copy <span class="at">--to</span> ssh://<span class="op">&lt;</span>адрес машины<span class="op">&gt;</span> nixpkgs#<span class="op">&lt;</span>название пакета<span class="op">&gt;</span></span></code></pre></div>
-    </section>
-</article>
-]]></description>
-    <pubDate>07.05.2025</pubDate>
-    <guid>https://lukyanovartem.github.io/posts/nixos.html</guid>
-    <dc:creator></dc:creator>
-</item>
-<item>
     <title>Запуск Stable Diffusion на слабом железе</title>
     <link>https://lukyanovartem.github.io/posts/sd.html</link>
     <description><![CDATA[<article>
