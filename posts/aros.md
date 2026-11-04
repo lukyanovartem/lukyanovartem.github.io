@@ -6,6 +6,20 @@ tags: amiga
 ### Русский язык
 В настройках локали поддерживается русский язык, однако в настройках выбора шрифтов по умолчанию выбраны шрифты без поддержки кириллицы. Нужно выбрать шрифты семейств `Open Sans` или `Spectral` в качестве основных, и `xen` в качестве системного. Дополнительно нужно аналогичным образом поменять шрифты в настройках `Zune`
 
+### Синхронизация с локальным сервером времени
+```diff
+--- timesync.conf	2026-11-04 10:41:24.313200576 +0300
++++ ENVARC:AROSTCP/timesync.conf	2026-11-01 12:17:12.000000000 +0300
+@@ -7,7 +7,7 @@
+
+ # NTP servers, tried in this order until one answers.  Repeat the key or
+ # list several separated by spaces or commas.  Host names or IPv4 addresses.
+-Server=server
++Server=pool.ntp.org
+
+ # Seconds between synchronisations (60 .. 604800).
+ Interval=3600
+```
 ### SSH сервер  
 ```sh
 copy sshd_config.example sshd_config
@@ -26,31 +40,6 @@ RUN >NIL: bebbosshd
 ### Поддержка сети
 Драйвер `usblan78xx.device` не отображается в сетевых устройствах в настройках сети. Необходимо прописать вручную
 
-### Синхронизация с локальным сервером времени
-S:User-Startup
-```sh
-Set count 0
-
-Lab loop
-    Set count `Eval $$$$count + 1`
-
-    Route get default >RAM:User-Startup.txt
-    Search RAM:User-Startup.txt "(0)"
-
-    If Not warn
-        PiNTP -s 1.2.3.4
-
-        Skip done
-    EndIf
-    If $$$$count Ge 10 Val
-        Skip done
-    EndIf
-
-    Wait 1
-    Skip loop Back
-
-Lab done
-```
 ### Настройка разрешения экрана
 ```diff
 --- config.txt.orig	2026-10-06 16:09:48.780558428 +0300
