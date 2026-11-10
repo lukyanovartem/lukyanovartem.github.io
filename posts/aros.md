@@ -14,8 +14,8 @@ tags: amiga
 
  # NTP servers, tried in this order until one answers.  Repeat the key or
  # list several separated by spaces or commas.  Host names or IPv4 addresses.
--Server=server
-+Server=pool.ntp.org
+-Server=pool.ntp.org
++Server=server
 
  # Seconds between synchronisations (60 .. 604800).
  Interval=3600
