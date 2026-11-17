@@ -196,5 +196,6 @@ reboot
 ```
 ```sh
 sysupgrade auto https://cdn.NetBSD.org/pub/NetBSD/NetBSD-11.0/evbarm-aarch64
+sysupgrade clean
 pkgin upgrade
 ```
