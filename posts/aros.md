@@ -21,17 +21,20 @@ tags: amiga
  Interval=3600
 ```
 ### SSH сервер  
-```sh
-copy sshd_config.example sshd_config
-bebbosshkeygen -f ssh_host_ed25519_key
-
-makedir ENVARC:.ssh
-edit ENVARC:.ssh/authorized_keys
+Авторизация только под пользователем root
+```diff
+--- sshd	2026-10-12 07:18:38.000000000 +0300
++++ ENVARC:AROSTCP/db/services.d/sshd	2026-11-22 10:31:46.715189954 +0300
+@@ -18,4 +18,4 @@ Path=SYS:System/Network/Services/sshd
+ Order=20
+ StopSig=12
+ Policy=signal
+-Enabled=no
++Enabled=yes
 ```
-S:User-Startup
 ```sh
-stack 262144
-RUN >NIL: bebbosshd
+makedir ENVARC:ssh
+edit ENVARC:ssh/authorized_keys
 ```
 ### Обновление системы
 Перед обновлением не забыть перезаписать папку `SYS:Prefs/Env-Archive` поверх дистрибутивной
