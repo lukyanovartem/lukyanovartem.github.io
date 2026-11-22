@@ -41,14 +41,17 @@
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a> # Seconds between synchronisations (60 .. 604800).</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a> Interval=3600</span></code></pre></div>
 <h3 id="ssh-сервер">SSH сервер</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">copy</span> sshd_config.example sshd_config</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bebbosshkeygen</span> <span class="at">-f</span> ssh_host_ed25519_key</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">makedir</span> ENVARC:.ssh</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">edit</span> ENVARC:.ssh/authorized_keys</span></code></pre></div>
-<p>S:User-Startup</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">stack</span> 262144</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> <span class="op">&gt;</span>NIL: bebbosshd</span></code></pre></div>
+<p>Авторизация только под пользователем root</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">--- sshd	2026-10-12 07:18:38.000000000 +0300</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">+++ ENVARC:AROSTCP/db/services.d/sshd	2026-11-22 10:31:46.715189954 +0300</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">@@ -18,4 +18,4 @@ Path=SYS:System/Network/Services/sshd</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> Order=20</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> StopSig=12</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> Policy=signal</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">-Enabled=no</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">+Enabled=yes</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">makedir</span> ENVARC:ssh</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">edit</span> ENVARC:ssh/authorized_keys</span></code></pre></div>
 <h3 id="обновление-системы">Обновление системы</h3>
 <p>Перед обновлением не забыть перезаписать папку <code>SYS:Prefs/Env-Archive</code> поверх дистрибутивной</p>
 <h2 id="для-raspberry-pi-3-model-b">Для Raspberry Pi 3 Model B+</h2>
